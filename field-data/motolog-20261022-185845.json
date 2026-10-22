@@ -1,0 +1,393 @@
+{
+  "format" : "mototune-log-v1",
+  "note" : "AF2 wideband AFR only valid once engine temp (id 33 T_Eng) reaches ~45-60C; gate AFR on that.",
+  "payloadBytes" : 95,
+  "record" : "uint32 LE ms-since-start, then payload (vars in order, little-endian unsigned)",
+  "startedAt" : "2026-10-22T11:58:45Z",
+  "vars" : [
+    {
+      "id" : 1,
+      "index" : 16385,
+      "name" : "VAR 1",
+      "size" : 1
+    },
+    {
+      "id" : 2,
+      "index" : 16386,
+      "name" : "VAR 2",
+      "size" : 1
+    },
+    {
+      "id" : 3,
+      "index" : 16387,
+      "name" : "VAR 3",
+      "size" : 1
+    },
+    {
+      "id" : 4,
+      "index" : 16388,
+      "name" : "VAR 4",
+      "size" : 1
+    },
+    {
+      "id" : 5,
+      "index" : 16389,
+      "name" : "VAR 5",
+      "size" : 1
+    },
+    {
+      "id" : 6,
+      "index" : 16390,
+      "name" : "VAR 6",
+      "size" : 1
+    },
+    {
+      "id" : 7,
+      "index" : 16391,
+      "name" : "VAR 7",
+      "size" : 1
+    },
+    {
+      "id" : 8,
+      "index" : 16392,
+      "name" : "VAR 8",
+      "size" : 1
+    },
+    {
+      "id" : 9,
+      "index" : 16393,
+      "name" : "Teks gauge p9",
+      "size" : 1
+    },
+    {
+      "id" : 10,
+      "index" : 16394,
+      "name" : "VAR 10",
+      "size" : 1
+    },
+    {
+      "id" : 11,
+      "index" : 16395,
+      "name" : "VAR 11",
+      "size" : 1
+    },
+    {
+      "id" : 12,
+      "index" : 16396,
+      "name" : "VAR 12",
+      "size" : 1
+    },
+    {
+      "id" : 13,
+      "index" : 16397,
+      "name" : "VAR 13",
+      "size" : 1
+    },
+    {
+      "id" : 14,
+      "index" : 16398,
+      "name" : "VAR 14",
+      "size" : 1
+    },
+    {
+      "id" : 15,
+      "index" : 16399,
+      "name" : "VAR 15",
+      "size" : 1
+    },
+    {
+      "id" : 16,
+      "index" : 16400,
+      "name" : "VAR 16",
+      "size" : 1
+    },
+    {
+      "id" : 17,
+      "index" : 16401,
+      "name" : "VAR 17",
+      "size" : 1
+    },
+    {
+      "id" : 18,
+      "index" : 16402,
+      "name" : "VAR 18",
+      "size" : 1
+    },
+    {
+      "id" : 19,
+      "index" : 16403,
+      "name" : "VAR 19",
+      "size" : 1
+    },
+    {
+      "id" : 20,
+      "index" : 16404,
+      "name" : "VAR 20",
+      "size" : 1
+    },
+    {
+      "id" : 21,
+      "index" : 16405,
+      "name" : "VAR 21",
+      "size" : 1
+    },
+    {
+      "id" : 22,
+      "index" : 16406,
+      "name" : "VAR 22",
+      "size" : 2
+    },
+    {
+      "id" : 23,
+      "index" : 16407,
+      "name" : "VAR 23",
+      "size" : 2
+    },
+    {
+      "id" : 24,
+      "index" : 16408,
+      "name" : "VAR 24",
+      "size" : 1
+    },
+    {
+      "id" : 25,
+      "index" : 16409,
+      "name" : "VAR 25",
+      "size" : 2
+    },
+    {
+      "id" : 26,
+      "index" : 16410,
+      "name" : "RPM",
+      "size" : 2
+    },
+    {
+      "id" : 27,
+      "index" : 16411,
+      "name" : "VAR 27",
+      "size" : 2
+    },
+    {
+      "id" : 28,
+      "index" : 16412,
+      "name" : "VAR 28",
+      "size" : 1
+    },
+    {
+      "id" : 29,
+      "index" : 16413,
+      "name" : "Teks gauge 1",
+      "size" : 1
+    },
+    {
+      "id" : 30,
+      "index" : 16414,
+      "name" : "VAR 30",
+      "size" : 1
+    },
+    {
+      "id" : 31,
+      "index" : 16415,
+      "name" : "VAR 31",
+      "size" : 1
+    },
+    {
+      "id" : 32,
+      "index" : 16416,
+      "name" : "VAR 32",
+      "size" : 2
+    },
+    {
+      "id" : 33,
+      "index" : 16417,
+      "name" : "T_Eng",
+      "size" : 1
+    },
+    {
+      "id" : 34,
+      "index" : 16418,
+      "name" : "VAR 34",
+      "size" : 1
+    },
+    {
+      "id" : 35,
+      "index" : 16419,
+      "name" : "VAR 35",
+      "size" : 2
+    },
+    {
+      "id" : 36,
+      "index" : 16420,
+      "name" : "VAR 36",
+      "size" : 1
+    },
+    {
+      "id" : 37,
+      "index" : 16421,
+      "name" : "VAR 37",
+      "size" : 1
+    },
+    {
+      "id" : 38,
+      "index" : 16422,
+      "name" : "VAR 38",
+      "size" : 1
+    },
+    {
+      "id" : 39,
+      "index" : 16423,
+      "name" : "VAR 39",
+      "size" : 1
+    },
+    {
+      "id" : 40,
+      "index" : 16424,
+      "name" : "VAR 40",
+      "size" : 1
+    },
+    {
+      "id" : 41,
+      "index" : 16425,
+      "name" : "VAR 41",
+      "size" : 2
+    },
+    {
+      "id" : 42,
+      "index" : 16426,
+      "name" : "VAR 42",
+      "size" : 2
+    },
+    {
+      "id" : 43,
+      "index" : 16427,
+      "name" : "VAR 43",
+      "size" : 2
+    },
+    {
+      "id" : 44,
+      "index" : 16428,
+      "name" : "VAR 44",
+      "size" : 1
+    },
+    {
+      "id" : 45,
+      "index" : 16429,
+      "name" : "VAR 45",
+      "size" : 2
+    },
+    {
+      "id" : 46,
+      "index" : 16430,
+      "name" : "VAR 46",
+      "size" : 2
+    },
+    {
+      "id" : 47,
+      "index" : 16431,
+      "name" : "VAR 47",
+      "size" : 1
+    },
+    {
+      "id" : 48,
+      "index" : 16432,
+      "name" : "VAR 48",
+      "size" : 2
+    },
+    {
+      "id" : 49,
+      "index" : 16433,
+      "name" : "VAR 49",
+      "size" : 4
+    },
+    {
+      "id" : 50,
+      "index" : 16434,
+      "name" : "VAR 50",
+      "size" : 2
+    },
+    {
+      "id" : 51,
+      "index" : 16435,
+      "name" : "Speed",
+      "size" : 2
+    },
+    {
+      "id" : 52,
+      "index" : 16436,
+      "name" : "VAR 52",
+      "size" : 4
+    },
+    {
+      "id" : 53,
+      "index" : 16437,
+      "name" : "VAR 53",
+      "size" : 4
+    },
+    {
+      "id" : 54,
+      "index" : 16438,
+      "name" : "VAR 54",
+      "size" : 4
+    },
+    {
+      "id" : 55,
+      "index" : 16439,
+      "name" : "AF2",
+      "size" : 2
+    },
+    {
+      "id" : 56,
+      "index" : 16440,
+      "name" : "VAR 56",
+      "size" : 2
+    },
+    {
+      "id" : 87,
+      "index" : 16471,
+      "name" : "VAR 87",
+      "size" : 2
+    },
+    {
+      "id" : 130,
+      "index" : 16514,
+      "name" : "VAR 130",
+      "size" : 1
+    },
+    {
+      "id" : 144,
+      "index" : 16528,
+      "name" : "VAR 144",
+      "size" : 1
+    },
+    {
+      "id" : 973,
+      "index" : 17357,
+      "name" : "VAR 973",
+      "size" : 1
+    },
+    {
+      "id" : 1398,
+      "index" : 17782,
+      "name" : "VAR 1398",
+      "size" : 1
+    },
+    {
+      "id" : 57,
+      "index" : 16441,
+      "name" : "VAR 57",
+      "size" : 1
+    },
+    {
+      "id" : 58,
+      "index" : 16442,
+      "name" : "VAR 58",
+      "size" : 1
+    },
+    {
+      "id" : 59,
+      "index" : 16443,
+      "name" : "VAR 59",
+      "size" : 2
+    }
+  ]
+}

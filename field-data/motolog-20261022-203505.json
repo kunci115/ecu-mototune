@@ -1,0 +1,45 @@
+{
+  "format" : "mototune-log-v1",
+  "note" : "AF2 wideband AFR only valid once engine temp (id 33 T_Eng) reaches ~45-60C; gate AFR on that.",
+  "payloadBytes" : 10,
+  "record" : "uint32 LE ms-since-start, then payload (vars in order, little-endian unsigned)",
+  "startedAt" : "2026-10-22T13:35:05Z",
+  "vars" : [
+    {
+      "id" : 26,
+      "index" : 16410,
+      "name" : "RPM",
+      "size" : 2
+    },
+    {
+      "id" : 55,
+      "index" : 16439,
+      "name" : "AFR",
+      "size" : 2
+    },
+    {
+      "id" : 774,
+      "index" : 17158,
+      "name" : "AFR Target",
+      "size" : 2
+    },
+    {
+      "id" : 33,
+      "index" : 16417,
+      "name" : "T_Eng",
+      "size" : 1
+    },
+    {
+      "id" : 51,
+      "index" : 16435,
+      "name" : "Speed",
+      "size" : 2
+    },
+    {
+      "id" : 369,
+      "index" : 16753,
+      "name" : "TPS",
+      "size" : 1
+    }
+  ]
+}

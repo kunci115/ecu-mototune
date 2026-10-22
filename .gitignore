@@ -1,0 +1,24 @@
+# --- vendor-derived material: NEVER published (copyright / licensing) ---
+decompiled/
+package/
+*.apk
+*.dat
+
+# --- personal ECU dumps (serial numbers, your tuner's maps). Share deliberately, not by default ---
+dumps/
+
+# --- build output ---
+ARacerKit/.build/
+iOSApp/build/
+iOSApp/build-mac/
+iOSApp/*.xcodeproj/
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+
+# --- local tooling ---
+.venv/
+__pycache__/
+.vscode/
+.DS_Store
+*.swp
