@@ -15,6 +15,22 @@ A Claude-powered copilot proposes the next pass from everything the app measured
 |---|---|---|
 | ![Live](docs/screenshots/live.png) | ![Tuner](docs/screenshots/tuner.png) | ![Tables](docs/screenshots/tables.png) |
 
+## Why this is public
+
+A lot of programmers ride, wrench on their own engines, and run racing ECUs — and then tune them
+through a closed vendor app that drops out, learns against an AFR target that drifts, and can't be
+scripted. This repo is a **pilot project**: proof that one person with a bike, a phone and an AI
+pair-programmer can own the whole chain from CAN frames to a tuning copilot in days. The hope is
+that riders who code — and coders who ride — take it further than one bike and one ECU brand.
+If that is you: start with [CONTRIBUTING.md](CONTRIBUTING.md), there is a ladder from "no hardware
+needed" to "port a new ECU".
+
+> **(ID)** Repo ini dibuka karena banyak programmer yang hobi motor, modif mesin, dan pakai ECU
+> racing — tapi nge-tune-nya lewat app vendor yang tertutup. Ini pilot project: bukti satu orang
+> dengan motor, HP, dan AI bisa pegang seluruh rantai dari frame CAN sampai copilot tuning. Harapannya
+> teman-teman penghobi motor yang kenal coding ikut mengembangkan — ke motor lain, ke ECU lain.
+> Mulai dari [CONTRIBUTING.md](CONTRIBUTING.md): ada tangga dari "tanpa hardware" sampai "port ECU baru".
+
 ---
 
 ## Read this first
