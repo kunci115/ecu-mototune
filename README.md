@@ -231,11 +231,18 @@ Claude Messages API (raw `URLSession`, no SDK) · Python 3 stdlib · Pillow.
 
 ---
 
+## The shipped calibration is one specific bike
+
+`table_catalog.json` is the real map of a **Yamaha WR155R bore-up** — 76 mm piston on a 61.7 mm
+crank (≈ 280 cc), 28/25 mm valves, 45 mm throttle body tuned with the air filter on, aRacer
+RC MiniX — tuned by a human tuner. It is **not** a stock WR155 map and must not be written into
+another engine. Details and the contribution format for your own bike or ECU:
+[`catalogs/README.md`](catalogs/README.md).
+
 ## Status, contributing, licence
 
 - Honest status, including what is **not** proven: [`docs/STATUS.md`](docs/STATUS.md).
-- Issues and PRs welcome — especially ride data from other aRacer models, confirmed variable ids,
-  and ports to other ECUs. Keep vendor files out of PRs. Add a note of *how you know* to every
-  scaling/axis you add.
-- Licence: not yet chosen by the author. Until a `LICENSE` file appears, treat this as
-  all-rights-reserved source you may read and run for personal use.
+- Issues and PRs welcome — especially calibrations and ride data from other bikes on aRacer,
+  confirmed variable ids, and ports to other ECUs. Keep vendor files out of PRs. Add a note of
+  *how you know* to every scaling/axis you add.
+- Licence: [MIT](LICENSE).
