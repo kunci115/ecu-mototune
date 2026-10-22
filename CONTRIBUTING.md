@@ -34,7 +34,16 @@ Only if you accept the risk and have a backup of your map (the official app's `.
 the ECU → reconnect → is the cell still changed? That single experiment decides whether a
 "burn" step is needed. Then test with the official app that it reads the same value.
 
-## Rung 3 — another ECU
+## Rung 3 — another platform
+
+The core is small and already has two implementations of the protocol (Swift `ARacerKit`, Python
+`aracer_client.py`). An **Android** port is the most wanted thing in this repo. Reasonable paths:
+Kotlin port of `Frame`/`SDO`/`StreamDecoder`/`ECUClient` + Compose UI; Kotlin Multiplatform
+sharing the engines; or a Rust core with thin native UIs. Open an issue titled "Android: <approach>"
+before writing a lot of code so the protocol layer stays one source of truth (tests in
+`Tests/ARacerKitTests` are the spec — port them first).
+
+## Rung 4 — another ECU
 
 See README → *Port to another ECU*. Open an issue first with: ECU model, how the vendor app talks
 to it (Wi-Fi/BLE/USB), a traffic capture if you have one, and whether it looks like CANopen

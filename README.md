@@ -25,6 +25,35 @@ that riders who code — and coders who ride — take it further than one bike a
 If that is you: start with [CONTRIBUTING.md](CONTRIBUTING.md), there is a ladder from "no hardware
 needed" to "port a new ECU".
 
+### Where this should go
+
+Today it is **one ECU brand, one bike, Apple only** (Swift, iOS, macOS) — because that is what the
+first author had on the bench. That is the starting point, not the goal:
+
+1. **Every racing ECU in one app.** aRacer first (MiniX is done; Mini 5 / Super / other firmwares
+   next), then the other brands riders actually run — Juken, BRT, Daytona, Speedtuner, Ultraspeed,
+   PowerCommander-class piggybacks, Yamaha/Honda OEM over OBD/K-line where the data is readable.
+   The code already splits *transport + envelope + dictionary* (per ECU) from *engines + copilot +
+   UI* (shared), so a new ECU is a driver, not a fork. Community calibrations per bike live in
+   [`catalogs/`](catalogs/README.md).
+2. **Cross-platform.** Android is the obvious next target — most riders here are on Android — then
+   desktop (Windows/Linux) for the dyno-room laptop. The protocol layer is small and has a Python
+   twin already (`aracer_client.py`); the engines are pure logic with tests. A Kotlin Multiplatform
+   or Flutter port of the core, or a shared Rust/C core with thin native UIs, are all open
+   questions — open an issue and argue for one.
+3. **Measurement, not guesswork.** Road "dyno" from acceleration, real dyno import, GPS/IMU fusion,
+   knock detection — whatever makes the *verdict* on a map change more trustworthy.
+4. **A copilot that learns across bikes.** With enough shared logs and verdicts, the AI's
+   suggestions can start from what worked on similar builds instead of from zero.
+
+> **(ID)** Sekarang baru satu merek ECU, satu motor, dan hanya Apple (Swift/iOS/macOS) — karena itu
+> yang ada di meja. Visinya: **semua ECU racing dalam satu app** (aRacer dulu, lalu Juken, BRT,
+> Daytona, Speedtuner, Ultraspeed, piggyback, OEM lewat OBD/K-line kalau datanya bisa dibaca),
+> **lintas platform** (Android jelas prioritas berikutnya, lalu desktop untuk laptop di ruang dyno),
+> pengukuran yang makin bisa dipercaya, dan copilot yang belajar dari banyak motor. Kodenya sudah
+> dipisah: transport + envelope + dictionary per ECU, engine + copilot + UI dipakai bersama — jadi
+> ECU baru itu driver, bukan fork.
+
 > **(ID)** Repo ini dibuka karena banyak programmer yang hobi motor, modif mesin, dan pakai ECU
 > racing — tapi nge-tune-nya lewat app vendor yang tertutup. Ini pilot project: bukti satu orang
 > dengan motor, HP, dan AI bisa pegang seluruh rantai dari frame CAN sampai copilot tuning. Harapannya
