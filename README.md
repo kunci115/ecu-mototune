@@ -229,45 +229,33 @@ pull measured, unknown cells dropped, ≤ `maxStep` per cell. Model and effort a
 
 ---
 
-## How this was built (the Claude Code workflow)
+## How this was built
 
-The whole project — protocol RE, Python PoC, Swift package, iOS app, design system, icon, docs —
-was built in a few days in [Claude Code](https://claude.com/claude-code) with a human doing the
-hardware runs and the judgement calls. If you want to reproduce the process rather than just the
-code:
+Built in a few days by one person pairing with an AI coding assistant (Claude Code), with the
+human doing the hardware runs and the judgement calls. Use whatever AI — or none — you like;
+nothing here depends on it. What transferred well, tool-agnostic:
 
-**Models.** Claude in Claude Code (Claude Fable 5.1 for the later sessions, the then-current
-Claude models before that). The in-app copilot calls `claude-haiku-5-5` (the owner's cost choice)
-through the Messages API with structured output.
-
-**Skills / tools used inside Claude Code**
-- `reverse-engineer-anything` (REA MCP server + JADX): decompiling the Android app to its
-  cleartext — gauge bindings, the block-download state machine, the SharedPreferences channel
-  defaults, `ScaleData.xml` names. Only cleartext was used; the AES definition files were left alone.
-- `swiftui-pro`: review passes for modern SwiftUI (`@Observable`, one type per file, Dynamic Type,
-  VoiceOver labels, `Text(_, format:)`, iOS/macOS conditionals).
-- `ui-ux-pro-max`: the dark telemetry design system (palette tokens, Space Grotesk, card/eyebrow
-  modifiers, heat scale), then applied per screen.
-- `claude-api`: the Messages API shape (headers, `output_config.format` JSON schema, refusal /
-  `max_tokens` handling, server-side fallbacks) for `ClaudeClient.swift`.
-- Plain Python (stdlib) for the bridge PoC and statistics; Pillow for the programmatic app icon
-  (`iOSApp/make_icon.py`); `xcodegen` + `xcodebuild` + `devicectl` for sideloading.
-
-**Working rules that mattered**
-- Hardware in the loop, early: every protocol claim was checked against the real ECU the same day.
-  Several "facts" from the decompiled code were wrong until tested (SDO frames must be DLC 8, the
-  block-end reply carries no index, the stream is big-endian, NMT start is required).
-- When the log analysis said "82 % corrupt", the bug was in the analysis (endianness), not the
-  bridge. Decode with the app's own code (`aracer-cli replay`) so offline analysis == shipped code.
-- Tests without hardware: `ScriptedTransport` replays recorded exchanges; engines are tested with
-  synthetic rides; the catalog JSON is a test fixture.
-- Don't trust a scrolled screenshot: the "11 × 18" table geometry survived a day until the raw
+- **Hardware in the loop, early.** Every protocol claim was checked against the real ECU the same
+  day. Several "facts" read from the vendor app's code were wrong until tested (SDO frames must be
+  DLC 8, the block-end reply carries no index, the stream is big-endian, NMT start is required).
+- **Analyse with the shipped code.** When an offline analysis said "82 % corrupt", the bug was in
+  the analysis (endianness), not the bridge. `aracer-cli replay` runs phone logs through the same
+  engines the app uses, so offline results and app behaviour can't drift apart.
+- **Tests without hardware.** `ScriptedTransport` replays recorded exchanges; engines are tested
+  with synthetic rides; the catalog JSON is a fixture.
+- **Don't trust a scrolled screenshot.** The "11 × 18" table geometry survived a day until the raw
   dump was re-read row by row (it is 17 × 20).
-- The owner rejected AFR-target auto-learn ("drifts"); the Tuner tab was rebuilt around measured
-  acceleration. Statistics (steady-state gating, lag alignment, outlier rejection, revision
-  averaging with a noise threshold) exist because a wideband sensor "moves all the time".
-- Memory across sessions: a project memory file (what was verified, what was a decode bug, what
-  the owner decided) kept later sessions from re-deriving or re-breaking earlier work.
+- **Measure, don't chase a target.** AFR-target auto-learn was rejected as "drifts"; the Tuner was
+  rebuilt around measured acceleration, and the statistics (steady-state gating, lag alignment,
+  outlier rejection, revision averaging with a noise threshold) exist because a wideband sensor
+  "moves all the time".
+- **Keep a decision log.** A running note of what was verified, what was a decode bug, and what
+  the owner decided stopped later work from re-deriving or re-breaking earlier work.
+  (`docs/STATUS.md` is the public version of it.)
+
+The in-app copilot talks to the Claude Messages API with structured JSON output; the client is
+~80 lines of `URLSession` (`Support/ClaudeClient.swift`), so swapping in another model provider is
+a small change.
 
 **Stack**
 Swift 6 · SwiftPM · SwiftUI · `@Observable` · SwiftData · Network.framework (`NWConnection`) ·
