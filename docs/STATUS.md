@@ -38,6 +38,15 @@ Repo: `~/Documents/Projects/aracer-xtune-re` — `ARacerKit/` (library + CLI + d
 | Sumbu AFR Target / Injection / Spark (17 × 20, label TPS diasumsikan sama dengan Fuel Adjust) | 🟡 | baca label baris AFR Target di app resmi |
 | Skala Speed (raw/256) | 🟡 | satu bacaan speedometer vs app |
 
+## 2b. Garmin (Forerunner 265) — dibangun 2026-10-23, belum diuji di jam
+
+| Area | Status | Yang harus terjadi |
+|---|---|---|
+| Pembaca FIT + fusi (grade barometrik, kurva terkoreksi kemiringan, cek GPS vs VSS, ruas jalan) | ✅ parser terbukti pada 2 aktivitas FR265 asli; fusi lolos tes sintetis | ride dengan Record Log + jam merekam bersamaan → `aracer-cli replay … --fit` atau **Import FIT** di tab Dyno |
+| App jam **MotoTune Ride** (Connect IQ, `garmin/MotoTuneRide`): menu riding sendiri + FIT dengan RPM/AFR/TPS/gear sebagai developer field, layar RPM·AFR·gear·pull, getar saat lean, tombol = feel marker | 🟡 compile OK (profil fenix) | profil fr265 selesai diunduh → compile → sideload ke `GARMIN/Apps` lewat MTP → pasangkan |
+| Companion iOS (`GarminLink.swift`, SDK resmi Garmin): pairing lewat Garmin Connect, push snapshot 1 Hz ke jam, terima marker + HR | 🟡 build OK | butuh app Garmin Connect di iPhone + jam terpasang app-nya |
+| Skor ngantuk (jam tidur + Body Battery + HR turun + gas monoton) | ⬜ ide | setelah dua baris di atas jalan; jam punya folder `Sleep/` dan `Monitor/` yang bisa dibaca lewat MTP |
+
 ## 3. Belum dibangun
 
 - Editor **Spark 3D** (manual + saran AI dengan peringatan knock; tidak pernah auto dari AFR).

@@ -134,6 +134,16 @@ copilot learns from its own history.
 
 ---
 
+## Watch (Garmin) — optional
+
+A Garmin watch adds the thing a road dyno lacks most: **road grade** from the barometric altimeter.
+Record the ride on the watch too, then *Import FIT* in the Dyno tab (or `aracer-cli replay … --fit`):
+every pull gets its grade, a slope-corrected curve and a road-segment id, and GPS confirms the ECU
+speed scale. `garmin/MotoTuneRide` is a Connect IQ watch app with its own riding activity: it shows
+RPM · AFR · gear · pulls from the phone, vibrates on a lean AFR, writes ECU data into the FIT as
+developer fields, and sends "feel" markers back with a button press. Built against the official
+Connect IQ SDK and Garmin's iOS companion SDK — no reverse engineering involved.
+
 ## Getting started
 
 Requirements: macOS 14+, Xcode 26/27 (Swift 6), `xcodegen` (`brew install xcodegen`), an iPhone on
