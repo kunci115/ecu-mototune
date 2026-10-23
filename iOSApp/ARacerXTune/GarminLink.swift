@@ -49,19 +49,6 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
         }
     }
 
-    func sendTest() {
-        guard let app else { statusText = "Pair a watch first"; return }
-        let afr = Int.random(in: 110...145), rpm = Int.random(in: 1800...9800)
-        let fake: [String: Any] = ["rpm": rpm, "afr": afr, "tgt": 125, "tps": Int.random(in: 5...100), "gear": Int.random(in: 1...6), "pulls": 2, "map": "test",
-                                   "lean": afr >= 136 ? 1 : 0, "ecu": 1, "spd": rpm / 90, "bpw": 246]
-        statusText = "Sending test: AFR \(Double(afr) / 10) · \(rpm) rpm…"
-        ConnectIQ.sharedInstance().sendMessage(fake, to: app, progress: nil) { [weak self] result in
-            Task { @MainActor in
-                if result == .success { self?.isReady = true }
-                self?.statusText = result == .success ? "Delivered: AFR \(Double(afr) / 10) · \(rpm) rpm — check the watch face" : "Send failed: \(Self.describe(result))"
-            }
-        }
-    }
     private static func describe(_ r: IQSendMessageResult) -> String {
         switch r {
         case .success: "ok"

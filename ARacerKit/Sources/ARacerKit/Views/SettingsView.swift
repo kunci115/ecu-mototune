@@ -83,9 +83,7 @@ struct SettingsView: View {
                 Button("Open MotoTune Ride", systemImage: "play.circle") { w.openWatchApp() }.buttonStyle(.bordered).tint(Theme.Palette.accent).disabled(!w.isPaired)
                 Button("Refresh", systemImage: "arrow.clockwise") { w.refresh() }.buttonStyle(.bordered).tint(Theme.Palette.textDim).disabled(!w.isPaired)
             }
-            Button("Send test data (random AFR / rpm)", systemImage: "paperplane") { w.sendTest() }
-                .buttonStyle(.bordered).tint(Theme.Palette.warn).disabled(!w.isPaired)
-            Text("Needs the Garmin Connect app and the MotoTune Ride watch app. The watch shows RPM · AFR · gear · pulls, vibrates on lean AFR, and a button press sends a feel marker here.")
+            Text("Live ECU data (AFR · RPM · TPS · gear · pulls) is pushed to the watch once a second while this phone is connected to the ECU — MotoTune Face and MotoTune Ride both read it.")
                 .font(.caption2).foregroundStyle(Theme.Palette.textFaint)
         }
         .frame(maxWidth: .infinity, alignment: .leading).card()
