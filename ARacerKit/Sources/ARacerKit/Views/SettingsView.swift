@@ -2,6 +2,7 @@ import SwiftUI
 
 /// Settings: the Claude API key (Keychain only) and a connectivity test.
 struct SettingsView: View {
+    var session: ECUSession? = nil
     @Environment(\.dismiss) private var dismiss
     @State private var key = ""
     @State private var saved = KeychainStore.get(KeychainStore.claudeKey) != nil
@@ -16,6 +17,7 @@ struct SettingsView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: Theme.Space.lg) {
                         keyCard
+                        if let w = session?.watch { watchCard(w) }
                         infoCard
                     }
                     .padding(Theme.Space.lg)
@@ -68,6 +70,20 @@ struct SettingsView: View {
             if let testResult {
                 Text(testResult).font(.caption).foregroundStyle(testResult.hasPrefix("OK") ? Theme.Palette.good : Theme.Palette.bad)
             }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).card()
+    }
+
+    private func watchCard(_ w: any WatchLink) -> some View {
+        VStack(alignment: .leading, spacing: Theme.Space.sm) {
+            Text("Garmin watch").eyebrow()
+            Text(w.statusText).font(.caption).foregroundStyle(w.isReady ? Theme.Palette.good : Theme.Palette.textDim)
+            HStack(spacing: Theme.Space.sm) {
+                Button("Pair watch", systemImage: "applewatch") { w.pair() }.buttonStyle(.bordered).tint(Theme.Palette.accent)
+                Button("Open MotoTune Ride", systemImage: "play.circle") { w.openWatchApp() }.buttonStyle(.bordered).tint(Theme.Palette.accent).disabled(!w.isReady)
+            }
+            Text("Needs the Garmin Connect app and the MotoTune Ride watch app. The watch shows RPM · AFR · gear · pulls, vibrates on lean AFR, and a button press sends a feel marker here.")
+                .font(.caption2).foregroundStyle(Theme.Palette.textFaint)
         }
         .frame(maxWidth: .infinity, alignment: .leading).card()
     }

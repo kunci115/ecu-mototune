@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <!-- MotoTune Ride: a riding activity for the watch that records its own FIT (GPS + barometer + HR,
+         plus RPM/AFR/gear pushed from the phone as developer fields), shows live ECU data on the wrist,
+         vibrates on a lean AFR warning, and sends "feel" markers back to the phone. -->
+    <iq:application entry="MotoTuneRideApp" id="414c7fcb246840649889627f8bb07a13" launcherIcon="@Drawables.LauncherIcon"
+                    minApiLevel="4.1.0" name="@Strings.AppName" type="watch-app">
+        <iq:products>
+            <iq:product id="fr265"/>
+            <iq:product id="fr265s"/>
+            <iq:product id="fenix7xpronowifi"/>
+        </iq:products>
+        <iq:permissions>
+            <iq:uses-permission id="Fit"/>
+            <iq:uses-permission id="FitContributor"/>
+            <iq:uses-permission id="Positioning"/>
+            <iq:uses-permission id="Communications"/>
+            <iq:uses-permission id="Sensor"/>
+        </iq:permissions>
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+        <iq:barrels/>
+    </iq:application>
+</iq:manifest>

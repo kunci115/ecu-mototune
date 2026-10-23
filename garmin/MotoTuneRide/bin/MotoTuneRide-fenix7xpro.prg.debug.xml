@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+    <manifest filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/manifest.xml"/>
+    <pcToLineNum>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="1" lineNum="8" parent="globals/MotoTuneRideApp" pc="268435460" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="2" lineNum="45" parent="globals/StopMenuDelegate" pc="268435472" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="3" lineNum="17" parent="globals/RideView" pc="268435484" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="3" lineNum="19" parent="globals/RideView" pc="268435495" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="3" lineNum="25" parent="globals/RideView" pc="268435504" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/bin/gen/006-B4596-00/source/Rez.mcgen" id="4" lineNum="630" parent="globals/Rez" pc="268435534" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="5" lineNum="6" parent="globals/RideDelegate" pc="268435554" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="6" lineNum="36" parent="globals/StopMenu" pc="268435566" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="7" lineNum="176" parent="globals/QuietListener" pc="268435578" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="8" lineNum="18" parent="globals/MotoTuneRideApp" pc="268435590" symbol="onStart"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="8" lineNum="20" parent="globals/MotoTuneRideApp" pc="268435592" symbol="onStart"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="9" lineNum="28" parent="globals/MotoTuneRideApp" pc="268435621" symbol="onPosition"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="9" lineNum="29" parent="globals/MotoTuneRideApp" pc="268435623" symbol="onPosition"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="9" lineNum="29" parent="globals/MotoTuneRideApp" pc="268435632" symbol="onPosition"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="10" lineNum="32" parent="globals/MotoTuneRideApp" pc="268435652" symbol="getInitialView"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="10" lineNum="33" parent="globals/MotoTuneRideApp" pc="268435654" symbol="getInitialView"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="10" lineNum="34" parent="globals/MotoTuneRideApp" pc="268435683" symbol="getInitialView"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="11" lineNum="11" parent="globals/MotoTuneRideApp" pc="268435726" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="11" lineNum="12" parent="globals/MotoTuneRideApp" pc="268435728" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="11" lineNum="13" parent="globals/MotoTuneRideApp" pc="268435740" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="11" lineNum="14" parent="globals/MotoTuneRideApp" pc="268435755" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="12" lineNum="23" parent="globals/MotoTuneRideApp" pc="268435785" symbol="onStop"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="12" lineNum="24" parent="globals/MotoTuneRideApp" pc="268435787" symbol="onStop"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="12" lineNum="24" parent="globals/MotoTuneRideApp" pc="268435796" symbol="onStop"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="12" lineNum="25" parent="globals/MotoTuneRideApp" pc="268435814" symbol="onStop"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="13" lineNum="39" parent="globals/MotoTuneRideApp" pc="268435831" symbol="onPhone"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="13" lineNum="40" parent="globals/MotoTuneRideApp" pc="268435834" symbol="onPhone"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="13" lineNum="41" parent="globals/MotoTuneRideApp" pc="268435842" symbol="onPhone"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="13" lineNum="42" parent="globals/MotoTuneRideApp" pc="268435866" symbol="onPhone"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/MotoTuneRideApp.mc" id="13" lineNum="44" parent="globals/MotoTuneRideApp" pc="268435885" symbol="onPhone"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="14" lineNum="47" parent="globals/StopMenuDelegate" pc="268435897" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="14" lineNum="47" parent="globals/StopMenuDelegate" pc="268435899" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="14" lineNum="47" parent="globals/StopMenuDelegate" pc="268435911" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="48" parent="globals/StopMenuDelegate" pc="268435921" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="49" parent="globals/StopMenuDelegate" pc="268435924" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="50" parent="globals/StopMenuDelegate" pc="268435933" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="50" parent="globals/StopMenuDelegate" pc="268435944" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="51" parent="globals/StopMenuDelegate" pc="268435962" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="51" parent="globals/StopMenuDelegate" pc="268435973" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="15" lineNum="52" parent="globals/StopMenuDelegate" pc="268435991" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="16" lineNum="51" parent="globals/RideView" pc="268436007" symbol="onPosition"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="16" lineNum="52" parent="globals/RideView" pc="268436009" symbol="onPosition"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="17" lineNum="47" parent="globals/RideView" pc="268436023" symbol="onSensor"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="17" lineNum="48" parent="globals/RideView" pc="268436025" symbol="onSensor"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="18" lineNum="78" parent="globals/RideView" pc="268436039" symbol="isRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="18" lineNum="79" parent="globals/RideView" pc="268436041" symbol="isRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="19" lineNum="42" parent="globals/RideView" pc="268436065" symbol="onHide"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="19" lineNum="43" parent="globals/RideView" pc="268436067" symbol="onHide"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="19" lineNum="44" parent="globals/RideView" pc="268436079" symbol="onHide"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="99" parent="globals/RideView" pc="268436094" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="100" parent="globals/RideView" pc="268436097" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="101" parent="globals/RideView" pc="268436104" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="102" parent="globals/RideView" pc="268436110" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="102" parent="globals/RideView" pc="268436121" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="103" parent="globals/RideView" pc="268436133" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="103" parent="globals/RideView" pc="268436138" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="103" parent="globals/RideView" pc="268436150" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="104" parent="globals/RideView" pc="268436159" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="20" lineNum="105" parent="globals/RideView" pc="268436167" symbol="stopRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="21" lineNum="36" parent="globals/RideView" pc="268436182" symbol="onShow"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="21" lineNum="37" parent="globals/RideView" pc="268436184" symbol="onShow"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="21" lineNum="38" parent="globals/RideView" pc="268436202" symbol="onShow"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="21" lineNum="39" parent="globals/RideView" pc="268436228" symbol="onShow"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="22" lineNum="71" parent="globals/RideView" pc="268436260" symbol="tick"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="22" lineNum="72" parent="globals/RideView" pc="268436263" symbol="tick"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="22" lineNum="73" parent="globals/RideView" pc="268436315" symbol="tick"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="82" parent="globals/RideView" pc="268436354" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="83" parent="globals/RideView" pc="268436357" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="83" parent="globals/RideView" pc="268436373" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="84" parent="globals/RideView" pc="268436377" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="85" parent="globals/RideView" pc="268436381" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="85" parent="globals/RideView" pc="268436396" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="86" parent="globals/RideView" pc="268436403" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="87" parent="globals/RideView" pc="268436446" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="88" parent="globals/RideView" pc="268436453" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="89" parent="globals/RideView" pc="268436459" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="90" parent="globals/RideView" pc="268436508" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="91" parent="globals/RideView" pc="268436558" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="92" parent="globals/RideView" pc="268436608" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="93" parent="globals/RideView" pc="268436658" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="94" parent="globals/RideView" pc="268436667" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="23" lineNum="96" parent="globals/RideView" pc="268436681" symbol="startRecording"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="55" parent="globals/RideView" pc="268436693" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="56" parent="globals/RideView" pc="268436696" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="57" parent="globals/RideView" pc="268436705" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="58" parent="globals/RideView" pc="268436728" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="59" parent="globals/RideView" pc="268436761" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="59" parent="globals/RideView" pc="268436775" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="60" parent="globals/RideView" pc="268436789" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="62" parent="globals/RideView" pc="268436798" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="63" parent="globals/RideView" pc="268436821" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="63" parent="globals/RideView" pc="268436847" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="64" parent="globals/RideView" pc="268436872" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="64" parent="globals/RideView" pc="268436898" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="65" parent="globals/RideView" pc="268436923" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="65" parent="globals/RideView" pc="268436949" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="66" parent="globals/RideView" pc="268436974" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="24" lineNum="66" parent="globals/RideView" pc="268437000" symbol="onEcu"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="25" lineNum="32" parent="globals/RideView" pc="268437029" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="25" lineNum="33" parent="globals/RideView" pc="268437031" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="120" parent="globals/RideView" pc="268437044" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="121" parent="globals/RideView" pc="268437047" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="122" parent="globals/RideView" pc="268437062" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="123" parent="globals/RideView" pc="268437066" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="124" parent="globals/RideView" pc="268437077" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="125" parent="globals/RideView" pc="268437114" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="26" lineNum="127" parent="globals/RideView" pc="268437160" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="133" parent="globals/RideView" pc="268437179" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="134" parent="globals/RideView" pc="268437182" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="135" parent="globals/RideView" pc="268437207" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="136" parent="globals/RideView" pc="268437234" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="137" parent="globals/RideView" pc="268437246" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="140" parent="globals/RideView" pc="268437254" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="141" parent="globals/RideView" pc="268437278" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="142" parent="globals/RideView" pc="268437312" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="145" parent="globals/RideView" pc="268437397" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="146" parent="globals/RideView" pc="268437435" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="147" parent="globals/RideView" pc="268437464" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="148" parent="globals/RideView" pc="268437517" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="149" parent="globals/RideView" pc="268437534" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="152" parent="globals/RideView" pc="268437562" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="153" parent="globals/RideView" pc="268437606" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="154" parent="globals/RideView" pc="268437650" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="155" parent="globals/RideView" pc="268437690" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="156" parent="globals/RideView" pc="268437732" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="157" parent="globals/RideView" pc="268437799" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="158" parent="globals/RideView" pc="268437825" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="159" parent="globals/RideView" pc="268437842" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="161" parent="globals/RideView" pc="268437883" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="162" parent="globals/RideView" pc="268437931" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="163" parent="globals/RideView" pc="268437979" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="164" parent="globals/RideView" pc="268438027" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="165" parent="globals/RideView" pc="268438056" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="168" parent="globals/RideView" pc="268438100" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="169" parent="globals/RideView" pc="268438117" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="27" lineNum="171" parent="globals/RideView" pc="268438214" symbol="onUpdate"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="110" parent="globals/RideView" pc="268438240" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="111" parent="globals/RideView" pc="268438243" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="112" parent="globals/RideView" pc="268438258" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="113" parent="globals/RideView" pc="268438265" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="113" parent="globals/RideView" pc="268438282" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="114" parent="globals/RideView" pc="268438294" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="115" parent="globals/RideView" pc="268438358" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="116" parent="globals/RideView" pc="268438396" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="28" lineNum="117" parent="globals/RideView" pc="268438407" symbol="mark"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="29" lineNum="23" parent="globals/RideDelegate" pc="268438419" symbol="onBack"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="29" lineNum="24" parent="globals/RideDelegate" pc="268438421" symbol="onBack"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="29" lineNum="25" parent="globals/RideDelegate" pc="268438435" symbol="onBack"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="29" lineNum="26" parent="globals/RideDelegate" pc="268438499" symbol="onBack"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="29" lineNum="28" parent="globals/RideDelegate" pc="268438504" symbol="onBack"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="30" lineNum="32" parent="globals/RideDelegate" pc="268438506" symbol="onPreviousPage"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="30" lineNum="32" parent="globals/RideDelegate" pc="268438508" symbol="onPreviousPage"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="30" lineNum="32" parent="globals/RideDelegate" pc="268438520" symbol="onPreviousPage"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="31" lineNum="9" parent="globals/RideDelegate" pc="268438522" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="31" lineNum="10" parent="globals/RideDelegate" pc="268438524" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="31" lineNum="11" parent="globals/RideDelegate" pc="268438536" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="32" lineNum="33" parent="globals/RideDelegate" pc="268438546" symbol="onTap"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="32" lineNum="33" parent="globals/RideDelegate" pc="268438548" symbol="onTap"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="32" lineNum="33" parent="globals/RideDelegate" pc="268438560" symbol="onTap"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="33" lineNum="14" parent="globals/RideDelegate" pc="268438562" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="33" lineNum="15" parent="globals/RideDelegate" pc="268438564" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="33" lineNum="16" parent="globals/RideDelegate" pc="268438578" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="33" lineNum="18" parent="globals/RideDelegate" pc="268438645" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="33" lineNum="20" parent="globals/RideDelegate" pc="268438657" symbol="onSelect"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="34" lineNum="31" parent="globals/RideDelegate" pc="268438659" symbol="onNextPage"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="34" lineNum="31" parent="globals/RideDelegate" pc="268438661" symbol="onNextPage"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="34" lineNum="31" parent="globals/RideDelegate" pc="268438673" symbol="onNextPage"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="35" lineNum="37" parent="globals/StopMenu" pc="268438675" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="35" lineNum="38" parent="globals/StopMenu" pc="268438677" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="35" lineNum="39" parent="globals/StopMenu" pc="268438707" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="35" lineNum="40" parent="globals/StopMenu" pc="268438750" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" id="35" lineNum="41" parent="globals/StopMenu" pc="268438793" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="38" lineNum="177" parent="globals/QuietListener" pc="268438837" symbol="initialize"/>
+        <entry filename="/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" id="38" lineNum="177" parent="globals/QuietListener" pc="268438839" symbol="initialize"/>
+    </pcToLineNum>
+    <symbolTable>
+        <entry id="8388639" module="true" symbol="Graphics"/>
+        <entry field="true" id="25" symbol="&lt;globals/RideView/&lt;&gt;_timer&gt;"/>
+        <entry id="5" object="true" symbol="MotoTuneRideApp"/>
+        <entry id="8389939" method="true" symbol="registerForPhoneAppMessages"/>
+        <entry id="10" object="true" symbol="StopMenuDelegate"/>
+        <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+        <entry id="8389849" symbol="units"/>
+        <entry id="32" method="true" symbol="stopRecording"/>
+        <entry id="31" method="true" symbol="startRecording"/>
+        <entry id="27" method="true" symbol="&lt;globals/RideView/&lt;&gt;buzz&gt;"/>
+        <entry id="8388638" module="true" symbol="ActivityRecording"/>
+        <entry field="true" id="21" symbol="&lt;globals/RideView/&lt;&gt;_hr&gt;"/>
+        <entry field="true" id="8388890" symbol="sport"/>
+        <entry field="true" id="22" symbol="&lt;globals/RideView/&lt;&gt;_lastEcuAt&gt;"/>
+        <entry field="true" id="11" symbol="&lt;globals/MotoTuneRideApp/&lt;&gt;_view&gt;"/>
+        <entry field="true" id="26" symbol="&lt;globals/RideView/&lt;&gt;_wasLean&gt;"/>
+        <entry id="8391787" method="true" symbol="resume"/>
+        <entry id="13" method="true" symbol="onPosition"/>
+        <entry field="true" id="20" symbol="&lt;globals/RideView/&lt;&gt;_gpsQuality&gt;"/>
+        <entry field="true" id="8388611" module="true" symbol="Toybox"/>
+        <entry field="true" id="17" symbol="&lt;globals/RideView/&lt;&gt;_fGear&gt;"/>
+        <entry field="true" id="16" symbol="&lt;globals/RideView/&lt;&gt;_fAfr&gt;"/>
+        <entry field="true" id="18" symbol="&lt;globals/RideView/&lt;&gt;_fRpm&gt;"/>
+        <entry field="true" id="36" symbol="AppName"/>
+        <entry id="4" module="true" symbol="globals/Rez/Strings"/>
+        <entry id="8388631" module="true" symbol="Activity"/>
+        <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry id="8389081" method="true" symbol="onBack"/>
+        <entry field="true" id="15" symbol="&lt;globals/RideView/&lt;&gt;_ecu&gt;"/>
+        <entry id="2" module="true" symbol="globals/Rez"/>
+        <entry id="8388883" method="true" symbol="discard"/>
+        <entry id="8389124" method="true" symbol="onUpdate"/>
+        <entry id="8388771" module="true" object="true" symbol="Drawables"/>
+        <entry id="8389079" method="true" symbol="onPreviousPage"/>
+        <entry id="6" object="true" symbol="QuietListener"/>
+        <entry id="7" object="true" symbol="RideDelegate"/>
+        <entry id="8389098" method="true" symbol="onTap"/>
+        <entry id="8388987" method="true" symbol="vibrate"/>
+        <entry id="33" method="true" symbol="tick"/>
+        <entry id="8388882" method="true" symbol="save"/>
+        <entry field="true" id="19" symbol="&lt;globals/RideView/&lt;&gt;_fTps&gt;"/>
+        <entry id="8388637" module="true" symbol="Communications"/>
+        <entry field="true" id="14" symbol="&lt;globals/StopMenuDelegate/&lt;&gt;_view&gt;"/>
+        <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
+        <entry id="8388828" method="true" symbol="onError"/>
+        <entry id="8388644" module="true" symbol="System"/>
+        <entry id="28" method="true" symbol="mark"/>
+        <entry id="8389619" method="true" symbol="onSelect"/>
+        <entry id="8388645" module="true" symbol="Time"/>
+        <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="8388640" module="true" symbol="Lang"/>
+        <entry id="30" method="true" symbol="onSensor"/>
+        <entry id="8388881" method="true" symbol="isRecording"/>
+        <entry field="true" id="35" symbol="LauncherIcon"/>
+        <entry id="8388610" symbol="statics"/>
+        <entry id="8389123" method="true" symbol="onShow"/>
+        <entry id="8388643" module="true" symbol="Sensor"/>
+        <entry id="8389350" module="true" symbol="globals"/>
+        <entry field="true" id="34" symbol="&lt;globals/RideDelegate/&lt;&gt;_view&gt;"/>
+        <entry id="8388770" module="true" object="true" symbol="Strings"/>
+        <entry field="true" id="23" symbol="&lt;globals/RideView/&lt;&gt;_markers&gt;"/>
+        <entry id="8388702" method="true" symbol="initialize"/>
+        <entry field="true" id="8391124" symbol="SPORT_MOTORCYCLING"/>
+        <entry id="8389279" method="true" symbol="onStart"/>
+        <entry id="8389780" module="true" symbol="FitContributor"/>
+        <entry field="true" id="8388892" symbol="name"/>
+        <entry id="29" method="true" symbol="onEcu"/>
+        <entry id="8" object="true" symbol="RideView"/>
+        <entry id="12" method="true" symbol="onPhone"/>
+        <entry id="8389280" method="true" symbol="getInitialView"/>
+        <entry id="8389281" method="true" symbol="onStop"/>
+        <entry id="8389847" symbol="mesgType"/>
+        <entry id="8388829" method="true" symbol="onComplete"/>
+        <entry field="true" id="24" symbol="&lt;globals/RideView/&lt;&gt;_session&gt;"/>
+        <entry id="8388646" module="true" object="true" symbol="Timer"/>
+        <entry id="8388636" module="true" symbol="Attention"/>
+        <entry id="8388642" module="true" symbol="Position"/>
+        <entry id="8389125" method="true" symbol="onHide"/>
+        <entry id="8389078" method="true" symbol="onNextPage"/>
+        <entry id="8388635" module="true" symbol="Application"/>
+        <entry field="true" id="8389642" symbol="title"/>
+        <entry id="9" object="true" symbol="StopMenu"/>
+    </symbolTable>
+    <localVars>
+        <entry arg="true" endPc="268435620" name="state" stackId="1" startPc="268435590"/>
+        <entry arg="true" endPc="268435651" name="info" stackId="1" startPc="268435621"/>
+        <entry arg="true" endPc="268435830" name="state" stackId="1" startPc="268435785"/>
+        <entry arg="true" endPc="268435896" name="msg" stackId="1" startPc="268435831"/>
+        <entry endPc="268435895" name="data" stackId="2" startPc="268435834"/>
+        <entry arg="true" endPc="268435920" name="view" stackId="1" startPc="268435897"/>
+        <entry arg="true" endPc="268436006" name="item" stackId="1" startPc="268435921"/>
+        <entry endPc="268436005" name="id" stackId="2" startPc="268435924"/>
+        <entry arg="true" endPc="268436022" name="info" stackId="1" startPc="268436007"/>
+        <entry arg="true" endPc="268436038" name="info" stackId="1" startPc="268436023"/>
+        <entry arg="true" endPc="268436181" name="save" stackId="1" startPc="268436094"/>
+        <entry endPc="268436180" name="s" stackId="2" startPc="268436097"/>
+        <entry endPc="268436352" name="msg" stackId="1" startPc="268436263"/>
+        <entry endPc="268436691" name="sport" stackId="1" startPc="268436357"/>
+        <entry endPc="268436691" name="s" stackId="2" startPc="268436357"/>
+        <entry arg="true" endPc="268437028" name="d" stackId="1" startPc="268436693"/>
+        <entry endPc="268437027" name="lean" stackId="2" startPc="268436696"/>
+        <entry arg="true" endPc="268437178" name="times" stackId="1" startPc="268437044"/>
+        <entry endPc="268437174" name="profile" stackId="2" startPc="268437062"/>
+        <entry endPc="268437159" name="i" stackId="3" startPc="268437077"/>
+        <entry arg="true" endPc="268438239" name="dc" stackId="1" startPc="268437179"/>
+        <entry endPc="268438238" name="w" stackId="2" startPc="268437182"/>
+        <entry endPc="268438238" name="h" stackId="3" startPc="268437182"/>
+        <entry endPc="268438238" name="cx" stackId="4" startPc="268437182"/>
+        <entry endPc="268438238" name="fresh" stackId="5" startPc="268437182"/>
+        <entry endPc="268438238" name="state" stackId="6" startPc="268437182"/>
+        <entry endPc="268438238" name="rpm" stackId="7" startPc="268437182"/>
+        <entry endPc="268438238" name="afr" stackId="8" startPc="268437182"/>
+        <entry endPc="268438238" name="tgt" stackId="9" startPc="268437182"/>
+        <entry endPc="268438238" name="lean" stackId="10" startPc="268437182"/>
+        <entry endPc="268438238" name="afrText" stackId="11" startPc="268437182"/>
+        <entry endPc="268438238" name="gear" stackId="12" startPc="268437182"/>
+        <entry endPc="268438238" name="tps" stackId="13" startPc="268437182"/>
+        <entry endPc="268438238" name="pulls" stackId="14" startPc="268437182"/>
+        <entry endPc="268438238" name="foot" stackId="15" startPc="268437182"/>
+        <entry endPc="268438417" name="s" stackId="1" startPc="268438243"/>
+        <entry endPc="268438417" name="msg" stackId="2" startPc="268438243"/>
+        <entry arg="true" endPc="268438545" name="view" stackId="1" startPc="268438522"/>
+        <entry arg="true" endPc="268438561" name="evt" stackId="1" startPc="268438546"/>
+    </localVars>
+    <deviceInfo deviceVersion="3d0fb192a2cf01699aefd0f384af3f527e5885bd" partNumber="006-B4596-00"/>
+    <annotations>
+        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+    </annotations>
+    <dataEntryOffsetMappings>
+        <dataEntry label="globals" offset="49" parentId="" symbolId="globals" type="module"/>
+        <dataEntry label="globals/MotoTuneRideApp" offset="143" parentId="globals" symbolId="MotoTuneRideApp" type="class"/>
+        <dataEntry label="globals/StopMenuDelegate" offset="241" parentId="globals" symbolId="StopMenuDelegate" type="class"/>
+        <dataEntry label="globals/RideView" offset="303" parentId="globals" symbolId="RideView" type="class"/>
+        <dataEntry label="globals/Rez" offset="563" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/RideDelegate" offset="607" parentId="globals" symbolId="RideDelegate" type="class"/>
+        <dataEntry label="globals/StopMenu" offset="705" parentId="globals" symbolId="StopMenu" type="class"/>
+        <dataEntry label="globals/QuietListener" offset="749" parentId="globals" symbolId="QuietListener" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="811" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="846" parentId="Rez" symbolId="Strings" type="module"/>
+    </dataEntryOffsetMappings>
+    <functions>
+        <functionEntry accessMode="public" endPc="268435471" name="&lt;init&gt;" parent="MotoTuneRideApp" startPc="268435460">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435483" name="&lt;init&gt;" parent="StopMenuDelegate" startPc="268435472">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435533" name="&lt;init&gt;" parent="RideView" startPc="268435484">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435553" name="&lt;init&gt;" parent="Rez" startPc="268435534">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435565" name="&lt;init&gt;" parent="RideDelegate" startPc="268435554">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435577" name="&lt;init&gt;" parent="StopMenu" startPc="268435566">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435589" name="&lt;init&gt;" parent="QuietListener" startPc="268435578">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435620" name="onStart" parent="MotoTuneRideApp" startPc="268435590">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435651" name="onPosition" parent="MotoTuneRideApp" startPc="268435621">
+            <param id="info"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435725" name="getInitialView" parent="MotoTuneRideApp" startPc="268435652">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435784" name="initialize" parent="MotoTuneRideApp" startPc="268435726">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435830" name="onStop" parent="MotoTuneRideApp" startPc="268435785">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435896" name="onPhone" parent="MotoTuneRideApp" startPc="268435831">
+            <param id="msg"/>
+            <documentation><![CDATA[<div class="description"> Phone → watch. One small dictionary per second while the phone is connected to the ECU:<br/> {"rpm", "afr" (×10), "tgt" (×10), "tps", "gear", "pulls", "map", "lean" (0/1), "bpw" (×100)}<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435920" name="initialize" parent="StopMenuDelegate" startPc="268435897">
+            <param id="view"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436006" name="onSelect" parent="StopMenuDelegate" startPc="268435921">
+            <param id="item"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436022" name="onPosition" parent="RideView" startPc="268436007">
+            <param id="info"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436038" name="onSensor" parent="RideView" startPc="268436023">
+            <param id="info"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436064" name="isRecording" parent="RideView" startPc="268436039">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436093" name="onHide" parent="RideView" startPc="268436065">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436181" name="stopRecording" parent="RideView" startPc="268436094">
+            <param id="save"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436259" name="onShow" parent="RideView" startPc="268436182">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436353" name="tick" parent="RideView" startPc="268436260">
+            <documentation><![CDATA[<div class="description"> Periodic watch → phone: heart rate (for the drowsiness score) and recording state.<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436692" name="startRecording" parent="RideView" startPc="268436354">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437028" name="onEcu" parent="RideView" startPc="268436693">
+            <param id="d"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437043" name="initialize" parent="RideView" startPc="268437029">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="private" endPc="268437178" name="&lt;globals/RideView/&lt;&gt;buzz&gt;" parent="RideView" startPc="268437044">
+            <param id="times"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438239" name="onUpdate" parent="RideView" startPc="268437179">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438418" name="mark" parent="RideView" startPc="268438240">
+            <documentation><![CDATA[<div class="description"> A "feel" marker: lap in the FIT + a timestamped message to the phone ("flat spot here").<br/></div>]]></documentation>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Drawables">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438505" name="onBack" parent="RideDelegate" startPc="268438419">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438521" name="onPreviousPage" parent="RideDelegate" startPc="268438506">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438545" name="initialize" parent="RideDelegate" startPc="268438522">
+            <param id="view"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438561" name="onTap" parent="RideDelegate" startPc="268438546">
+            <param id="evt"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438658" name="onSelect" parent="RideDelegate" startPc="268438562">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438674" name="onNextPage" parent="RideDelegate" startPc="268438659">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438836" name="initialize" parent="StopMenu" startPc="268438675">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onError" parent="QuietListener">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onComplete" parent="QuietListener">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268438851" name="initialize" parent="QuietListener" startPc="268438837">
+            <documentation/>
+        </functionEntry>
+    </functions>
+</debugInfo>

@@ -37,7 +37,7 @@ public struct TunerView: View {
         .toolbar { ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Done") { notesFocused = false }.fontWeight(.semibold) } }
         #endif
         .sheet(isPresented: $showEditor) { FuelEditorView(map: map, session: session) }
-        .sheet(isPresented: $showSettings) { SettingsView() }
+        .sheet(isPresented: $showSettings) { SettingsView(session: session) }
     }
 
     // 1 — change
@@ -200,6 +200,11 @@ public struct TunerView: View {
     }
 
     private var notesBar: some View {
+        VStack(alignment: .leading, spacing: Theme.Space.xs) {
+        if !session.watchMarkers.isEmpty {
+            Text("\(session.watchMarkers.count) feel marker(s) from the watch · last \(session.watchMarkers.last!.at.formatted(date: .omitted, time: .standard))")
+                .font(.caption).foregroundStyle(Theme.Palette.accent)
+        }
         HStack(spacing: Theme.Space.sm) {
             TextField("Feel notes (e.g. flat spot at 4k)", text: $notes, axis: .vertical)
                 .focused($notesFocused)
@@ -208,11 +213,14 @@ public struct TunerView: View {
             Button("Save Session", systemImage: "externaldrive.fill.badge.plus", action: saveSession)
                 .buttonStyle(.bordered).tint(Theme.Palette.accent)
         }
+        }
     }
 
     private func saveSession() {
         let enc = JSONEncoder(); let t = session.tuner
-        context.insert(TuningSession(notes: notes, ecuModel: session.info?.model?.rawValue ?? "", firmware: session.identity?.firmware ?? "",
+        let marks = session.watchMarkers.map { "mark @" + $0.at.formatted(date: .omitted, time: .standard) + ($0.hr.map { " hr \($0)" } ?? "") }
+        let allNotes = marks.isEmpty ? notes : notes + "\n" + marks.joined(separator: "\n")
+        context.insert(TuningSession(notes: allNotes, ecuModel: session.info?.model?.rawValue ?? "", firmware: session.identity?.firmware ?? "",
                                      samples: t.samplesLearned, meanAbsAfrError: t.meanAbsError,
                                      correctionMapJSON: (try? enc.encode(t.correctionMap())) ?? Data(),
                                      sampleCountsJSON: (try? enc.encode(t.sampleCounts())) ?? Data()))

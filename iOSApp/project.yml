@@ -7,6 +7,9 @@ options:
 packages:
   ARacerKit:
     path: ../ARacerKit
+  ConnectIQ:
+    url: https://github.com/garmin/connectiq-companion-app-sdk-ios
+    from: "1.8.0"
 targets:
   ARacerXTune:
     type: application
@@ -16,6 +19,8 @@ targets:
     dependencies:
       - package: ARacerKit
         product: ARacerKit
+      - package: ConnectIQ
+        product: ConnectIQ
     info:
       path: ARacerXTune/Info.plist
       properties:
@@ -30,6 +35,16 @@ targets:
           NSAllowsLocalNetworking: true
         UIBackgroundModes:
           - audio
+          - bluetooth-central
+        # Garmin Connect IQ companion: return URL scheme + GCM detection + BLE usage strings
+        CFBundleURLTypes:
+          - CFBundleURLName: id.co.cuprum.mototune.ciq
+            CFBundleURLSchemes:
+              - mototune-ciq
+        LSApplicationQueriesSchemes:
+          - gcm-ciq
+        NSBluetoothAlwaysUsageDescription: "Talks to your Garmin watch (MotoTune Ride) for live data and feel markers."
+        NSBluetoothPeripheralUsageDescription: "Talks to your Garmin watch (MotoTune Ride) for live data and feel markers."
         UIFileSharingEnabled: true
         LSSupportsOpeningDocumentsInPlace: true
         UIAppFonts:
@@ -38,6 +53,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: id.co.cuprum.aracerxtune
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        OTHER_LDFLAGS: "$(inherited) -ObjC"
         MARKETING_VERSION: "0.1"
         CURRENT_PROJECT_VERSION: "1"
         GENERATE_INFOPLIST_FILE: NO

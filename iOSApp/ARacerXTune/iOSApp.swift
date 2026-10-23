@@ -13,11 +13,14 @@ struct ARacerXTuneApp: App {
     }
     @State private var demo = ECUSession(slots: KnownVariables.defaultSlots) { DemoECU.make() }
     @State private var useDemo = CommandLine.arguments.contains("--demo") || ProcessInfo.processInfo.environment["MOTOTUNE_DEMO"] != nil
+    @State private var garmin = GarminLink()
     private let container = TuningDB.makeContainer()
 
     var body: some Scene {
         WindowGroup {
             RootView(live: useDemo ? demo : session)
+                .onAppear { garmin.start(session: useDemo ? demo : session) }
+                .onOpenURL { url in garmin.handle(url: url) }
         }
         .modelContainer(container)
     }

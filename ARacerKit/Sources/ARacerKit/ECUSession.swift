@@ -34,6 +34,26 @@ public final class ECUSession {
     @ObservationIgnored public var db: ModelContext? { didSet { attachDB() } }
     public private(set) var writeBusy = false
     public private(set) var writeLog: [String] = []
+    /// Optional wrist companion (Garmin Connect IQ on iOS). The kit only knows this protocol.
+    @ObservationIgnored public var watch: (any WatchLink)?
+    public struct WatchMarker: Identifiable, Sendable { public let id = UUID(); public let at: Date; public let hr: Int? }
+    public private(set) var watchMarkers: [WatchMarker] = []
+    public private(set) var watchHR: Int?
+    public private(set) var watchRecording = false
+    public func addWatchMarker(at: Date, hr: Int?) { watchMarkers.append(WatchMarker(at: at, hr: hr)); if watchMarkers.count > 200 { watchMarkers.removeFirst() } }
+    public func updateWatch(hr: Int?, recording: Bool) { watchHR = hr; watchRecording = recording }
+    /// The 1 Hz snapshot the watch shows. Small ints only (BLE), AFR ×10.
+    public var watchSnapshot: [String: Any] {
+        let t = tuner
+        var d: [String: Any] = ["pulls": dyno.pulls.count, "map": dyno.mapLabel, "lean": 0]
+        if let r = t.liveRPM { d["rpm"] = r }
+        if let a = t.liveAFR { d["afr"] = Int((a * 10).rounded()) }
+        if let g = t.liveTarget { d["tgt"] = Int((g * 10).rounded()) }
+        if let p = t.liveTPS { d["tps"] = p }
+        if let s = latest, let gi = slots.firstIndex(where: { $0.index == 0x4082 }), s.values.indices.contains(gi) { d["gear"] = Int(s.values[gi]) }
+        if let a = t.liveAFR, let p = t.liveTPS, a > DynoEngine.leanLimitWOT, p >= 30 { d["lean"] = 1 }
+        return d
+    }
     public private(set) var isLogging = false
     public private(set) var logCount = 0
     public private(set) var logName: String?
