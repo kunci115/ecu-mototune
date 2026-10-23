@@ -13,6 +13,8 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
 
     private(set) var statusText = "No watch paired"
     private(set) var isReady = false
+    var isPaired: Bool { app != nil }
+    func refresh() { refreshAppStatus() }
     private(set) var lastMarkerAt: Date?
     private var devices: [IQDevice] = []
     private var app: IQApp?
@@ -51,7 +53,10 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
         let fake: [String: Any] = ["rpm": 4200, "afr": 128, "tgt": 125, "tps": 22, "gear": 3, "pulls": 2, "map": "test", "lean": 0, "ecu": 1, "spd": 41, "bpw": 246]
         statusText = "Sending test snapshot…"
         ConnectIQ.sharedInstance().sendMessage(fake, to: app, progress: nil) { [weak self] result in
-            Task { @MainActor in self?.statusText = result == .success ? "Test snapshot delivered — check the watch" : "Send failed: \(Self.describe(result))" }
+            Task { @MainActor in
+                if result == .success { self?.isReady = true }
+                self?.statusText = result == .success ? "Test snapshot delivered — check the watch" : "Send failed: \(Self.describe(result))"
+            }
         }
     }
     private static func describe(_ r: IQSendMessageResult) -> String {
@@ -100,7 +105,7 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
                 guard let self else { return }
                 let installed = st?.isInstalled ?? false
                 self.isReady = installed
-                self.statusText = "\(device.friendlyName ?? "Watch") · connected · " + (installed ? "MotoTune Ride v\(st?.version ?? 0)" : "MotoTune Ride not installed")
+                self.statusText = "\(device.friendlyName ?? "Watch") · connected · " + (installed ? "MotoTune Ride v\(st?.version ?? 0)" : (st == nil ? "app status timed out" : "MotoTune Ride not reported (sideloaded apps often aren't) — try Send test"))
             }
         }
     }
@@ -117,7 +122,7 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
 
     // MARK: phone → watch, 1 Hz, only when something is live and the previous send finished
     private func pushSnapshot() {
-        guard isReady, let app, let session, session.state == .connected, !sendInFlight,
+        guard let app, let session, session.state == .connected, !sendInFlight,
               Date().timeIntervalSince(lastSend) >= 1 else { return }
         sendInFlight = true; lastSend = Date()
         ConnectIQ.sharedInstance().sendMessage(session.watchSnapshot, to: app, progress: nil) { [weak self] result in
