@@ -46,6 +46,26 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
         }
     }
 
+    func sendTest() {
+        guard let app else { statusText = "Pair a watch first"; return }
+        let fake: [String: Any] = ["rpm": 4200, "afr": 128, "tgt": 125, "tps": 22, "gear": 3, "pulls": 2, "map": "test", "lean": 0, "ecu": 1, "spd": 41, "bpw": 246]
+        statusText = "Sending test snapshot…"
+        ConnectIQ.sharedInstance().sendMessage(fake, to: app, progress: nil) { [weak self] result in
+            Task { @MainActor in self?.statusText = result == .success ? "Test snapshot delivered — check the watch" : "Send failed: \(Self.describe(result))" }
+        }
+    }
+    private static func describe(_ r: IQSendMessageResult) -> String {
+        switch r {
+        case .success: "ok"
+        case .failure_AppNotFound: "MotoTune Ride not found on the watch"
+        case .failure_DeviceNotAvailable: "watch not reachable"
+        case .failure_DeviceIsBusy: "watch busy"
+        case .failure_Timeout: "timeout"
+        case .failure_UnsupportedType: "unsupported message"
+        default: "error \(r.rawValue)"
+        }
+    }
+
     /// Garmin Connect returns the chosen devices through our URL scheme.
     @discardableResult
     func handle(url: URL) -> Bool {
