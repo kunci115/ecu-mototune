@@ -5,6 +5,7 @@ import Toybox.Communications;
 import Toybox.FitContributor;
 import Toybox.Graphics;
 import Toybox.Lang;
+import Toybox.Math;
 import Toybox.Position;
 import Toybox.Sensor;
 import Toybox.System;
@@ -12,11 +13,27 @@ import Toybox.Time;
 import Toybox.Timer;
 import Toybox.WatchUi;
 
-//! Riding screens. Follows the watch's own activity conventions so a rider's fingers already know it:
-//!   START = start · pause (pause shows Resume / Save / Discard)   BACK while recording = marker (lap)
-//!   UP / DOWN / swipe = pages: Engine · Mixture · Dyno · Ride        before start: a readiness checklist
+//! MotoTune design language on the wrist: AMOLED black, cyan accent, tracked small-caps labels,
+//! big numerals, arc gauges around the bezel, and cyan arcs at the physical buttons as hints.
+//!   START (top right): start · pause · resume     UP (top left): mark · save when paused
+//!   BACK (bottom right): menu · exit when idle     DOWN (bottom left) / swipe: next page
 class RideView extends WatchUi.View {
     enum { PAGE_ENGINE, PAGE_MIXTURE, PAGE_DYNO, PAGE_RIDE, PAGE_COUNT }
+
+    // palette (same tokens as the phone app)
+    const ACCENT = 0x25E0D0;
+    const GOOD = 0x34D399;
+    const WARN = 0xFBBF24;
+    const BAD = 0xF87171;
+    const TEXT = 0xEDF1F5;
+    const DIM = 0x8A93A0;
+    const FAINT = 0x3A424D;
+    const RICH = 0x60A5FA;
+    // physical button angles on the FR265 bezel (degrees, 0 = 3 o'clock, counter-clockwise)
+    const ANG_START = 32;
+    const ANG_BACK = 328;
+    const ANG_UP = 180;
+    const ANG_DOWN = 215;
 
     private var _session as Session?;
     private var _paused as Boolean = false;
@@ -35,12 +52,17 @@ class RideView extends WatchUi.View {
     private var _toastAt as Number = 0;
     private var _ticks as Number = 0;
     private var _timer as Timer.Timer = new Timer.Timer();
+    private var _icon as BitmapResource?;
     private var _fRpm as Field?;
     private var _fAfr as Field?;
     private var _fTps as Field?;
     private var _fGear as Field?;
 
     public function initialize() { View.initialize(); }
+
+    public function onLayout(dc as Dc) as Void {
+        _icon = WatchUi.loadResource(Rez.Drawables.LauncherIcon) as BitmapResource;
+    }
 
     public function onShow() as Void {
         Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
@@ -67,7 +89,6 @@ class RideView extends WatchUi.View {
         }
     }
 
-    //! Once a second: redraw (timer, fading); every 10 s tell the phone our HR — only with a phone connected.
     public function tick() as Void {
         _ticks += 1;
         if (_ticks % 10 == 0 && phoneConnected()) {
@@ -125,7 +146,6 @@ class RideView extends WatchUi.View {
         WatchUi.requestUpdate();
     }
 
-    //! Save or discard; returns the summary line for the SummaryView.
     public function finish(save as Boolean) as String {
         var s = _session;
         if (s == null) { return "nothing to save"; }
@@ -145,7 +165,6 @@ class RideView extends WatchUi.View {
         return line;
     }
 
-    //! Marker = lap in the FIT + timestamped message to the phone. BACK button while recording.
     public function mark() as Void {
         _markers += 1;
         var s = _session;
@@ -170,11 +189,62 @@ class RideView extends WatchUi.View {
     }
     private function toast(msg as String) as Void { _toast = msg; _toastAt = Time.now().value(); System.println("MotoTune: " + msg); }
 
-    // ---- drawing ----------------------------------------------------------------------------
+    // ---- drawing primitives -------------------------------------------------------------------
+    private function label(dc as Dc, x as Number, y as Number, text as String, color as Number) as Void {
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x, y, Graphics.FONT_XTINY, text, Graphics.TEXT_JUSTIFY_CENTER);
+    }
+
+    //! A bezel arc from `a0` to `a1` degrees (counter-clockwise), `width` px thick, `inset` from the edge.
+    private function arc(dc as Dc, a0 as Number, a1 as Number, color as Number, width as Number, inset as Number) as Void {
+        var r = dc.getWidth() / 2;
+        dc.setPenWidth(width);
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.drawArc(r, r, r - inset, Graphics.ARC_COUNTER_CLOCKWISE, a0, a1);
+        dc.setPenWidth(1);
+    }
+
+    //! Gauge along the bezel: track from 225° down to -45° (270° sweep, like the app icon), fill by `frac`.
+    private function gauge(dc as Dc, frac as Float, color as Number, redlineFrac as Float?) as Void {
+        arc(dc, 225, -45, FAINT, 8, 6);
+        if (redlineFrac != null) { arc(dc, 225 - (270 * redlineFrac).toNumber(), -45, 0x5A2A2A, 8, 6); }
+        var f = frac < 0.0 ? 0.0 : (frac > 1.0 ? 1.0 : frac);
+        if (f > 0.01) { arc(dc, 225, 225 - (270 * f).toNumber(), color, 8, 6); }
+    }
+
+    //! Cyan arc + word at a physical button, the way native screens hint "START".
+    private function hint(dc as Dc, angle as Number, text as String, color as Number) as Void {
+        arc(dc, angle - 11, angle + 11, color, 6, 4);
+        var r = dc.getWidth() / 2;
+        var rad = Math.toRadians(angle);
+        var x = r + (r - 34) * Math.cos(rad), y = r - (r - 34) * Math.sin(rad);
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x.toNumber(), y.toNumber() - dc.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, text,
+                    angle > 90 && angle < 270 ? Graphics.TEXT_JUSTIFY_LEFT : Graphics.TEXT_JUSTIFY_RIGHT);
+    }
+
+    private function big(dc as Dc, y as Number, text as String, color as Number) as Void {
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(dc.getWidth() / 2, y, Graphics.FONT_NUMBER_THAI_HOT, text, Graphics.TEXT_JUSTIFY_CENTER);
+    }
+
+    private function pair(dc as Dc, y as Number, lv as String, ll as String, rv as String, rl as String, color as Number) as Void {
+        var w = dc.getWidth();
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(w * 0.30, y, Graphics.FONT_NUMBER_MEDIUM, lv, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.70, y, Graphics.FONT_NUMBER_MEDIUM, rv, Graphics.TEXT_JUSTIFY_CENTER);
+        var ly = y + dc.getFontHeight(Graphics.FONT_NUMBER_MEDIUM) - 4;
+        label(dc, (w * 0.30).toNumber(), ly, ll, DIM);
+        label(dc, (w * 0.70).toNumber(), ly, rl, DIM);
+        dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
+        dc.drawLine(w / 2, y + 8, w / 2, ly + 10);
+    }
+
+    // ---- screens ------------------------------------------------------------------------------
     public function onUpdate(dc as Dc) as Void {
         var now = Time.now().value();
         var flash = now < _flashUntil;
-        dc.setColor(Graphics.COLOR_BLACK, flash ? Graphics.COLOR_RED : Graphics.COLOR_BLACK);
+        dc.setColor(Graphics.COLOR_BLACK, flash ? BAD : Graphics.COLOR_BLACK);
         dc.clear();
         if (_session == null) { drawChecklist(dc); }
         else {
@@ -191,158 +261,126 @@ class RideView extends WatchUi.View {
     }
 
     private function val(key as String) as Number? { return _ecu.hasKey(key) ? (_ecu[key] as Number) : null; }
-    private function live() as Graphics.ColorType { return ecuFresh() ? Graphics.COLOR_WHITE : Graphics.COLOR_DK_GRAY; }
+    private function live() as Number { return ecuFresh() ? TEXT : FAINT; }
 
-    //! Before the ride: is everything that feeds the screen actually there?
-    //! Rows sit in the widest band of the round screen; values are short so they never reach the labels.
+    //! Idle: brand mark, four readiness rows in the wide middle band, button hints on the bezel.
     private function drawChecklist(dc as Dc) as Void {
         var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.12, Graphics.FONT_SMALL, "MotoTune Ride", Graphics.TEXT_JUSTIFY_CENTER);
+        if (_icon != null) { dc.drawBitmap(cx - _icon.getWidth() / 2, h * 0.09, _icon); }
+        label(dc, cx, (h * 0.25).toNumber(), "M O T O T U N E", ACCENT);
+
         var phone = phoneConnected();
         var ecu = ecuFresh() && _ecu.hasKey("ecu") && (_ecu["ecu"] as Number) == 1;
         var gps = _gpsQuality >= Position.QUALITY_USABLE;
-        var labels = ["Phone", "ECU", "GPS", "HR"];
-        var values = [phone ? "OK" : "no",
-                      ecu ? "live" : "no",
-                      _gpsQuality >= Position.QUALITY_GOOD ? "OK" : (gps ? "weak" : "search"),
-                      _hr != null ? _hr.format("%d") : "--"];
+        var labels = ["PHONE", "ECU", "GPS", "HEART"];
+        var values = [phone ? "ready" : "—",
+                      ecu ? "live" : "—",
+                      _gpsQuality >= Position.QUALITY_GOOD ? "locked" : (gps ? "weak" : "searching"),
+                      _hr != null ? _hr.format("%d") + " bpm" : "—"];
         var oks = [phone, ecu, gps, _hr != null];
-        var font = Graphics.FONT_SMALL;
-        var lh = dc.getFontHeight(font) + 4;
-        var y = h * 0.50 - lh * 2;                       // four rows centred on the middle of the screen
+        var rowH = 34;
+        var y = (h * 0.34).toNumber();
         for (var i = 0; i < 4; i++) {
             var ok = oks[i] as Boolean;
-            dc.setColor(ok ? Graphics.COLOR_GREEN : Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(w * 0.24, y + lh / 2, 6);
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(w * 0.31, y, font, labels[i] as String, Graphics.TEXT_JUSTIFY_LEFT);
-            dc.setColor(ok ? Graphics.COLOR_GREEN : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(w * 0.78, y, font, values[i] as String, Graphics.TEXT_JUSTIFY_RIGHT);
-            y += lh;
+            dc.setColor(ok ? GOOD : FAINT, Graphics.COLOR_TRANSPARENT);
+            dc.fillCircle(w * 0.25, y + rowH / 2, 5);
+            dc.setColor(TEXT, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(w * 0.31, y + 6, Graphics.FONT_XTINY, labels[i] as String, Graphics.TEXT_JUSTIFY_LEFT);
+            dc.setColor(ok ? TEXT : DIM, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(w * 0.76, y + 6, Graphics.FONT_XTINY, values[i] as String, Graphics.TEXT_JUSTIFY_RIGHT);
+            if (i < 3) { dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT); dc.drawLine(w * 0.24, y + rowH, w * 0.76, y + rowH); }
+            y += rowH;
         }
-        dc.setColor(phone && gps ? Graphics.COLOR_GREEN : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.74, Graphics.FONT_SMALL, "START to ride", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.84, Graphics.FONT_XTINY, "UP mark · DOWN page · BACK exit", Graphics.TEXT_JUSTIFY_CENTER);
+        hint(dc, ANG_START, "start", ACCENT);
+        hint(dc, ANG_BACK, "exit", DIM);
     }
 
     private function drawHeader(dc as Dc, now as Number) as Void {
         var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
         var dur = now - _startedAt;
         var t = (dur / 60).format("%d") + ":" + (dur % 60).format("%02d");
-        var gps = _gpsQuality >= Position.QUALITY_GOOD ? "GPS" : (_gpsQuality >= Position.QUALITY_USABLE ? "gps" : "GPS…");
-        dc.setColor(_paused ? Graphics.COLOR_YELLOW : Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.05, Graphics.FONT_XTINY, (_paused ? "PAUSED  " : "REC  ") + t + "   " + gps + (_hr != null ? "   " + _hr + " bpm" : ""), Graphics.TEXT_JUSTIFY_CENTER);
-        if (_paused && _toast == null) {
-            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, h * 0.85, Graphics.FONT_XTINY, "START resume · UP save · BACK menu", Graphics.TEXT_JUSTIFY_CENTER);
-        }
+        dc.setColor(_paused ? WARN : BAD, Graphics.COLOR_TRANSPARENT);
+        dc.fillCircle(cx - 38, h * 0.085, 4);
+        dc.setColor(TEXT, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx - 28, h * 0.085 - dc.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, (_paused ? "PAUSED " : "REC ") + t, Graphics.TEXT_JUSTIFY_LEFT);
+        // button hints that change with state
+        if (_paused) { hint(dc, ANG_START, "resume", ACCENT); hint(dc, ANG_UP, "save", GOOD); hint(dc, ANG_BACK, "menu", DIM); }
+        else { hint(dc, ANG_START, "pause", DIM); hint(dc, ANG_UP, "mark", ACCENT); }
     }
 
     private function drawDots(dc as Dc) as Void {
         var w = dc.getWidth(), h = dc.getHeight();
         var x = w / 2 - (PAGE_COUNT - 1) * 7;
         for (var i = 0; i < PAGE_COUNT; i++) {
-            dc.setColor(i == _page ? Graphics.COLOR_WHITE : Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(x + i * 14, h * 0.94, i == _page ? 4 : 3);
+            dc.setColor(i == _page ? ACCENT : FAINT, Graphics.COLOR_TRANSPARENT);
+            dc.fillCircle(x + i * 14, h * 0.935, i == _page ? 4 : 3);
         }
     }
 
     private function drawFooter(dc as Dc, now as Number) as Void {
+        var w = dc.getWidth(), h = dc.getHeight();
         if (_toast != null && (now - _toastAt) < 5) {
-            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(dc.getWidth() / 2, dc.getHeight() * 0.85, Graphics.FONT_XTINY, _toast as String, Graphics.TEXT_JUSTIFY_CENTER);
+            label(dc, w / 2, (h * 0.845).toNumber(), _toast as String, WARN);
         } else if (_session != null && !ecuFresh()) {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(dc.getWidth() / 2, dc.getHeight() * 0.85, Graphics.FONT_XTINY, phoneConnected() ? "waiting for ECU data…" : "phone not connected", Graphics.TEXT_JUSTIFY_CENTER);
+            label(dc, w / 2, (h * 0.845).toNumber(), phoneConnected() ? "waiting for ECU" : "phone not connected", DIM);
         }
     }
 
-    //! Page 1: RPM huge, gear, TPS bar.
+    //! Engine: RPM gauge on the bezel with redline, big RPM, gear · TPS.
     private function drawEngine(dc as Dc) as Void {
-        var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
+        var h = dc.getHeight();
         var rpm = val("rpm"), gear = val("gear"), tps = val("tps");
-        dc.setColor(live(), Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.17, Graphics.FONT_NUMBER_THAI_HOT, rpm == null ? "----" : rpm.format("%d"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.47, Graphics.FONT_XTINY, "RPM", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(live(), Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, (gear == null || gear == 0) ? "N" : gear.format("%d"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, tps == null ? "--" : tps.format("%d"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, h * 0.70, Graphics.FONT_XTINY, "GEAR", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, h * 0.70, Graphics.FONT_XTINY, "TPS %", Graphics.TEXT_JUSTIFY_CENTER);
-        var bx = w * 0.15, by = h * 0.78, bw = w * 0.70, bh = 10;
-        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.fillRoundedRectangle(bx, by, bw, bh, 5);
-        if (tps != null) {
-            var pct = tps > 100 ? 100 : tps;
-            dc.setColor(pct >= 90 ? Graphics.COLOR_ORANGE : Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-            dc.fillRoundedRectangle(bx, by, bw * pct / 100.0, bh, 5);
-        }
+        var frac = rpm == null ? 0.0 : rpm.toFloat() / 12000.0;
+        gauge(dc, frac, frac > 0.83 ? BAD : ACCENT, 0.83);
+        big(dc, (h * 0.20).toNumber(), rpm == null ? "----" : rpm.format("%d"), live());
+        label(dc, dc.getWidth() / 2, (h * 0.49).toNumber(), "R P M", DIM);
+        pair(dc, (h * 0.56).toNumber(), (gear == null || gear == 0) ? "N" : gear.format("%d"), "GEAR", tps == null ? "--" : tps.format("%d"), "TPS %", live());
     }
 
-    //! Page 2: AFR big and colour-coded, target, BPW.
+    //! Mixture: AFR gauge 10 (rich) … 16 (lean) with the target as a tick, big AFR, target · BPW.
     private function drawMixture(dc as Dc) as Void {
-        var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
+        var h = dc.getHeight();
         var afr = val("afr"), tgt = val("tgt"), bpw = val("bpw");
         var lean = _ecu.hasKey("lean") && (_ecu["lean"] as Number) == 1;
         var col = live();
-        if (ecuFresh() && afr != null) {
-            if (lean || afr >= 140) { col = Graphics.COLOR_RED; }
-            else if (afr <= 115) { col = Graphics.COLOR_BLUE; }
-            else { col = Graphics.COLOR_GREEN; }
-        }
-        dc.setColor(col, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.17, Graphics.FONT_NUMBER_THAI_HOT, afr == null ? "--.-" : (afr / 10.0).format("%.1f"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.47, Graphics.FONT_XTINY, lean ? "AFR — LEAN AT WOT" : "AFR", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(live(), Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, tgt == null ? "--" : (tgt / 10.0).format("%.1f"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, bpw == null ? "--" : (bpw / 100.0).format("%.2f"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, h * 0.70, Graphics.FONT_XTINY, "TARGET", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, h * 0.70, Graphics.FONT_XTINY, "BPW ms", Graphics.TEXT_JUSTIFY_CENTER);
+        if (ecuFresh() && afr != null) { col = (lean || afr >= 140) ? BAD : (afr <= 115 ? RICH : GOOD); }
+        var frac = afr == null ? 0.0 : (afr / 10.0 - 10.0) / 6.0;
+        gauge(dc, frac, col, 0.6);                               // beyond 13.6 reads as the danger zone
+        if (tgt != null) { var tf = (tgt / 10.0 - 10.0) / 6.0; arc(dc, 225 - (270 * tf).toNumber() - 1, 225 - (270 * tf).toNumber() + 1, TEXT, 14, 3); }
+        big(dc, (h * 0.20).toNumber(), afr == null ? "--.-" : (afr / 10.0).format("%.1f"), col);
+        label(dc, dc.getWidth() / 2, (h * 0.49).toNumber(), lean ? "L E A N  A T  W O T" : "A F R", lean ? BAD : DIM);
+        pair(dc, (h * 0.56).toNumber(), tgt == null ? "--" : (tgt / 10.0).format("%.1f"), "TARGET", bpw == null ? "--" : (bpw / 100.0).format("%.2f"), "BPW ms", live());
     }
 
-    //! Page 3: the tuning loop at a glance — pulls, latest revision verdict, map, markers.
+    //! Dyno: pulls on this map, the latest revision verdict, map label.
     private function drawDyno(dc as Dc) as Void {
         var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
         var pulls = val("pulls"), cmp = val("cmp"), nsig = val("nsig");
-        dc.setColor(live(), Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.17, Graphics.FONT_NUMBER_THAI_HOT, pulls == null ? "0" : pulls.format("%d"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.47, Graphics.FONT_XTINY, "PULLS THIS MAP", Graphics.TEXT_JUSTIFY_CENTER);
+        var sig = cmp != null && nsig != null && nsig > 0;
+        if (cmp != null) { gauge(dc, (cmp.abs() / 100.0), !sig ? FAINT : (cmp > 0 ? GOOD : BAD), null); } else { gauge(dc, 0.0, ACCENT, null); }
+        big(dc, (h * 0.20).toNumber(), pulls == null ? "0" : pulls.format("%d"), live());
+        label(dc, cx, (h * 0.49).toNumber(), "P U L L S", DIM);
         if (cmp != null) {
-            var sig = nsig != null && nsig > 0;
-            dc.setColor(!sig ? Graphics.COLOR_LT_GRAY : (cmp > 0 ? Graphics.COLOR_GREEN : Graphics.COLOR_RED), Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, (cmp > 0 ? "+" : "") + (cmp / 10.0).format("%.1f") + "%", Graphics.TEXT_JUSTIFY_CENTER);
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, h * 0.70, Graphics.FONT_XTINY, sig ? "vs previous map — real" : "vs previous — within noise", Graphics.TEXT_JUSTIFY_CENTER);
+            dc.setColor(!sig ? DIM : (cmp > 0 ? GOOD : BAD), Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx, h * 0.56, Graphics.FONT_NUMBER_MEDIUM, (cmp > 0 ? "+" : "") + (cmp / 10.0).format("%.1f") + "%", Graphics.TEXT_JUSTIFY_CENTER);
+            label(dc, cx, (h * 0.70).toNumber(), sig ? "VS PREVIOUS MAP — REAL" : "VS PREVIOUS — NOISE", DIM);
         } else {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
             dc.drawText(cx, h * 0.60, Graphics.FONT_SMALL, "no comparison yet", Graphics.TEXT_JUSTIFY_CENTER);
         }
-        dc.drawText(cx, h * 0.78, Graphics.FONT_XTINY, "map " + (_ecu.hasKey("map") ? _ecu["map"] : "?") + "  ·  " + _markers + " marks", Graphics.TEXT_JUSTIFY_CENTER);
+        label(dc, cx, (h * 0.78).toNumber(), "MAP " + (_ecu.hasKey("map") ? (_ecu["map"] as String).toUpper() : "?") + "  ·  " + _markers + " MARKS", DIM);
     }
 
-    //! Page 4: the ride itself — speed (ECU, else GPS), HR, time.
+    //! Ride: speed gauge to 160 km/h, HR · time.
     private function drawRide(dc as Dc, now as Number) as Void {
-        var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
+        var h = dc.getHeight();
         var spd = val("spd");
         var kmh = (spd != null && ecuFresh()) ? spd : (_speedMps != null ? (_speedMps * 3.6).toNumber() : null);
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.17, Graphics.FONT_NUMBER_THAI_HOT, kmh == null ? "--" : kmh.format("%d"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.47, Graphics.FONT_XTINY, (spd != null && ecuFresh()) ? "KM/H (ECU)" : "KM/H (GPS)", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, _hr == null ? "--" : _hr.format("%d"), Graphics.TEXT_JUSTIFY_CENTER);
+        gauge(dc, kmh == null ? 0.0 : kmh.toFloat() / 160.0, ACCENT, null);
+        big(dc, (h * 0.20).toNumber(), kmh == null ? "--" : kmh.format("%d"), TEXT);
+        label(dc, dc.getWidth() / 2, (h * 0.49).toNumber(), (spd != null && ecuFresh()) ? "K M / H  ·  E C U" : "K M / H  ·  G P S", DIM);
         var dur = now - _startedAt;
-        dc.drawText(w * 0.70, h * 0.55, Graphics.FONT_NUMBER_MEDIUM, (dur / 60).format("%d") + ":" + (dur % 60).format("%02d"), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, h * 0.70, Graphics.FONT_XTINY, "HR", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, h * 0.70, Graphics.FONT_XTINY, "TIME", Graphics.TEXT_JUSTIFY_CENTER);
+        pair(dc, (h * 0.56).toNumber(), _hr == null ? "--" : _hr.format("%d"), "BPM", (dur / 60).format("%d") + ":" + (dur % 60).format("%02d"), "TIME", TEXT);
     }
 }
 
