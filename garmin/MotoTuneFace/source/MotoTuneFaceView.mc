@@ -104,7 +104,7 @@ class MotoTuneFaceView extends WatchUi.WatchFace {
         var yAfrLabel = yTopLabel + hx;
         dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
         dc.drawText(cx, yAfrLabel, Graphics.FONT_XTINY, fresh ? "A F R" : (age == null ? "A F R  ·  no data" : "A F R  ·  " + (age < 3600 ? (age / 60).format("%d") + " min" : "old")), Graphics.TEXT_JUSTIFY_CENTER);
-        var afrFont = Graphics.FONT_NUMBER_MEDIUM;
+        var afrFont = Graphics.FONT_NUMBER_HOT;        // biggest that still leaves room for time + bpm below
         var ha = dc.getFontHeight(afrFont);
         var yAfr = yAfrLabel + hx - 6;
         dc.setColor(afrColor, Graphics.COLOR_TRANSPARENT);
