@@ -1,4 +1,5 @@
 import Toybox.Activity;
+import Toybox.Application;
 import Toybox.ActivityRecording;
 import Toybox.Attention;
 import Toybox.Communications;
@@ -348,10 +349,10 @@ class RideView extends WatchUi.View {
             y += rowH;
         }
         // one quiet diagnostic line under the list: what the GPS is actually doing
-        if (!gps) {
-            var diag = _lastPosAt == 0 ? "gps: no events yet" : "gps: q" + _gpsQuality + " · " + (Time.now().value() - _lastPosAt) + "s ago";
-            label(dc, cx, y + _gap, diag, FAINT);
-        }
+        var face = Storage.getValue("face");
+        var diag = !gps ? (_lastPosAt == 0 ? "gps: no events" : "gps: q" + _gpsQuality + " · " + (Time.now().value() - _lastPosAt) + "s") : "";
+        if (face != null) { diag = diag + (diag.length() > 0 ? "  ·  " : "") + "face: " + face; }
+        if (diag.length() > 0) { label(dc, cx, y + _gap, diag, FAINT); }
         hint(dc, ANG_START, null, ecu ? ACCENT : FAINT);
         hint(dc, ANG_BACK, null, FAINT);
         if (_toast == null || (Time.now().value() - _toastAt) >= 5) {

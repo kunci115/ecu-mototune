@@ -33,7 +33,14 @@ function publishSnapshot(d as Dictionary) as Void {
         Storage.setValue("rpm", d.hasKey("rpm") ? d["rpm"] as Number : 0);
         Storage.setValue("at", Time.now().value());
         if (Complications has :updateComplication) {
-            Complications.updateComplication(0, {:value => (afr / 10.0).format("%.1f"), :shortLabel => "AFR"});
+            try {
+                Complications.updateComplication(0, {:value => (afr / 10.0).format("%.1f"), :shortLabel => "AFR"});
+                Storage.setValue("face", "ok " + (afr / 10.0).format("%.1f"));
+            } catch (e) {
+                Storage.setValue("face", "err " + e.getErrorMessage());
+            }
+        } else {
+            Storage.setValue("face", "no complications API");
         }
     }
 }
