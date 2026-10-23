@@ -107,8 +107,17 @@ class RideView extends WatchUi.View {
     public function isRecording() as Boolean { return _session != null && _session.isRecording(); }
     public function hasSession() as Boolean { return _session != null; }
 
+    //! The ride is only worth recording when the phone is streaming the ECU — no ECU, no start.
+    public function ecuLive() as Boolean {
+        return ecuFresh() && _ecu.hasKey("ecu") && (_ecu["ecu"] as Number) == 1;
+    }
+
     public function startRecording() as Void {
         if (!(Toybox has :ActivityRecording)) { toast("no FIT support"); return; }
+        if (!ecuLive()) {
+            toast(phoneConnected() ? "connect phone to ECU first" : "phone not connected");
+            buzz(1); WatchUi.requestUpdate(); return;
+        }
         try {
             var sport = Activity.SPORT_CYCLING;
             if (Activity has :SPORT_MOTORCYCLING) { sport = Activity.SPORT_MOTORCYCLING; }
@@ -271,7 +280,7 @@ class RideView extends WatchUi.View {
         label(dc, cx, (h * 0.25).toNumber(), "M O T O T U N E", ACCENT);
 
         var phone = phoneConnected();
-        var ecu = ecuFresh() && _ecu.hasKey("ecu") && (_ecu["ecu"] as Number) == 1;
+        var ecu = ecuLive();
         var gps = _gpsQuality >= Position.QUALITY_USABLE;
         var labels = ["PHONE", "ECU", "GPS", "HEART"];
         var values = [phone ? "ready" : "—",
@@ -292,8 +301,11 @@ class RideView extends WatchUi.View {
             if (i < 3) { dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT); dc.drawLine(w * 0.24, y + rowH, w * 0.76, y + rowH); }
             y += rowH;
         }
-        hint(dc, ANG_START, "start", ACCENT);
+        hint(dc, ANG_START, "start", ecu ? ACCENT : FAINT);
         hint(dc, ANG_BACK, "exit", DIM);
+        if (!ecu && (_toast == null || (Time.now().value() - _toastAt) >= 5)) {
+            label(dc, cx, (h * 0.86).toNumber(), phone ? "waiting for ECU on the phone" : "connect the phone", DIM);
+        }
     }
 
     private function drawHeader(dc as Dc, now as Number) as Void {
