@@ -22,3 +22,6 @@ __pycache__/
 .vscode/
 .DS_Store
 *.swp
+
+# social media material (not part of the code)
+social/

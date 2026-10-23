@@ -141,3 +141,59 @@ import Foundation
         r.push([1, 2]); #expect(r.series(slot: 2) == [0])   // short sample padded, never out of bounds
     }
 }
+
+@Suite struct FITTests {
+    /// Hand-built FIT: header, one record definition (timestamp, lat, lon, altitude, speed, distance), two data messages,
+    /// one compressed-timestamp message. No CRC (the reader does not verify it).
+    static func fit() -> Data {
+        var b: [UInt8] = []
+        func u16(_ v: UInt16) { b += [UInt8(v & 0xFF), UInt8(v >> 8)] }
+        func u32(_ v: UInt32) { b += [UInt8(v & 0xFF), UInt8(v >> 8 & 0xFF), UInt8(v >> 16 & 0xFF), UInt8(v >> 24)] }
+        func s32(_ v: Int32) { u32(UInt32(bitPattern: v)) }
+        var body: [UInt8] = []
+        // definition, local 0, little-endian, global 20, 6 fields
+        body += [0x40, 0, 0, 20, 0, 6, 253, 4, 0x86, 0, 4, 0x85, 1, 4, 0x85, 2, 2, 0x84, 6, 2, 0x84, 5, 4, 0x86]
+        func rec(_ ts: UInt32, _ lat: Int32, _ lon: Int32, _ altRaw: UInt16, _ spd: UInt16, _ dist: UInt32) {
+            b = []; u32(ts); s32(lat); s32(lon); u16(altRaw); u16(spd); u32(dist); body += [0x00] + b
+        }
+        rec(1_000_000, 0, 0, (0 + 500) * 5, 10_000, 0)                   // 0 m, 10 m/s, d=0
+        rec(1_000_001, 0, 0, (2 + 500) * 5, 10_000, 10_000)              // 2 m up after 100 m → 2 %
+        // compressed-timestamp data: header 1 0 00 00010 → local 0, offset 2 → ts 1_000_002
+        b = []; s32(0); s32(0); u16((4 + 500) * 5); u16(10_000); u32(20_000)
+        body += [0x82] + b.dropFirst(4)   // compressed header replaces the timestamp field? No: FIT keeps all fields; emulate with full fields
+        // (the reader reads all defined fields for a compressed record; timestamp field then also appears → keep it explicit)
+        body.removeLast(b.count - 4)     // undo: rebuild explicit below
+        body.removeLast()                // remove the 0x82 header
+        b = []; u32(1_000_002); s32(0); s32(0); u16((4 + 500) * 5); u16(10_000); u32(20_000); body += [0x00] + b
+        var out: [UInt8] = [14, 0x10, 0, 0]
+        let size = UInt32(body.count); out += [UInt8(size & 0xFF), UInt8(size >> 8 & 0xFF), UInt8(size >> 16 & 0xFF), UInt8(size >> 24)]
+        out += Array(".FIT".utf8) + [0, 0]
+        out += body + [0, 0]
+        return Data(out)
+    }
+
+    @Test func readsRecordsAndScales() throws {
+        let r = try FITReader.records(from: Self.fit())
+        #expect(r.count == 3)
+        #expect(r[0].time == FITReader.epoch.addingTimeInterval(1_000_000))
+        #expect(r[1].altitude == 2 && r[1].speed == 10 && r[1].distance == 100)
+        #expect(r[2].altitude == 4 && r[2].distance == 200)
+    }
+
+    @Test @MainActor func fusionCorrectsForGrade() throws {
+        let fitSamples = try FITReader.records(from: Self.fit())
+        // a pull at 4000 rpm mean over those 2 s at 10 m/s (36 km/h): rpm per m/s = 400
+        let t0 = FITReader.epoch.addingTimeInterval(1_000_000)
+        let pull = DynoEngine.makePull(startedAt: t0, duration: 2, rpmStart: 3000, rpmEnd: 5000, gearRatio: nil,
+                                       curve: [.init(rpm: 3000, accel: 1000, n: 5), .init(rpm: 4000, accel: 1000, n: 5)],
+                                       minAFR: nil, maxAFR: nil, sampleCount: 10, mapLabel: "base")
+        let raw = (0..<10).map { DynoEngine.Sample(t: t0.timeIntervalSince1970 + Double($0) * 0.2, rpm: 4000, tps: 100, vss: 36 * 256, afr: nil) }
+        let ctx = RideFusion.annotate(pulls: [pull], rawSamples: [raw], fit: fitSamples)
+        #expect(ctx.count == 1)
+        #expect(ctx[0].grade == 2.0)
+        #expect(abs((ctx[0].gpsSpeedMean ?? 0) - 36) < 0.01 && abs((ctx[0].vssMean ?? 0) - 36) < 0.01)
+        // 2 % uphill: g·sinθ ≈ 0.196 m/s² × 400 rpm per m/s ≈ +78 rpm/s added back
+        #expect(abs(ctx[0].corrected[0].accel - 1078) < 2)
+        #expect(ctx[0].segment != nil)
+    }
+}

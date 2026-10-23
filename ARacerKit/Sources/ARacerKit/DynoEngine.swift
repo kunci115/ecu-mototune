@@ -31,6 +31,7 @@ public final class DynoEngine {
     public private(set) var livePullSamples = 0
     public var mapLabel = "base"               // set by the editor when a map is written
     @ObservationIgnored public var onPull: ((Pull) -> Void)?   // persistence hook (ECUSession → SwiftData)
+    @ObservationIgnored public var onPullSamples: ((Pull, [Sample]) -> Void)?   // raw samples of a finished pull (fusion / replay)
     /// Restore pulls saved in earlier app runs so revision averages survive restarts.
     public func load(_ saved: [Pull]) { pulls = Array(saved.sorted { $0.startedAt > $1.startedAt }.prefix(Self.maxPulls)) }
     public static func makePull(startedAt: Date, duration: Double, rpmStart: Int, rpmEnd: Int, gearRatio: Double?, curve: [BinAccel], minAFR: Double?, maxAFR: Double?, sampleCount: Int, mapLabel: String, gear: Int? = nil) -> Pull {
@@ -97,6 +98,7 @@ public final class DynoEngine {
         pulls.insert(pull, at: 0)
         if pulls.count > Self.maxPulls { pulls.removeLast() }
         onPull?(pull)
+        onPullSamples?(pull, cur)
     }
 
     /// Per-bin accel delta of `a` vs `b` (positive = a stronger). Only bins both have.
