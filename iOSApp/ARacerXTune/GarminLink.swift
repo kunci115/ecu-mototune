@@ -22,6 +22,7 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
     private weak var session: ECUSession?
     private var lastSend = Date.distantPast
     private var sendInFlight = false
+    private var lastWatchMessageAt = Date.distantPast      // the Ride app pings every 10 s while open
 
     func start(session: ECUSession) {
         self.session = session
@@ -122,10 +123,12 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
         }
     }
 
-    // MARK: phone → watch, 1 Hz, only when something is live and the previous send finished
+    // MARK: phone → watch. 1 Hz while MotoTune Ride is open on the wrist (it pings us every 10 s);
+    // otherwise every 5 s, just enough to keep the watch-face AFR alive without waking the watch constantly.
+    private var rideOpen: Bool { Date().timeIntervalSince(lastWatchMessageAt) < 30 }
     private func pushSnapshot() {
         guard let app, let session, session.state == .connected, !sendInFlight,
-              Date().timeIntervalSince(lastSend) >= 1 else { return }
+              Date().timeIntervalSince(lastSend) >= (rideOpen ? 1 : 5) else { return }
         sendInFlight = true; lastSend = Date()
         ConnectIQ.sharedInstance().sendMessage(session.watchSnapshot, to: app, progress: nil) { [weak self] result in
             Task { @MainActor in
@@ -145,6 +148,7 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
     }
     nonisolated func receivedMessage(_ message: Any, from app: IQApp) {
         Task { @MainActor in
+            self.lastWatchMessageAt = Date()
             guard let d = message as? [String: Any] else { return }
             let hr = (d["hr"] as? NSNumber).map { Int(truncating: $0) }.flatMap { $0 > 0 ? $0 : nil }
             if let t = d["mark"] as? NSNumber {
