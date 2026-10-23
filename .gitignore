@@ -25,3 +25,5 @@ __pycache__/
 
 # social media material (not part of the code)
 social/
+garmin/MotoTuneRide/bin/
+garmin/tools/mtpsend
