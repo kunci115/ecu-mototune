@@ -76,21 +76,22 @@ class MotoTuneFaceView extends WatchUi.WatchFace {
         var now = Time.now();
         var g = Gregorian.info(now, Time.FORMAT_MEDIUM);
         var hx = dc.getFontHeight(Graphics.FONT_XTINY);
-        var hm = dc.getFontHeight(Graphics.FONT_NUMBER_MILD);
+        var topFont = Graphics.FONT_LARGE;               // one step down from the numeral font: fits 5 digits, still readable at a glance
+        var hm = dc.getFontHeight(topFont);
         var hs = dc.getFontHeight(Graphics.FONT_SMALL);
         var age = _at == 0 ? null : now.value() - _at;
         var fresh = age != null && age < 30;
         var live = fresh ? TEXT : DIM;
 
-        // ---- top band: RPM | TPS, big
-        var yTop = (h * 0.06).toNumber();
+        // ---- top band: TPS (left) | RPM (right)
+        var yTop = (h * 0.08).toNumber();
         dc.setColor(live, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, yTop, Graphics.FONT_NUMBER_MILD, _vals.hasKey("RPM") ? text(_vals["RPM"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, yTop, Graphics.FONT_NUMBER_MILD, _vals.hasKey("TPS") ? text(_vals["TPS"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
-        var yTopLabel = yTop + hm - 8;
+        dc.drawText(w * 0.32, yTop, topFont, _vals.hasKey("TPS") ? text(_vals["TPS"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.68, yTop, topFont, _vals.hasKey("RPM") ? text(_vals["RPM"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
+        var yTopLabel = yTop + hm - 6;
         dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, yTopLabel, Graphics.FONT_XTINY, "RPM", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, yTopLabel, Graphics.FONT_XTINY, "TPS %", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.32, yTopLabel, Graphics.FONT_XTINY, "TPS %", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.68, yTopLabel, Graphics.FONT_XTINY, "RPM", Graphics.TEXT_JUSTIFY_CENTER);
         dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
         dc.drawLine(cx, yTop + 10, cx, yTopLabel + hx - 6);
 
