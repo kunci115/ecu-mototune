@@ -200,7 +200,7 @@ class RideView extends WatchUi.View {
         var r = dc.getWidth() / 2;
         dc.setPenWidth(width);
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-        dc.drawArc(r, r, r - inset, Graphics.ARC_COUNTER_CLOCKWISE, a0, a1);
+        dc.drawArc(r, r, r - inset, Graphics.ARC_CLOCKWISE, a0, a1);
         dc.setPenWidth(1);
     }
 
@@ -213,8 +213,9 @@ class RideView extends WatchUi.View {
     }
 
     //! Cyan arc + word at a physical button, the way native screens hint "START".
-    private function hint(dc as Dc, angle as Number, text as String, color as Number) as Void {
-        arc(dc, angle - 11, angle + 11, color, 6, 4);
+    private function hint(dc as Dc, angle as Number, text as String?, color as Number) as Void {
+        arc(dc, angle + 11, angle - 11, color, 6, 4);
+        if (text == null) { return; }
         var r = dc.getWidth() / 2;
         var rad = Math.toRadians(angle);
         var x = r + (r - 34) * Math.cos(rad), y = r - (r - 34) * Math.sin(rad);
@@ -231,13 +232,13 @@ class RideView extends WatchUi.View {
     private function pair(dc as Dc, y as Number, lv as String, ll as String, rv as String, rl as String, color as Number) as Void {
         var w = dc.getWidth();
         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.30, y, Graphics.FONT_NUMBER_MEDIUM, lv, Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.70, y, Graphics.FONT_NUMBER_MEDIUM, rv, Graphics.TEXT_JUSTIFY_CENTER);
-        var ly = y + dc.getFontHeight(Graphics.FONT_NUMBER_MEDIUM) - 4;
+        dc.drawText(w * 0.30, y, Graphics.FONT_NUMBER_MILD, lv, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.70, y, Graphics.FONT_NUMBER_MILD, rv, Graphics.TEXT_JUSTIFY_CENTER);
+        var ly = y + dc.getFontHeight(Graphics.FONT_NUMBER_MILD) - 2;
         label(dc, (w * 0.30).toNumber(), ly, ll, DIM);
         label(dc, (w * 0.70).toNumber(), ly, rl, DIM);
         dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
-        dc.drawLine(w / 2, y + 8, w / 2, ly + 10);
+        dc.drawLine(w / 2, y + 6, w / 2, ly + 8);
     }
 
     // ---- screens ------------------------------------------------------------------------------
@@ -305,7 +306,7 @@ class RideView extends WatchUi.View {
         dc.drawText(cx - 28, h * 0.085 - dc.getFontHeight(Graphics.FONT_XTINY) / 2, Graphics.FONT_XTINY, (_paused ? "PAUSED " : "REC ") + t, Graphics.TEXT_JUSTIFY_LEFT);
         // button hints that change with state
         if (_paused) { hint(dc, ANG_START, "resume", ACCENT); hint(dc, ANG_UP, "save", GOOD); hint(dc, ANG_BACK, "menu", DIM); }
-        else { hint(dc, ANG_START, "pause", DIM); hint(dc, ANG_UP, "mark", ACCENT); }
+        else { hint(dc, ANG_START, null, FAINT); hint(dc, ANG_UP, null, ACCENT); }
     }
 
     private function drawDots(dc as Dc) as Void {
@@ -313,16 +314,17 @@ class RideView extends WatchUi.View {
         var x = w / 2 - (PAGE_COUNT - 1) * 7;
         for (var i = 0; i < PAGE_COUNT; i++) {
             dc.setColor(i == _page ? ACCENT : FAINT, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(x + i * 14, h * 0.935, i == _page ? 4 : 3);
+            dc.fillCircle(x + i * 14, h * 0.90, i == _page ? 4 : 3);
         }
     }
 
     private function drawFooter(dc as Dc, now as Number) as Void {
         var w = dc.getWidth(), h = dc.getHeight();
+        var y = (_session == null ? h * 0.86 : h * 0.125).toNumber();
         if (_toast != null && (now - _toastAt) < 5) {
-            label(dc, w / 2, (h * 0.845).toNumber(), _toast as String, WARN);
+            label(dc, w / 2, y, _toast as String, WARN);
         } else if (_session != null && !ecuFresh()) {
-            label(dc, w / 2, (h * 0.845).toNumber(), phoneConnected() ? "waiting for ECU" : "phone not connected", DIM);
+            label(dc, w / 2, y, phoneConnected() ? "waiting for ECU" : "phone not connected", DIM);
         }
     }
 
@@ -332,9 +334,9 @@ class RideView extends WatchUi.View {
         var rpm = val("rpm"), gear = val("gear"), tps = val("tps");
         var frac = rpm == null ? 0.0 : rpm.toFloat() / 12000.0;
         gauge(dc, frac, frac > 0.83 ? BAD : ACCENT, 0.83);
-        big(dc, (h * 0.20).toNumber(), rpm == null ? "----" : rpm.format("%d"), live());
-        label(dc, dc.getWidth() / 2, (h * 0.49).toNumber(), "R P M", DIM);
-        pair(dc, (h * 0.56).toNumber(), (gear == null || gear == 0) ? "N" : gear.format("%d"), "GEAR", tps == null ? "--" : tps.format("%d"), "TPS %", live());
+        big(dc, (h * 0.19).toNumber(), rpm == null ? "----" : rpm.format("%d"), live());
+        label(dc, dc.getWidth() / 2, (h * 0.455).toNumber(), "R P M", DIM);
+        pair(dc, (h * 0.53).toNumber(), (gear == null || gear == 0) ? "N" : gear.format("%d"), "GEAR", tps == null ? "--" : tps.format("%d"), "TPS %", live());
     }
 
     //! Mixture: AFR gauge 10 (rich) … 16 (lean) with the target as a tick, big AFR, target · BPW.
@@ -347,9 +349,9 @@ class RideView extends WatchUi.View {
         var frac = afr == null ? 0.0 : (afr / 10.0 - 10.0) / 6.0;
         gauge(dc, frac, col, 0.6);                               // beyond 13.6 reads as the danger zone
         if (tgt != null) { var tf = (tgt / 10.0 - 10.0) / 6.0; arc(dc, 225 - (270 * tf).toNumber() - 1, 225 - (270 * tf).toNumber() + 1, TEXT, 14, 3); }
-        big(dc, (h * 0.20).toNumber(), afr == null ? "--.-" : (afr / 10.0).format("%.1f"), col);
-        label(dc, dc.getWidth() / 2, (h * 0.49).toNumber(), lean ? "L E A N  A T  W O T" : "A F R", lean ? BAD : DIM);
-        pair(dc, (h * 0.56).toNumber(), tgt == null ? "--" : (tgt / 10.0).format("%.1f"), "TARGET", bpw == null ? "--" : (bpw / 100.0).format("%.2f"), "BPW ms", live());
+        big(dc, (h * 0.19).toNumber(), afr == null ? "--.-" : (afr / 10.0).format("%.1f"), col);
+        label(dc, dc.getWidth() / 2, (h * 0.455).toNumber(), lean ? "L E A N  A T  W O T" : "A F R", lean ? BAD : DIM);
+        pair(dc, (h * 0.53).toNumber(), tgt == null ? "--" : (tgt / 10.0).format("%.1f"), "TARGET", bpw == null ? "--" : (bpw / 100.0).format("%.2f"), "BPW ms", live());
     }
 
     //! Dyno: pulls on this map, the latest revision verdict, map label.
@@ -358,17 +360,17 @@ class RideView extends WatchUi.View {
         var pulls = val("pulls"), cmp = val("cmp"), nsig = val("nsig");
         var sig = cmp != null && nsig != null && nsig > 0;
         if (cmp != null) { gauge(dc, (cmp.abs() / 100.0), !sig ? FAINT : (cmp > 0 ? GOOD : BAD), null); } else { gauge(dc, 0.0, ACCENT, null); }
-        big(dc, (h * 0.20).toNumber(), pulls == null ? "0" : pulls.format("%d"), live());
-        label(dc, cx, (h * 0.49).toNumber(), "P U L L S", DIM);
+        big(dc, (h * 0.19).toNumber(), pulls == null ? "0" : pulls.format("%d"), live());
+        label(dc, cx, (h * 0.455).toNumber(), "P U L L S", DIM);
         if (cmp != null) {
             dc.setColor(!sig ? DIM : (cmp > 0 ? GOOD : BAD), Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, h * 0.56, Graphics.FONT_NUMBER_MEDIUM, (cmp > 0 ? "+" : "") + (cmp / 10.0).format("%.1f") + "%", Graphics.TEXT_JUSTIFY_CENTER);
-            label(dc, cx, (h * 0.70).toNumber(), sig ? "VS PREVIOUS MAP — REAL" : "VS PREVIOUS — NOISE", DIM);
+            dc.drawText(cx, h * 0.53, Graphics.FONT_NUMBER_MILD, (cmp > 0 ? "+" : "") + (cmp / 10.0).format("%.1f") + "%", Graphics.TEXT_JUSTIFY_CENTER);
+            label(dc, cx, (h * 0.665).toNumber(), sig ? "VS PREVIOUS MAP — REAL" : "VS PREVIOUS — NOISE", DIM);
         } else {
             dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, h * 0.60, Graphics.FONT_SMALL, "no comparison yet", Graphics.TEXT_JUSTIFY_CENTER);
+            dc.drawText(cx, h * 0.57, Graphics.FONT_SMALL, "no comparison yet", Graphics.TEXT_JUSTIFY_CENTER);
         }
-        label(dc, cx, (h * 0.78).toNumber(), "MAP " + (_ecu.hasKey("map") ? (_ecu["map"] as String).toUpper() : "?") + "  ·  " + _markers + " MARKS", DIM);
+        label(dc, cx, (h * 0.76).toNumber(), "MAP " + (_ecu.hasKey("map") ? (_ecu["map"] as String).toUpper() : "?") + "  ·  " + _markers + " MARKS", DIM);
     }
 
     //! Ride: speed gauge to 160 km/h, HR · time.
@@ -377,10 +379,10 @@ class RideView extends WatchUi.View {
         var spd = val("spd");
         var kmh = (spd != null && ecuFresh()) ? spd : (_speedMps != null ? (_speedMps * 3.6).toNumber() : null);
         gauge(dc, kmh == null ? 0.0 : kmh.toFloat() / 160.0, ACCENT, null);
-        big(dc, (h * 0.20).toNumber(), kmh == null ? "--" : kmh.format("%d"), TEXT);
-        label(dc, dc.getWidth() / 2, (h * 0.49).toNumber(), (spd != null && ecuFresh()) ? "K M / H  ·  E C U" : "K M / H  ·  G P S", DIM);
+        big(dc, (h * 0.19).toNumber(), kmh == null ? "--" : kmh.format("%d"), TEXT);
+        label(dc, dc.getWidth() / 2, (h * 0.455).toNumber(), (spd != null && ecuFresh()) ? "K M / H  ·  E C U" : "K M / H  ·  G P S", DIM);
         var dur = now - _startedAt;
-        pair(dc, (h * 0.56).toNumber(), _hr == null ? "--" : _hr.format("%d"), "BPM", (dur / 60).format("%d") + ":" + (dur % 60).format("%02d"), "TIME", TEXT);
+        pair(dc, (h * 0.53).toNumber(), _hr == null ? "--" : _hr.format("%d"), "BPM", (dur / 60).format("%d") + ":" + (dur % 60).format("%02d"), "TIME", TEXT);
     }
 }
 
