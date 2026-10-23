@@ -291,10 +291,9 @@ class RideView extends WatchUi.View {
         var ecu = ecuLive();
         var gps = _gpsQuality >= Position.QUALITY_USABLE;
         var labels = ["PHONE", "ECU", "GPS", "HEART"];
-        var age = _lastPosAt == 0 ? "no events" : "q" + _gpsQuality + " · " + (Time.now().value() - _lastPosAt) + "s";
         var values = [phone ? "ready" : "—",
                       ecu ? "live" : "—",
-                      _gpsQuality >= Position.QUALITY_GOOD ? "locked" : (gps ? "weak" : "searching · " + age),
+                      _gpsQuality >= Position.QUALITY_GOOD ? "locked" : (gps ? "weak" : "searching"),
                       _hr != null ? _hr.format("%d") + " bpm" : "—"];
         var oks = [phone, ecu, gps, _hr != null];
         var rowH = 34;
@@ -309,6 +308,11 @@ class RideView extends WatchUi.View {
             dc.drawText(w * 0.76, y + 6, Graphics.FONT_XTINY, values[i] as String, Graphics.TEXT_JUSTIFY_RIGHT);
             if (i < 3) { dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT); dc.drawLine(w * 0.24, y + rowH, w * 0.76, y + rowH); }
             y += rowH;
+        }
+        // one quiet diagnostic line under the list: what the GPS is actually doing
+        if (!gps) {
+            var diag = _lastPosAt == 0 ? "gps: no events yet" : "gps: q" + _gpsQuality + " · " + (Time.now().value() - _lastPosAt) + "s ago";
+            label(dc, cx, y + 2, diag, FAINT);
         }
         hint(dc, ANG_START, "start", ecu ? ACCENT : FAINT);
         hint(dc, ANG_BACK, "exit", DIM);
