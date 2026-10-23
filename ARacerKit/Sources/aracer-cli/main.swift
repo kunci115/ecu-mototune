@@ -7,6 +7,25 @@ import ARacerKit
 let args = CommandLine.arguments.dropFirst()
 let cmd = args.first ?? "identify"
 
+if cmd == "fit" {
+    // aracer-cli fit <activity.fit> — summarise a watch file: coverage, altitude, speed, HR.
+    let a = Array(args)
+    guard a.count >= 2 else { print("usage: aracer-cli fit <activity.fit>"); exit(2) }
+    let r = try FITReader.records(url: URL(fileURLWithPath: a[1]))
+    guard let f = r.first, let l = r.last else { print("no records"); exit(1) }
+    let dur = l.time.timeIntervalSince(f.time)
+    let gaps = zip(r, r.dropFirst()).map { $1.time.timeIntervalSince($0.time) }
+    let alts = r.compactMap(\.altitude), spd = r.compactMap(\.speed), hr = r.compactMap(\.heartRate), pos = r.filter { $0.lat != nil }
+    print("records: \(r.count)  \(f.time) → \(l.time)  (\(Int(dur)) s, median gap \(gaps.sorted()[gaps.count / 2]) s)")
+    print("gps: \(pos.count) fixes  altitude: \(alts.count) samples" + (alts.isEmpty ? "" : String(format: " %.0f–%.0f m", alts.min()!, alts.max()!)))
+    print("speed: " + (spd.isEmpty ? "–" : String(format: "max %.1f km/h, mean %.1f km/h", spd.max()! * 3.6, spd.reduce(0, +) / Double(spd.count) * 3.6))
+          + "  distance: " + (l.distance.map { String(format: "%.2f km", $0 / 1000) } ?? "–")
+          + "  hr: " + (hr.isEmpty ? "–" : "\(hr.min()!)–\(hr.max()!)"))
+    if let p = pos.first { print(String(format: "start: %.5f, %.5f", p.lat!, p.lon!)) }
+    for s in r.prefix(3) { print("  ", s.time, s.lat ?? 0, s.lon ?? 0, "alt", s.altitude ?? -1, "spd", s.speed ?? -1, "d", s.distance ?? -1, "hr", s.heartRate ?? -1) }
+    exit(0)
+}
+
 if cmd == "replay" {
     let a = Array(args)
     guard a.count >= 3 else { print("usage: aracer-cli replay <motolog.bin> <motolog.json> [--fit activity.fit] [--offset seconds]"); exit(2) }
