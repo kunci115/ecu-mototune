@@ -148,7 +148,8 @@ class RideView extends WatchUi.View {
         // header: state + GPS + HR
         var state = isRecording() ? "REC" : "READY";
         dc.setColor(isRecording() ? Graphics.COLOR_RED : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.07, Graphics.FONT_XTINY, state + (_gpsQuality >= Position.QUALITY_USABLE ? " · GPS" : " · no GPS") + (_hr != null ? " · " + _hr + " bpm" : ""), Graphics.TEXT_JUSTIFY_CENTER);
+        var gps = _gpsQuality >= Position.QUALITY_GOOD ? "GPS ok" : (_gpsQuality >= Position.QUALITY_USABLE ? "GPS weak" : "GPS…");
+        dc.drawText(cx, h * 0.07, Graphics.FONT_XTINY, state + " · " + gps + (_hr != null ? " · " + _hr + " bpm" : ""), Graphics.TEXT_JUSTIFY_CENTER);
 
         // RPM, big
         var rpm = _ecu.hasKey("rpm") ? (_ecu["rpm"] as Number) : null;

@@ -1114,9 +1114,9 @@ _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_
     [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 142; @symbol_functiondef = [onUpdate,142,20,28]; @symbol_param<0> = [dc,142,29,31]; @symbol_param<0>_type<0> = [Dc,142,35,37]; ]
     public
     function onUpdate(dc as Dc) as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start:
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 143 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
         %w.1 = local;
         symbol [ w %w.1 143 12 13 ];
         %tmp.1 = lgetv %dc;
@@ -1126,7 +1126,7 @@ _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %w.1 %tmp.3;
         symbol [ w %w.1 143 12 13 ];
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
         %h.2 = local;
         symbol [ h %h.2 143 31 32 ];
         %tmp.4 = lgetv %dc;
@@ -1136,7 +1136,7 @@ _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_
         %tmp.6 = invoke %tmp.4 %tmp.5();
         lputv %h.2 %tmp.6;
         symbol [ h %h.2 143 31 32 ];
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
         %cx.3 = local;
         symbol [ cx %cx.3 143 51 53 ];
         %tmp.7 = lgetv %w.1;
@@ -1146,7 +1146,7 @@ _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_
         lputv %cx.3 %tmp.9;
         symbol [ cx %cx.3 143 51 53 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 144 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
         %fresh.4 = local;
         symbol [ fresh %fresh.4 144 12 17 ];
         symbol [ Time %tmp.10 144 21 25 ];
@@ -1185,7 +1185,7 @@ _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_
         %tmp.27 = getv function %tmp.26 :clear;
         invoke %tmp.26 %tmp.27();
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 149 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
         %state.5 = local;
         symbol [ state %state.5 149 12 17 ];
 _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_149_20_149_44_begin:
@@ -1237,731 +1237,758 @@ _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_
         %tmp.45 = getv %tmp.44 :COLOR_TRANSPARENT;
         invoke %tmp.34 %tmp.35(%tmp.43, %tmp.45);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 151 8 ]
-        %tmp.46 = lgetv %dc;
-        symbol [ dc %tmp.46 151 8 10 ];
-        symbol [ drawText %tmp.47 151 11 19 ];
-        %tmp.47 = getv function %tmp.46 :drawText;
-        %tmp.48 = lgetv %cx.3;
-        symbol [ cx %tmp.48 151 20 22 ];
-        %tmp.49 = lgetv %h.2;
-        symbol [ h %tmp.49 151 24 25 ];
-        %tmp.50 = 0.07;
-        %tmp.51 = mul %tmp.49 %tmp.50;
-        symbol [ Graphics %tmp.52 151 34 42 ];
-        %tmp.52 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.53 151 43 53 ];
-        %tmp.53 = getv %tmp.52 :FONT_XTINY;
-        %tmp.54 = lgetv %state.5;
-        symbol [ state %tmp.54 151 55 60 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_begin:
-        symbol [ _gpsQuality %tmp.56 151 64 75 ];
-        %tmp.56 = getv ? :_gpsQuality;
-        symbol [ Position %tmp.57 151 79 87 ];
-        %tmp.57 = getm $.Toybox.Position;
-        symbol [ QUALITY_USABLE %tmp.58 151 88 102 ];
-        %tmp.58 = getv %tmp.57 :QUALITY_USABLE;
-        %tmp.59 = gte %tmp.56 %tmp.58;
-        bf %tmp.59 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_true:
-        %tmp.60 = " · GPS";
-        push %tmp.60;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_else_false:
-        %tmp.61 = " · no GPS";
-        push %tmp.61;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_end:
-        %tmp.62 = phi [%tmp.59 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_begin] [%tmp.60 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_true] [%tmp.61 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_else_false] [%tmp.62 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_64_151_116_end];
-        %tmp.63 = add %tmp.54 %tmp.62;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_begin:
-        symbol [ _hr %tmp.65 151 132 135 ];
-        %tmp.65 = getv ? :_hr;
-        %tmp.66 = null;
-        %tmp.67 = ne %tmp.65 %tmp.66;
-        bf %tmp.67 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_true:
-        %tmp.68 = " · ";
-        symbol [ _hr %tmp.70 151 154 157 ];
-        %tmp.70 = getv ? :_hr;
-        %tmp.71 = as %tmp.70 { (!Null) };
-        %tmp.72 = add %tmp.68 %tmp.71;
-        %tmp.73 = " bpm";
-        %tmp.74 = add %tmp.72 %tmp.73;
-        push %tmp.74;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_else_false:
-        %tmp.75 = "";
-        push %tmp.75;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_end:
-        %tmp.76 = phi [%tmp.67 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_begin] [%tmp.74 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_true] [%tmp.75 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_else_false] [%tmp.76 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_132_151_169_end];
-        %tmp.77 = add %tmp.63 %tmp.76;
-        symbol [ Graphics %tmp.78 151 174 182 ];
-        %tmp.78 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.79 151 183 202 ];
-        %tmp.79 = getv %tmp.78 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.46 %tmp.47(%tmp.48, %tmp.51, %tmp.53, %tmp.77, %tmp.79);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 154 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %rpm.6 = local;
-        symbol [ rpm %rpm.6 154 12 15 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_begin:
-        symbol [ _ecu %tmp.81 154 18 22 ];
-        %tmp.81 = getv ? :_ecu;
-        symbol [ hasKey %tmp.82 154 23 29 ];
-        %tmp.82 = getv function %tmp.81 :hasKey;
-        %tmp.83 = "rpm";
-        %tmp.84 = invoke %tmp.81 %tmp.82(%tmp.83);
-        bf %tmp.84 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_true:
-        symbol [ _ecu %tmp.86 154 40 44 ];
-        %tmp.86 = getv ? :_ecu;
-        %tmp.87 = "rpm";
-        %tmp.88 = agetv %tmp.86 %tmp.87;
-        %tmp.89 = as %tmp.88 Number;
-        symbol [ Number %tmp.89 154 55 61 ];
-        push %tmp.89;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_else_false:
-        %tmp.90 = null;
-        push %tmp.90;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_end:
-        %tmp.91 = phi [%tmp.84 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_begin] [%tmp.89 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_true] [%tmp.90 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_else_false] [%tmp.91 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_154_18_154_65_end];
-        lputv %rpm.6 %tmp.91;
-        symbol [ rpm %rpm.6 154 12 15 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %gps.6 = local;
+        symbol [ gps %gps.6 151 12 15 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_begin:
+        symbol [ _gpsQuality %tmp.47 151 18 29 ];
+        %tmp.47 = getv ? :_gpsQuality;
+        symbol [ Position %tmp.48 151 33 41 ];
+        %tmp.48 = getm $.Toybox.Position;
+        symbol [ QUALITY_GOOD %tmp.49 151 42 54 ];
+        %tmp.49 = getv %tmp.48 :QUALITY_GOOD;
+        %tmp.50 = gte %tmp.47 %tmp.49;
+        bf %tmp.50 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_true:
+        %tmp.51 = "GPS ok";
+        push %tmp.51;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_else_false:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_begin:
+        symbol [ _gpsQuality %tmp.53 151 69 80 ];
+        %tmp.53 = getv ? :_gpsQuality;
+        symbol [ Position %tmp.54 151 84 92 ];
+        %tmp.54 = getm $.Toybox.Position;
+        symbol [ QUALITY_USABLE %tmp.55 151 93 107 ];
+        %tmp.55 = getv %tmp.54 :QUALITY_USABLE;
+        %tmp.56 = gte %tmp.53 %tmp.55;
+        bf %tmp.56 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_true:
+        %tmp.57 = "GPS weak";
+        push %tmp.57;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_else_false:
+        %tmp.58 = "GPS…";
+        push %tmp.58;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_end:
+        %tmp.59 = phi [%tmp.56 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_begin] [%tmp.57 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_true] [%tmp.58 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_else_false] [%tmp.59 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_69_151_123_end];
+        push %tmp.59;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_end:
+        %tmp.60 = phi [%tmp.50 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_begin] [%tmp.51 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_true] [%tmp.59 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_else_false] [%tmp.60 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_151_18_151_129_end];
+        lputv %gps.6 %tmp.60;
+        symbol [ gps %gps.6 151 12 15 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 152 8 ]
+        %tmp.61 = lgetv %dc;
+        symbol [ dc %tmp.61 152 8 10 ];
+        symbol [ drawText %tmp.62 152 11 19 ];
+        %tmp.62 = getv function %tmp.61 :drawText;
+        %tmp.63 = lgetv %cx.3;
+        symbol [ cx %tmp.63 152 20 22 ];
+        %tmp.64 = lgetv %h.2;
+        symbol [ h %tmp.64 152 24 25 ];
+        %tmp.65 = 0.07;
+        %tmp.66 = mul %tmp.64 %tmp.65;
+        symbol [ Graphics %tmp.67 152 34 42 ];
+        %tmp.67 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.68 152 43 53 ];
+        %tmp.68 = getv %tmp.67 :FONT_XTINY;
+        %tmp.69 = lgetv %state.5;
+        symbol [ state %tmp.69 152 55 60 ];
+        %tmp.70 = " · ";
+        %tmp.71 = add %tmp.69 %tmp.70;
+        %tmp.72 = lgetv %gps.6;
+        symbol [ gps %tmp.72 152 71 74 ];
+        %tmp.73 = add %tmp.71 %tmp.72;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_begin:
+        symbol [ _hr %tmp.75 152 78 81 ];
+        %tmp.75 = getv ? :_hr;
+        %tmp.76 = null;
+        %tmp.77 = ne %tmp.75 %tmp.76;
+        bf %tmp.77 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_true:
+        %tmp.78 = " · ";
+        symbol [ _hr %tmp.80 152 100 103 ];
+        %tmp.80 = getv ? :_hr;
+        %tmp.81 = as %tmp.80 { (!Null) };
+        %tmp.82 = add %tmp.78 %tmp.81;
+        %tmp.83 = " bpm";
+        %tmp.84 = add %tmp.82 %tmp.83;
+        push %tmp.84;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_else_false:
+        %tmp.85 = "";
+        push %tmp.85;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_end:
+        %tmp.86 = phi [%tmp.77 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_begin] [%tmp.84 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_true] [%tmp.85 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_else_false] [%tmp.86 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_152_78_152_115_end];
+        %tmp.87 = add %tmp.73 %tmp.86;
+        symbol [ Graphics %tmp.88 152 120 128 ];
+        %tmp.88 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.89 152 129 148 ];
+        %tmp.89 = getv %tmp.88 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.61 %tmp.62(%tmp.63, %tmp.66, %tmp.68, %tmp.87, %tmp.89);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 155 8 ]
-        %tmp.92 = lgetv %dc;
-        symbol [ dc %tmp.92 155 8 10 ];
-        symbol [ setColor %tmp.93 155 11 19 ];
-        %tmp.93 = getv function %tmp.92 :setColor;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_begin:
-        %tmp.94 = lgetv %fresh.4;
-        symbol [ fresh %tmp.94 155 20 25 ];
-        bf %tmp.94 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_true:
-        symbol [ Graphics %tmp.95 155 28 36 ];
-        %tmp.95 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.96 155 37 48 ];
-        %tmp.96 = getv %tmp.95 :COLOR_WHITE;
-        push %tmp.96;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_else_false:
-        symbol [ Graphics %tmp.97 155 51 59 ];
-        %tmp.97 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_GRAY %tmp.98 155 60 73 ];
-        %tmp.98 = getv %tmp.97 :COLOR_DK_GRAY;
-        push %tmp.98;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_end:
-        %tmp.99 = phi [%tmp.94 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_begin] [%tmp.96 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_true] [%tmp.98 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_else_false] [%tmp.99 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_20_155_60_end];
-        symbol [ Graphics %tmp.100 155 75 83 ];
-        %tmp.100 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.101 155 84 101 ];
-        %tmp.101 = getv %tmp.100 :COLOR_TRANSPARENT;
-        invoke %tmp.92 %tmp.93(%tmp.99, %tmp.101);
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %rpm.7 = local;
+        symbol [ rpm %rpm.7 155 12 15 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_begin:
+        symbol [ _ecu %tmp.91 155 18 22 ];
+        %tmp.91 = getv ? :_ecu;
+        symbol [ hasKey %tmp.92 155 23 29 ];
+        %tmp.92 = getv function %tmp.91 :hasKey;
+        %tmp.93 = "rpm";
+        %tmp.94 = invoke %tmp.91 %tmp.92(%tmp.93);
+        bf %tmp.94 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_true:
+        symbol [ _ecu %tmp.96 155 40 44 ];
+        %tmp.96 = getv ? :_ecu;
+        %tmp.97 = "rpm";
+        %tmp.98 = agetv %tmp.96 %tmp.97;
+        %tmp.99 = as %tmp.98 Number;
+        symbol [ Number %tmp.99 155 55 61 ];
+        push %tmp.99;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_else_false:
+        %tmp.100 = null;
+        push %tmp.100;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_end:
+        %tmp.101 = phi [%tmp.94 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_begin] [%tmp.99 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_true] [%tmp.100 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_else_false] [%tmp.101 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_155_18_155_65_end];
+        lputv %rpm.7 %tmp.101;
+        symbol [ rpm %rpm.7 155 12 15 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 156 8 ]
         %tmp.102 = lgetv %dc;
         symbol [ dc %tmp.102 156 8 10 ];
-        symbol [ drawText %tmp.103 156 11 19 ];
-        %tmp.103 = getv function %tmp.102 :drawText;
-        %tmp.104 = lgetv %cx.3;
-        symbol [ cx %tmp.104 156 20 22 ];
-        %tmp.105 = lgetv %h.2;
-        symbol [ h %tmp.105 156 24 25 ];
-        %tmp.106 = 0.22;
-        %tmp.107 = mul %tmp.105 %tmp.106;
-        symbol [ Graphics %tmp.108 156 34 42 ];
-        %tmp.108 = getm $.Toybox.Graphics;
-        symbol [ FONT_NUMBER_THAI_HOT %tmp.109 156 43 63 ];
-        %tmp.109 = getv %tmp.108 :FONT_NUMBER_THAI_HOT;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_begin:
-        %tmp.110 = lgetv %rpm.6;
-        symbol [ rpm %tmp.110 156 65 68 ];
-        %tmp.111 = null;
-        %tmp.112 = eq %tmp.110 %tmp.111;
-        bf %tmp.112 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_true:
-        %tmp.113 = "----";
-        push %tmp.113;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_else_false:
-        %tmp.114 = lgetv %rpm.6;
-        symbol [ rpm %tmp.114 156 88 91 ];
-        %tmp.115 = as %tmp.114 { (!Null) };
-        symbol [ format %tmp.116 156 92 98 ];
-        %tmp.116 = getv function %tmp.115 :format;
-        %tmp.117 = "%d";
-        %tmp.118 = invoke %tmp.115 %tmp.116(%tmp.117);
-        push %tmp.118;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_end:
-        %tmp.119 = phi [%tmp.112 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_begin] [%tmp.113 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_true] [%tmp.118 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_else_false] [%tmp.119 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_65_156_103_end];
-        symbol [ Graphics %tmp.120 156 106 114 ];
-        %tmp.120 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.121 156 115 134 ];
-        %tmp.121 = getv %tmp.120 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.102 %tmp.103(%tmp.104, %tmp.107, %tmp.109, %tmp.119, %tmp.121);
+        symbol [ setColor %tmp.103 156 11 19 ];
+        %tmp.103 = getv function %tmp.102 :setColor;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_begin:
+        %tmp.104 = lgetv %fresh.4;
+        symbol [ fresh %tmp.104 156 20 25 ];
+        bf %tmp.104 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_true:
+        symbol [ Graphics %tmp.105 156 28 36 ];
+        %tmp.105 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.106 156 37 48 ];
+        %tmp.106 = getv %tmp.105 :COLOR_WHITE;
+        push %tmp.106;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_else_false:
+        symbol [ Graphics %tmp.107 156 51 59 ];
+        %tmp.107 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.108 156 60 73 ];
+        %tmp.108 = getv %tmp.107 :COLOR_DK_GRAY;
+        push %tmp.108;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_end:
+        %tmp.109 = phi [%tmp.104 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_begin] [%tmp.106 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_true] [%tmp.108 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_else_false] [%tmp.109 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_156_20_156_60_end];
+        symbol [ Graphics %tmp.110 156 75 83 ];
+        %tmp.110 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.111 156 84 101 ];
+        %tmp.111 = getv %tmp.110 :COLOR_TRANSPARENT;
+        invoke %tmp.102 %tmp.103(%tmp.109, %tmp.111);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 157 8 ]
-        %tmp.122 = lgetv %dc;
-        symbol [ dc %tmp.122 157 8 10 ];
-        symbol [ setColor %tmp.123 157 11 19 ];
-        %tmp.123 = getv function %tmp.122 :setColor;
-        symbol [ Graphics %tmp.124 157 20 28 ];
-        %tmp.124 = getm $.Toybox.Graphics;
-        symbol [ COLOR_LT_GRAY %tmp.125 157 29 42 ];
-        %tmp.125 = getv %tmp.124 :COLOR_LT_GRAY;
-        symbol [ Graphics %tmp.126 157 44 52 ];
-        %tmp.126 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.127 157 53 70 ];
-        %tmp.127 = getv %tmp.126 :COLOR_TRANSPARENT;
-        invoke %tmp.122 %tmp.123(%tmp.125, %tmp.127);
+        %tmp.112 = lgetv %dc;
+        symbol [ dc %tmp.112 157 8 10 ];
+        symbol [ drawText %tmp.113 157 11 19 ];
+        %tmp.113 = getv function %tmp.112 :drawText;
+        %tmp.114 = lgetv %cx.3;
+        symbol [ cx %tmp.114 157 20 22 ];
+        %tmp.115 = lgetv %h.2;
+        symbol [ h %tmp.115 157 24 25 ];
+        %tmp.116 = 0.22;
+        %tmp.117 = mul %tmp.115 %tmp.116;
+        symbol [ Graphics %tmp.118 157 34 42 ];
+        %tmp.118 = getm $.Toybox.Graphics;
+        symbol [ FONT_NUMBER_THAI_HOT %tmp.119 157 43 63 ];
+        %tmp.119 = getv %tmp.118 :FONT_NUMBER_THAI_HOT;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_begin:
+        %tmp.120 = lgetv %rpm.7;
+        symbol [ rpm %tmp.120 157 65 68 ];
+        %tmp.121 = null;
+        %tmp.122 = eq %tmp.120 %tmp.121;
+        bf %tmp.122 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_true:
+        %tmp.123 = "----";
+        push %tmp.123;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_else_false:
+        %tmp.124 = lgetv %rpm.7;
+        symbol [ rpm %tmp.124 157 88 91 ];
+        %tmp.125 = as %tmp.124 { (!Null) };
+        symbol [ format %tmp.126 157 92 98 ];
+        %tmp.126 = getv function %tmp.125 :format;
+        %tmp.127 = "%d";
+        %tmp.128 = invoke %tmp.125 %tmp.126(%tmp.127);
+        push %tmp.128;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_end:
+        %tmp.129 = phi [%tmp.122 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_begin] [%tmp.123 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_true] [%tmp.128 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_else_false] [%tmp.129 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_157_65_157_103_end];
+        symbol [ Graphics %tmp.130 157 106 114 ];
+        %tmp.130 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.131 157 115 134 ];
+        %tmp.131 = getv %tmp.130 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.112 %tmp.113(%tmp.114, %tmp.117, %tmp.119, %tmp.129, %tmp.131);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 158 8 ]
-        %tmp.128 = lgetv %dc;
-        symbol [ dc %tmp.128 158 8 10 ];
-        symbol [ drawText %tmp.129 158 11 19 ];
-        %tmp.129 = getv function %tmp.128 :drawText;
-        %tmp.130 = lgetv %cx.3;
-        symbol [ cx %tmp.130 158 20 22 ];
-        %tmp.131 = lgetv %h.2;
-        symbol [ h %tmp.131 158 24 25 ];
-        %tmp.132 = 0.50;
-        %tmp.133 = mul %tmp.131 %tmp.132;
-        symbol [ Graphics %tmp.134 158 34 42 ];
+        %tmp.132 = lgetv %dc;
+        symbol [ dc %tmp.132 158 8 10 ];
+        symbol [ setColor %tmp.133 158 11 19 ];
+        %tmp.133 = getv function %tmp.132 :setColor;
+        symbol [ Graphics %tmp.134 158 20 28 ];
         %tmp.134 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.135 158 43 53 ];
-        %tmp.135 = getv %tmp.134 :FONT_XTINY;
-        %tmp.136 = "RPM";
-        symbol [ Graphics %tmp.137 158 62 70 ];
-        %tmp.137 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.138 158 71 90 ];
-        %tmp.138 = getv %tmp.137 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.128 %tmp.129(%tmp.130, %tmp.133, %tmp.135, %tmp.136, %tmp.138);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 161 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %afr.7 = local;
-        symbol [ afr %afr.7 161 12 15 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_begin:
-        symbol [ _ecu %tmp.140 161 18 22 ];
-        %tmp.140 = getv ? :_ecu;
-        symbol [ hasKey %tmp.141 161 23 29 ];
-        %tmp.141 = getv function %tmp.140 :hasKey;
-        %tmp.142 = "afr";
-        %tmp.143 = invoke %tmp.140 %tmp.141(%tmp.142);
-        bf %tmp.143 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_true:
-        symbol [ _ecu %tmp.145 161 40 44 ];
-        %tmp.145 = getv ? :_ecu;
-        %tmp.146 = "afr";
-        %tmp.147 = agetv %tmp.145 %tmp.146;
-        %tmp.148 = as %tmp.147 Number;
-        symbol [ Number %tmp.148 161 55 61 ];
-        %tmp.149 = 10.0;
-        %tmp.150 = div %tmp.148 %tmp.149;
-        push %tmp.150;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_else_false:
-        %tmp.151 = null;
-        push %tmp.151;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_end:
-        %tmp.152 = phi [%tmp.143 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_begin] [%tmp.150 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_true] [%tmp.151 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_else_false] [%tmp.152 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_161_18_161_72_end];
-        lputv %afr.7 %tmp.152;
-        symbol [ afr %afr.7 161 12 15 ];
+        symbol [ COLOR_LT_GRAY %tmp.135 158 29 42 ];
+        %tmp.135 = getv %tmp.134 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.136 158 44 52 ];
+        %tmp.136 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.137 158 53 70 ];
+        %tmp.137 = getv %tmp.136 :COLOR_TRANSPARENT;
+        invoke %tmp.132 %tmp.133(%tmp.135, %tmp.137);
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 159 8 ]
+        %tmp.138 = lgetv %dc;
+        symbol [ dc %tmp.138 159 8 10 ];
+        symbol [ drawText %tmp.139 159 11 19 ];
+        %tmp.139 = getv function %tmp.138 :drawText;
+        %tmp.140 = lgetv %cx.3;
+        symbol [ cx %tmp.140 159 20 22 ];
+        %tmp.141 = lgetv %h.2;
+        symbol [ h %tmp.141 159 24 25 ];
+        %tmp.142 = 0.50;
+        %tmp.143 = mul %tmp.141 %tmp.142;
+        symbol [ Graphics %tmp.144 159 34 42 ];
+        %tmp.144 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.145 159 43 53 ];
+        %tmp.145 = getv %tmp.144 :FONT_XTINY;
+        %tmp.146 = "RPM";
+        symbol [ Graphics %tmp.147 159 62 70 ];
+        %tmp.147 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.148 159 71 90 ];
+        %tmp.148 = getv %tmp.147 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.138 %tmp.139(%tmp.140, %tmp.143, %tmp.145, %tmp.146, %tmp.148);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 162 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %tgt.8 = local;
-        symbol [ tgt %tgt.8 162 12 15 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %afr.8 = local;
+        symbol [ afr %afr.8 162 12 15 ];
 _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_begin:
-        symbol [ _ecu %tmp.154 162 18 22 ];
-        %tmp.154 = getv ? :_ecu;
-        symbol [ hasKey %tmp.155 162 23 29 ];
-        %tmp.155 = getv function %tmp.154 :hasKey;
-        %tmp.156 = "tgt";
-        %tmp.157 = invoke %tmp.154 %tmp.155(%tmp.156);
-        bf %tmp.157 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_else_false;
+        symbol [ _ecu %tmp.150 162 18 22 ];
+        %tmp.150 = getv ? :_ecu;
+        symbol [ hasKey %tmp.151 162 23 29 ];
+        %tmp.151 = getv function %tmp.150 :hasKey;
+        %tmp.152 = "afr";
+        %tmp.153 = invoke %tmp.150 %tmp.151(%tmp.152);
+        bf %tmp.153 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_else_false;
 _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_true:
-        symbol [ _ecu %tmp.159 162 40 44 ];
-        %tmp.159 = getv ? :_ecu;
-        %tmp.160 = "tgt";
-        %tmp.161 = agetv %tmp.159 %tmp.160;
-        %tmp.162 = as %tmp.161 Number;
-        symbol [ Number %tmp.162 162 55 61 ];
-        %tmp.163 = 10.0;
-        %tmp.164 = div %tmp.162 %tmp.163;
-        push %tmp.164;
+        symbol [ _ecu %tmp.155 162 40 44 ];
+        %tmp.155 = getv ? :_ecu;
+        %tmp.156 = "afr";
+        %tmp.157 = agetv %tmp.155 %tmp.156;
+        %tmp.158 = as %tmp.157 Number;
+        symbol [ Number %tmp.158 162 55 61 ];
+        %tmp.159 = 10.0;
+        %tmp.160 = div %tmp.158 %tmp.159;
+        push %tmp.160;
         goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_end;
 _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_else_false:
-        %tmp.165 = null;
-        push %tmp.165;
+        %tmp.161 = null;
+        push %tmp.161;
 _Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_end:
-        %tmp.166 = phi [%tmp.157 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_begin] [%tmp.164 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_true] [%tmp.165 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_else_false] [%tmp.166 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_end];
-        lputv %tgt.8 %tmp.166;
-        symbol [ tgt %tgt.8 162 12 15 ];
+        %tmp.162 = phi [%tmp.153 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_begin] [%tmp.160 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_true] [%tmp.161 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_else_false] [%tmp.162 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_162_18_162_72_end];
+        lputv %afr.8 %tmp.162;
+        symbol [ afr %afr.8 162 12 15 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 163 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %lean.9 = local;
-        symbol [ lean %lean.9 163 12 16 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_19_163_70_begin:
-        symbol [ _ecu %tmp.168 163 19 23 ];
-        %tmp.168 = getv ? :_ecu;
-        symbol [ hasKey %tmp.169 163 24 30 ];
-        %tmp.169 = getv function %tmp.168 :hasKey;
-        %tmp.170 = "lean";
-        %tmp.171 = invoke %tmp.168 %tmp.169(%tmp.170);
-        %tmp.172 = dup %tmp.171;
-        bf %tmp.172 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_42_163_70_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_42_163_70_true:
-        symbol [ _ecu %tmp.174 163 43 47 ];
-        %tmp.174 = getv ? :_ecu;
-        %tmp.175 = "lean";
-        %tmp.176 = agetv %tmp.174 %tmp.175;
-        %tmp.177 = as %tmp.176 Number;
-        symbol [ Number %tmp.177 163 59 65 ];
-        %tmp.178 = 1;
-        %tmp.179 = eq %tmp.177 %tmp.178;
-        %tmp.180 = and %tmp.171 %tmp.179;
-        push %tmp.180;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_42_163_70_end:
-        %tmp.181 = phi [%tmp.172 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_19_163_70_begin] [%tmp.180 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_42_163_70_true] [%tmp.181 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_42_163_70_end];
-        lputv %lean.9 %tmp.181;
-        symbol [ lean %lean.9 163 12 16 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %tgt.9 = local;
+        symbol [ tgt %tgt.9 163 12 15 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_begin:
+        symbol [ _ecu %tmp.164 163 18 22 ];
+        %tmp.164 = getv ? :_ecu;
+        symbol [ hasKey %tmp.165 163 23 29 ];
+        %tmp.165 = getv function %tmp.164 :hasKey;
+        %tmp.166 = "tgt";
+        %tmp.167 = invoke %tmp.164 %tmp.165(%tmp.166);
+        bf %tmp.167 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_true:
+        symbol [ _ecu %tmp.169 163 40 44 ];
+        %tmp.169 = getv ? :_ecu;
+        %tmp.170 = "tgt";
+        %tmp.171 = agetv %tmp.169 %tmp.170;
+        %tmp.172 = as %tmp.171 Number;
+        symbol [ Number %tmp.172 163 55 61 ];
+        %tmp.173 = 10.0;
+        %tmp.174 = div %tmp.172 %tmp.173;
+        push %tmp.174;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_else_false:
+        %tmp.175 = null;
+        push %tmp.175;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_end:
+        %tmp.176 = phi [%tmp.167 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_begin] [%tmp.174 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_true] [%tmp.175 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_else_false] [%tmp.176 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_163_18_163_72_end];
+        lputv %tgt.9 %tmp.176;
+        symbol [ tgt %tgt.9 163 12 15 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 164 8 ]
-        %tmp.182 = lgetv %dc;
-        symbol [ dc %tmp.182 164 8 10 ];
-        symbol [ setColor %tmp.183 164 11 19 ];
-        %tmp.183 = getv function %tmp.182 :setColor;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_begin:
-        %tmp.184 = lgetv %lean.9;
-        symbol [ lean %tmp.184 164 20 24 ];
-        bf %tmp.184 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_true:
-        symbol [ Graphics %tmp.185 164 27 35 ];
-        %tmp.185 = getm $.Toybox.Graphics;
-        symbol [ COLOR_RED %tmp.186 164 36 45 ];
-        %tmp.186 = getv %tmp.185 :COLOR_RED;
-        push %tmp.186;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_else_false:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_begin:
-        %tmp.187 = lgetv %fresh.4;
-        symbol [ fresh %tmp.187 164 49 54 ];
-        bf %tmp.187 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_true:
-        symbol [ Graphics %tmp.188 164 57 65 ];
-        %tmp.188 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.189 164 66 77 ];
-        %tmp.189 = getv %tmp.188 :COLOR_WHITE;
-        push %tmp.189;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_else_false:
-        symbol [ Graphics %tmp.190 164 80 88 ];
-        %tmp.190 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_GRAY %tmp.191 164 89 102 ];
-        %tmp.191 = getv %tmp.190 :COLOR_DK_GRAY;
-        push %tmp.191;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_end:
-        %tmp.192 = phi [%tmp.187 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_begin] [%tmp.189 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_true] [%tmp.191 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_else_false] [%tmp.192 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_49_164_89_end];
-        push %tmp.192;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_end:
-        %tmp.193 = phi [%tmp.184 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_begin] [%tmp.186 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_true] [%tmp.192 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_else_false] [%tmp.193 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_20_164_102_end];
-        symbol [ Graphics %tmp.194 164 105 113 ];
-        %tmp.194 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.195 164 114 131 ];
-        %tmp.195 = getv %tmp.194 :COLOR_TRANSPARENT;
-        invoke %tmp.182 %tmp.183(%tmp.193, %tmp.195);
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %lean.10 = local;
+        symbol [ lean %lean.10 164 12 16 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_19_164_70_begin:
+        symbol [ _ecu %tmp.178 164 19 23 ];
+        %tmp.178 = getv ? :_ecu;
+        symbol [ hasKey %tmp.179 164 24 30 ];
+        %tmp.179 = getv function %tmp.178 :hasKey;
+        %tmp.180 = "lean";
+        %tmp.181 = invoke %tmp.178 %tmp.179(%tmp.180);
+        %tmp.182 = dup %tmp.181;
+        bf %tmp.182 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_42_164_70_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_42_164_70_true:
+        symbol [ _ecu %tmp.184 164 43 47 ];
+        %tmp.184 = getv ? :_ecu;
+        %tmp.185 = "lean";
+        %tmp.186 = agetv %tmp.184 %tmp.185;
+        %tmp.187 = as %tmp.186 Number;
+        symbol [ Number %tmp.187 164 59 65 ];
+        %tmp.188 = 1;
+        %tmp.189 = eq %tmp.187 %tmp.188;
+        %tmp.190 = and %tmp.181 %tmp.189;
+        push %tmp.190;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_42_164_70_end:
+        %tmp.191 = phi [%tmp.182 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_19_164_70_begin] [%tmp.190 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_42_164_70_true] [%tmp.191 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_164_42_164_70_end];
+        lputv %lean.10 %tmp.191;
+        symbol [ lean %lean.10 164 12 16 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 165 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %afrText.10 = local;
-        symbol [ afrText %afrText.10 165 12 19 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_begin:
-        %tmp.196 = lgetv %afr.7;
-        symbol [ afr %tmp.196 165 23 26 ];
-        %tmp.197 = null;
-        %tmp.198 = eq %tmp.196 %tmp.197;
-        bf %tmp.198 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_true:
-        %tmp.199 = "--.-";
+        %tmp.192 = lgetv %dc;
+        symbol [ dc %tmp.192 165 8 10 ];
+        symbol [ setColor %tmp.193 165 11 19 ];
+        %tmp.193 = getv function %tmp.192 :setColor;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_begin:
+        %tmp.194 = lgetv %lean.10;
+        symbol [ lean %tmp.194 165 20 24 ];
+        bf %tmp.194 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_true:
+        symbol [ Graphics %tmp.195 165 27 35 ];
+        %tmp.195 = getm $.Toybox.Graphics;
+        symbol [ COLOR_RED %tmp.196 165 36 45 ];
+        %tmp.196 = getv %tmp.195 :COLOR_RED;
+        push %tmp.196;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_else_false:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_begin:
+        %tmp.197 = lgetv %fresh.4;
+        symbol [ fresh %tmp.197 165 49 54 ];
+        bf %tmp.197 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_true:
+        symbol [ Graphics %tmp.198 165 57 65 ];
+        %tmp.198 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.199 165 66 77 ];
+        %tmp.199 = getv %tmp.198 :COLOR_WHITE;
         push %tmp.199;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_else_false:
-        %tmp.200 = lgetv %afr.7;
-        symbol [ afr %tmp.200 165 46 49 ];
-        %tmp.201 = as %tmp.200 { (!Null) };
-        symbol [ format %tmp.202 165 50 56 ];
-        %tmp.202 = getv function %tmp.201 :format;
-        %tmp.203 = "%.1f";
-        %tmp.204 = invoke %tmp.201 %tmp.202(%tmp.203);
-        push %tmp.204;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_end:
-        %tmp.205 = phi [%tmp.198 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_begin] [%tmp.199 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_true] [%tmp.204 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_else_false] [%tmp.205 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_23_165_63_end];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_begin:
-        %tmp.206 = lgetv %tgt.8;
-        symbol [ tgt %tmp.206 165 69 72 ];
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_else_false:
+        symbol [ Graphics %tmp.200 165 80 88 ];
+        %tmp.200 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.201 165 89 102 ];
+        %tmp.201 = getv %tmp.200 :COLOR_DK_GRAY;
+        push %tmp.201;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_end:
+        %tmp.202 = phi [%tmp.197 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_begin] [%tmp.199 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_true] [%tmp.201 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_else_false] [%tmp.202 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_49_165_89_end];
+        push %tmp.202;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_end:
+        %tmp.203 = phi [%tmp.194 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_begin] [%tmp.196 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_true] [%tmp.202 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_else_false] [%tmp.203 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_20_165_102_end];
+        symbol [ Graphics %tmp.204 165 105 113 ];
+        %tmp.204 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.205 165 114 131 ];
+        %tmp.205 = getv %tmp.204 :COLOR_TRANSPARENT;
+        invoke %tmp.192 %tmp.193(%tmp.203, %tmp.205);
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 166 8 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %afrText.11 = local;
+        symbol [ afrText %afrText.11 166 12 19 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_begin:
+        %tmp.206 = lgetv %afr.8;
+        symbol [ afr %tmp.206 166 23 26 ];
         %tmp.207 = null;
         %tmp.208 = eq %tmp.206 %tmp.207;
-        bf %tmp.208 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_true:
-        %tmp.209 = "";
+        bf %tmp.208 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_true:
+        %tmp.209 = "--.-";
         push %tmp.209;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_else_false:
-        %tmp.210 = " / ";
-        %tmp.211 = lgetv %tgt.8;
-        symbol [ tgt %tmp.211 165 96 99 ];
-        %tmp.212 = as %tmp.211 { (!Null) };
-        symbol [ format %tmp.213 165 100 106 ];
-        %tmp.213 = getv function %tmp.212 :format;
-        %tmp.214 = "%.1f";
-        %tmp.215 = invoke %tmp.212 %tmp.213(%tmp.214);
-        %tmp.216 = add %tmp.210 %tmp.215;
-        push %tmp.216;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_end:
-        %tmp.217 = phi [%tmp.208 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_begin] [%tmp.209 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_true] [%tmp.216 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_else_false] [%tmp.217 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_165_69_165_113_end];
-        %tmp.218 = add %tmp.205 %tmp.217;
-        lputv %afrText.10 %tmp.218;
-        symbol [ afrText %afrText.10 165 12 19 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 166 8 ]
-        %tmp.219 = lgetv %dc;
-        symbol [ dc %tmp.219 166 8 10 ];
-        symbol [ drawText %tmp.220 166 11 19 ];
-        %tmp.220 = getv function %tmp.219 :drawText;
-        %tmp.221 = lgetv %cx.3;
-        symbol [ cx %tmp.221 166 20 22 ];
-        %tmp.222 = lgetv %h.2;
-        symbol [ h %tmp.222 166 24 25 ];
-        %tmp.223 = 0.57;
-        %tmp.224 = mul %tmp.222 %tmp.223;
-        symbol [ Graphics %tmp.225 166 34 42 ];
-        %tmp.225 = getm $.Toybox.Graphics;
-        symbol [ FONT_MEDIUM %tmp.226 166 43 54 ];
-        %tmp.226 = getv %tmp.225 :FONT_MEDIUM;
-        %tmp.227 = lgetv %afrText.10;
-        symbol [ afrText %tmp.227 166 56 63 ];
-        symbol [ Graphics %tmp.228 166 65 73 ];
-        %tmp.228 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.229 166 74 93 ];
-        %tmp.229 = getv %tmp.228 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.219 %tmp.220(%tmp.221, %tmp.224, %tmp.226, %tmp.227, %tmp.229);
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_else_false:
+        %tmp.210 = lgetv %afr.8;
+        symbol [ afr %tmp.210 166 46 49 ];
+        %tmp.211 = as %tmp.210 { (!Null) };
+        symbol [ format %tmp.212 166 50 56 ];
+        %tmp.212 = getv function %tmp.211 :format;
+        %tmp.213 = "%.1f";
+        %tmp.214 = invoke %tmp.211 %tmp.212(%tmp.213);
+        push %tmp.214;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_end:
+        %tmp.215 = phi [%tmp.208 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_begin] [%tmp.209 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_true] [%tmp.214 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_else_false] [%tmp.215 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_23_166_63_end];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_begin:
+        %tmp.216 = lgetv %tgt.9;
+        symbol [ tgt %tmp.216 166 69 72 ];
+        %tmp.217 = null;
+        %tmp.218 = eq %tmp.216 %tmp.217;
+        bf %tmp.218 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_true:
+        %tmp.219 = "";
+        push %tmp.219;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_else_false:
+        %tmp.220 = " / ";
+        %tmp.221 = lgetv %tgt.9;
+        symbol [ tgt %tmp.221 166 96 99 ];
+        %tmp.222 = as %tmp.221 { (!Null) };
+        symbol [ format %tmp.223 166 100 106 ];
+        %tmp.223 = getv function %tmp.222 :format;
+        %tmp.224 = "%.1f";
+        %tmp.225 = invoke %tmp.222 %tmp.223(%tmp.224);
+        %tmp.226 = add %tmp.220 %tmp.225;
+        push %tmp.226;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_end:
+        %tmp.227 = phi [%tmp.218 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_begin] [%tmp.219 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_true] [%tmp.226 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_else_false] [%tmp.227 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_166_69_166_113_end];
+        %tmp.228 = add %tmp.215 %tmp.227;
+        lputv %afrText.11 %tmp.228;
+        symbol [ afrText %afrText.11 166 12 19 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 167 8 ]
-        %tmp.230 = lgetv %dc;
-        symbol [ dc %tmp.230 167 8 10 ];
-        symbol [ setColor %tmp.231 167 11 19 ];
-        %tmp.231 = getv function %tmp.230 :setColor;
-        symbol [ Graphics %tmp.232 167 20 28 ];
-        %tmp.232 = getm $.Toybox.Graphics;
-        symbol [ COLOR_LT_GRAY %tmp.233 167 29 42 ];
-        %tmp.233 = getv %tmp.232 :COLOR_LT_GRAY;
-        symbol [ Graphics %tmp.234 167 44 52 ];
-        %tmp.234 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.235 167 53 70 ];
-        %tmp.235 = getv %tmp.234 :COLOR_TRANSPARENT;
-        invoke %tmp.230 %tmp.231(%tmp.233, %tmp.235);
+        %tmp.229 = lgetv %dc;
+        symbol [ dc %tmp.229 167 8 10 ];
+        symbol [ drawText %tmp.230 167 11 19 ];
+        %tmp.230 = getv function %tmp.229 :drawText;
+        %tmp.231 = lgetv %cx.3;
+        symbol [ cx %tmp.231 167 20 22 ];
+        %tmp.232 = lgetv %h.2;
+        symbol [ h %tmp.232 167 24 25 ];
+        %tmp.233 = 0.57;
+        %tmp.234 = mul %tmp.232 %tmp.233;
+        symbol [ Graphics %tmp.235 167 34 42 ];
+        %tmp.235 = getm $.Toybox.Graphics;
+        symbol [ FONT_MEDIUM %tmp.236 167 43 54 ];
+        %tmp.236 = getv %tmp.235 :FONT_MEDIUM;
+        %tmp.237 = lgetv %afrText.11;
+        symbol [ afrText %tmp.237 167 56 63 ];
+        symbol [ Graphics %tmp.238 167 65 73 ];
+        %tmp.238 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.239 167 74 93 ];
+        %tmp.239 = getv %tmp.238 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.229 %tmp.230(%tmp.231, %tmp.234, %tmp.236, %tmp.237, %tmp.239);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 168 8 ]
-        %tmp.236 = lgetv %dc;
-        symbol [ dc %tmp.236 168 8 10 ];
-        symbol [ drawText %tmp.237 168 11 19 ];
-        %tmp.237 = getv function %tmp.236 :drawText;
-        %tmp.238 = lgetv %cx.3;
-        symbol [ cx %tmp.238 168 20 22 ];
-        %tmp.239 = lgetv %h.2;
-        symbol [ h %tmp.239 168 24 25 ];
-        %tmp.240 = 0.69;
-        %tmp.241 = mul %tmp.239 %tmp.240;
-        symbol [ Graphics %tmp.242 168 34 42 ];
+        %tmp.240 = lgetv %dc;
+        symbol [ dc %tmp.240 168 8 10 ];
+        symbol [ setColor %tmp.241 168 11 19 ];
+        %tmp.241 = getv function %tmp.240 :setColor;
+        symbol [ Graphics %tmp.242 168 20 28 ];
         %tmp.242 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.243 168 43 53 ];
-        %tmp.243 = getv %tmp.242 :FONT_XTINY;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_begin:
-        %tmp.244 = lgetv %lean.9;
-        symbol [ lean %tmp.244 168 55 59 ];
-        bf %tmp.244 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_true:
-        %tmp.245 = "AFR  LEAN!";
-        push %tmp.245;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_else_false:
-        %tmp.246 = "AFR / target";
-        push %tmp.246;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_end:
-        %tmp.247 = phi [%tmp.244 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_begin] [%tmp.245 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_true] [%tmp.246 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_else_false] [%tmp.247 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_168_55_168_77_end];
-        symbol [ Graphics %tmp.248 168 93 101 ];
-        %tmp.248 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.249 168 102 121 ];
-        %tmp.249 = getv %tmp.248 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.236 %tmp.237(%tmp.238, %tmp.241, %tmp.243, %tmp.247, %tmp.249);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 170 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %gear.11 = local;
-        symbol [ gear %gear.11 170 12 16 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_begin:
-        symbol [ _ecu %tmp.251 170 19 23 ];
-        %tmp.251 = getv ? :_ecu;
-        symbol [ hasKey %tmp.252 170 24 30 ];
-        %tmp.252 = getv function %tmp.251 :hasKey;
-        %tmp.253 = "gear";
-        %tmp.254 = invoke %tmp.251 %tmp.252(%tmp.253);
-        bf %tmp.254 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_true:
-        %tmp.255 = "G";
-        symbol [ _ecu %tmp.257 170 48 52 ];
-        %tmp.257 = getv ? :_ecu;
-        %tmp.258 = "gear";
-        %tmp.259 = agetv %tmp.257 %tmp.258;
-        %tmp.260 = as %tmp.259 Number;
-        symbol [ Number %tmp.260 170 64 70 ];
-        %tmp.261 = add %tmp.255 %tmp.260;
-        push %tmp.261;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_else_false:
-        %tmp.262 = "G-";
-        push %tmp.262;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_end:
-        %tmp.263 = phi [%tmp.254 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_begin] [%tmp.261 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_true] [%tmp.262 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_else_false] [%tmp.263 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_170_19_170_74_end];
-        lputv %gear.11 %tmp.263;
-        symbol [ gear %gear.11 170 12 16 ];
+        symbol [ COLOR_LT_GRAY %tmp.243 168 29 42 ];
+        %tmp.243 = getv %tmp.242 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.244 168 44 52 ];
+        %tmp.244 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.245 168 53 70 ];
+        %tmp.245 = getv %tmp.244 :COLOR_TRANSPARENT;
+        invoke %tmp.240 %tmp.241(%tmp.243, %tmp.245);
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 169 8 ]
+        %tmp.246 = lgetv %dc;
+        symbol [ dc %tmp.246 169 8 10 ];
+        symbol [ drawText %tmp.247 169 11 19 ];
+        %tmp.247 = getv function %tmp.246 :drawText;
+        %tmp.248 = lgetv %cx.3;
+        symbol [ cx %tmp.248 169 20 22 ];
+        %tmp.249 = lgetv %h.2;
+        symbol [ h %tmp.249 169 24 25 ];
+        %tmp.250 = 0.69;
+        %tmp.251 = mul %tmp.249 %tmp.250;
+        symbol [ Graphics %tmp.252 169 34 42 ];
+        %tmp.252 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.253 169 43 53 ];
+        %tmp.253 = getv %tmp.252 :FONT_XTINY;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_begin:
+        %tmp.254 = lgetv %lean.10;
+        symbol [ lean %tmp.254 169 55 59 ];
+        bf %tmp.254 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_true:
+        %tmp.255 = "AFR  LEAN!";
+        push %tmp.255;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_else_false:
+        %tmp.256 = "AFR / target";
+        push %tmp.256;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_end:
+        %tmp.257 = phi [%tmp.254 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_begin] [%tmp.255 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_true] [%tmp.256 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_else_false] [%tmp.257 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_169_55_169_77_end];
+        symbol [ Graphics %tmp.258 169 93 101 ];
+        %tmp.258 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.259 169 102 121 ];
+        %tmp.259 = getv %tmp.258 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.246 %tmp.247(%tmp.248, %tmp.251, %tmp.253, %tmp.257, %tmp.259);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 171 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %tps.12 = local;
-        symbol [ tps %tps.12 171 12 15 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_begin:
-        symbol [ _ecu %tmp.265 171 18 22 ];
-        %tmp.265 = getv ? :_ecu;
-        symbol [ hasKey %tmp.266 171 23 29 ];
-        %tmp.266 = getv function %tmp.265 :hasKey;
-        %tmp.267 = "tps";
-        %tmp.268 = invoke %tmp.265 %tmp.266(%tmp.267);
-        bf %tmp.268 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_true:
-        symbol [ _ecu %tmp.270 171 40 44 ];
-        %tmp.270 = getv ? :_ecu;
-        %tmp.271 = "tps";
-        %tmp.272 = agetv %tmp.270 %tmp.271;
-        %tmp.273 = as %tmp.272 Number;
-        symbol [ Number %tmp.273 171 55 61 ];
-        %tmp.274 = "%";
-        %tmp.275 = add %tmp.273 %tmp.274;
-        push %tmp.275;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_else_false:
-        %tmp.276 = "--%";
-        push %tmp.276;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_end:
-        %tmp.277 = phi [%tmp.268 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_begin] [%tmp.275 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_true] [%tmp.276 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_else_false] [%tmp.277 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_18_171_71_end];
-        lputv %tps.12 %tmp.277;
-        symbol [ tps %tps.12 171 12 15 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %gear.12 = local;
+        symbol [ gear %gear.12 171 12 16 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_begin:
+        symbol [ _ecu %tmp.261 171 19 23 ];
+        %tmp.261 = getv ? :_ecu;
+        symbol [ hasKey %tmp.262 171 24 30 ];
+        %tmp.262 = getv function %tmp.261 :hasKey;
+        %tmp.263 = "gear";
+        %tmp.264 = invoke %tmp.261 %tmp.262(%tmp.263);
+        bf %tmp.264 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_true:
+        %tmp.265 = "G";
+        symbol [ _ecu %tmp.267 171 48 52 ];
+        %tmp.267 = getv ? :_ecu;
+        %tmp.268 = "gear";
+        %tmp.269 = agetv %tmp.267 %tmp.268;
+        %tmp.270 = as %tmp.269 Number;
+        symbol [ Number %tmp.270 171 64 70 ];
+        %tmp.271 = add %tmp.265 %tmp.270;
+        push %tmp.271;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_else_false:
+        %tmp.272 = "G-";
+        push %tmp.272;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_end:
+        %tmp.273 = phi [%tmp.264 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_begin] [%tmp.271 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_true] [%tmp.272 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_else_false] [%tmp.273 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_171_19_171_74_end];
+        lputv %gear.12 %tmp.273;
+        symbol [ gear %gear.12 171 12 16 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 172 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %pulls.13 = local;
-        symbol [ pulls %pulls.13 172 12 17 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_begin:
-        symbol [ _ecu %tmp.279 172 20 24 ];
-        %tmp.279 = getv ? :_ecu;
-        symbol [ hasKey %tmp.280 172 25 31 ];
-        %tmp.280 = getv function %tmp.279 :hasKey;
-        %tmp.281 = "pulls";
-        %tmp.282 = invoke %tmp.279 %tmp.280(%tmp.281);
-        bf %tmp.282 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_true:
-        %tmp.283 = "pull ";
-        symbol [ _ecu %tmp.285 172 54 58 ];
-        %tmp.285 = getv ? :_ecu;
-        %tmp.286 = "pulls";
-        %tmp.287 = agetv %tmp.285 %tmp.286;
-        %tmp.288 = as %tmp.287 Number;
-        symbol [ Number %tmp.288 172 71 77 ];
-        %tmp.289 = add %tmp.283 %tmp.288;
-        push %tmp.289;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_else_false:
-        %tmp.290 = "pull 0";
-        push %tmp.290;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_end:
-        %tmp.291 = phi [%tmp.282 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_begin] [%tmp.289 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_true] [%tmp.290 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_else_false] [%tmp.291 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_20_172_81_end];
-        lputv %pulls.13 %tmp.291;
-        symbol [ pulls %pulls.13 172 12 17 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %tps.13 = local;
+        symbol [ tps %tps.13 172 12 15 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_begin:
+        symbol [ _ecu %tmp.275 172 18 22 ];
+        %tmp.275 = getv ? :_ecu;
+        symbol [ hasKey %tmp.276 172 23 29 ];
+        %tmp.276 = getv function %tmp.275 :hasKey;
+        %tmp.277 = "tps";
+        %tmp.278 = invoke %tmp.275 %tmp.276(%tmp.277);
+        bf %tmp.278 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_true:
+        symbol [ _ecu %tmp.280 172 40 44 ];
+        %tmp.280 = getv ? :_ecu;
+        %tmp.281 = "tps";
+        %tmp.282 = agetv %tmp.280 %tmp.281;
+        %tmp.283 = as %tmp.282 Number;
+        symbol [ Number %tmp.283 172 55 61 ];
+        %tmp.284 = "%";
+        %tmp.285 = add %tmp.283 %tmp.284;
+        push %tmp.285;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_else_false:
+        %tmp.286 = "--%";
+        push %tmp.286;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_end:
+        %tmp.287 = phi [%tmp.278 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_begin] [%tmp.285 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_true] [%tmp.286 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_else_false] [%tmp.287 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_172_18_172_71_end];
+        lputv %tps.13 %tmp.287;
+        symbol [ tps %tps.13 172 12 15 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 173 8 ]
-        %tmp.292 = lgetv %dc;
-        symbol [ dc %tmp.292 173 8 10 ];
-        symbol [ setColor %tmp.293 173 11 19 ];
-        %tmp.293 = getv function %tmp.292 :setColor;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_begin:
-        %tmp.294 = lgetv %fresh.4;
-        symbol [ fresh %tmp.294 173 20 25 ];
-        bf %tmp.294 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_true:
-        symbol [ Graphics %tmp.295 173 28 36 ];
-        %tmp.295 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.296 173 37 48 ];
-        %tmp.296 = getv %tmp.295 :COLOR_WHITE;
-        push %tmp.296;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_else_false:
-        symbol [ Graphics %tmp.297 173 51 59 ];
-        %tmp.297 = getm $.Toybox.Graphics;
-        symbol [ COLOR_DK_GRAY %tmp.298 173 60 73 ];
-        %tmp.298 = getv %tmp.297 :COLOR_DK_GRAY;
-        push %tmp.298;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_end:
-        %tmp.299 = phi [%tmp.294 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_begin] [%tmp.296 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_true] [%tmp.298 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_else_false] [%tmp.299 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_60_end];
-        symbol [ Graphics %tmp.300 173 75 83 ];
-        %tmp.300 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.301 173 84 101 ];
-        %tmp.301 = getv %tmp.300 :COLOR_TRANSPARENT;
-        invoke %tmp.292 %tmp.293(%tmp.299, %tmp.301);
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %pulls.14 = local;
+        symbol [ pulls %pulls.14 173 12 17 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_begin:
+        symbol [ _ecu %tmp.289 173 20 24 ];
+        %tmp.289 = getv ? :_ecu;
+        symbol [ hasKey %tmp.290 173 25 31 ];
+        %tmp.290 = getv function %tmp.289 :hasKey;
+        %tmp.291 = "pulls";
+        %tmp.292 = invoke %tmp.289 %tmp.290(%tmp.291);
+        bf %tmp.292 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_true:
+        %tmp.293 = "pull ";
+        symbol [ _ecu %tmp.295 173 54 58 ];
+        %tmp.295 = getv ? :_ecu;
+        %tmp.296 = "pulls";
+        %tmp.297 = agetv %tmp.295 %tmp.296;
+        %tmp.298 = as %tmp.297 Number;
+        symbol [ Number %tmp.298 173 71 77 ];
+        %tmp.299 = add %tmp.293 %tmp.298;
+        push %tmp.299;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_else_false:
+        %tmp.300 = "pull 0";
+        push %tmp.300;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_end:
+        %tmp.301 = phi [%tmp.292 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_begin] [%tmp.299 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_true] [%tmp.300 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_else_false] [%tmp.301 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_173_20_173_81_end];
+        lputv %pulls.14 %tmp.301;
+        symbol [ pulls %pulls.14 173 12 17 ];
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 174 8 ]
         %tmp.302 = lgetv %dc;
         symbol [ dc %tmp.302 174 8 10 ];
-        symbol [ drawText %tmp.303 174 11 19 ];
-        %tmp.303 = getv function %tmp.302 :drawText;
-        %tmp.304 = lgetv %cx.3;
-        symbol [ cx %tmp.304 174 20 22 ];
-        %tmp.305 = lgetv %h.2;
-        symbol [ h %tmp.305 174 24 25 ];
-        %tmp.306 = 0.76;
-        %tmp.307 = mul %tmp.305 %tmp.306;
-        symbol [ Graphics %tmp.308 174 34 42 ];
-        %tmp.308 = getm $.Toybox.Graphics;
-        symbol [ FONT_SMALL %tmp.309 174 43 53 ];
-        %tmp.309 = getv %tmp.308 :FONT_SMALL;
-        %tmp.310 = lgetv %gear.11;
-        symbol [ gear %tmp.310 174 55 59 ];
-        %tmp.311 = "   ";
-        %tmp.312 = add %tmp.310 %tmp.311;
-        %tmp.313 = lgetv %tps.12;
-        symbol [ tps %tmp.313 174 70 73 ];
-        %tmp.314 = add %tmp.312 %tmp.313;
-        %tmp.315 = "   ";
-        %tmp.316 = add %tmp.314 %tmp.315;
-        %tmp.317 = lgetv %pulls.13;
-        symbol [ pulls %tmp.317 174 84 89 ];
-        %tmp.318 = add %tmp.316 %tmp.317;
-        symbol [ Graphics %tmp.319 174 91 99 ];
-        %tmp.319 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.320 174 100 119 ];
-        %tmp.320 = getv %tmp.319 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.302 %tmp.303(%tmp.304, %tmp.307, %tmp.309, %tmp.318, %tmp.320);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 177 8 ]
-        %tmp.321 = lgetv %dc;
-        symbol [ dc %tmp.321 177 8 10 ];
-        symbol [ setColor %tmp.322 177 11 19 ];
-        %tmp.322 = getv function %tmp.321 :setColor;
-        symbol [ Graphics %tmp.323 177 20 28 ];
-        %tmp.323 = getm $.Toybox.Graphics;
-        symbol [ COLOR_LT_GRAY %tmp.324 177 29 42 ];
-        %tmp.324 = getv %tmp.323 :COLOR_LT_GRAY;
-        symbol [ Graphics %tmp.325 177 44 52 ];
-        %tmp.325 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.326 177 53 70 ];
-        %tmp.326 = getv %tmp.325 :COLOR_TRANSPARENT;
-        invoke %tmp.321 %tmp.322(%tmp.324, %tmp.326);
+        symbol [ setColor %tmp.303 174 11 19 ];
+        %tmp.303 = getv function %tmp.302 :setColor;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_begin:
+        %tmp.304 = lgetv %fresh.4;
+        symbol [ fresh %tmp.304 174 20 25 ];
+        bf %tmp.304 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_true:
+        symbol [ Graphics %tmp.305 174 28 36 ];
+        %tmp.305 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.306 174 37 48 ];
+        %tmp.306 = getv %tmp.305 :COLOR_WHITE;
+        push %tmp.306;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_else_false:
+        symbol [ Graphics %tmp.307 174 51 59 ];
+        %tmp.307 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.308 174 60 73 ];
+        %tmp.308 = getv %tmp.307 :COLOR_DK_GRAY;
+        push %tmp.308;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_end:
+        %tmp.309 = phi [%tmp.304 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_begin] [%tmp.306 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_true] [%tmp.308 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_else_false] [%tmp.309 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_174_20_174_60_end];
+        symbol [ Graphics %tmp.310 174 75 83 ];
+        %tmp.310 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.311 174 84 101 ];
+        %tmp.311 = getv %tmp.310 :COLOR_TRANSPARENT;
+        invoke %tmp.302 %tmp.303(%tmp.309, %tmp.311);
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 175 8 ]
+        %tmp.312 = lgetv %dc;
+        symbol [ dc %tmp.312 175 8 10 ];
+        symbol [ drawText %tmp.313 175 11 19 ];
+        %tmp.313 = getv function %tmp.312 :drawText;
+        %tmp.314 = lgetv %cx.3;
+        symbol [ cx %tmp.314 175 20 22 ];
+        %tmp.315 = lgetv %h.2;
+        symbol [ h %tmp.315 175 24 25 ];
+        %tmp.316 = 0.76;
+        %tmp.317 = mul %tmp.315 %tmp.316;
+        symbol [ Graphics %tmp.318 175 34 42 ];
+        %tmp.318 = getm $.Toybox.Graphics;
+        symbol [ FONT_SMALL %tmp.319 175 43 53 ];
+        %tmp.319 = getv %tmp.318 :FONT_SMALL;
+        %tmp.320 = lgetv %gear.12;
+        symbol [ gear %tmp.320 175 55 59 ];
+        %tmp.321 = "   ";
+        %tmp.322 = add %tmp.320 %tmp.321;
+        %tmp.323 = lgetv %tps.13;
+        symbol [ tps %tmp.323 175 70 73 ];
+        %tmp.324 = add %tmp.322 %tmp.323;
+        %tmp.325 = "   ";
+        %tmp.326 = add %tmp.324 %tmp.325;
+        %tmp.327 = lgetv %pulls.14;
+        symbol [ pulls %tmp.327 175 84 89 ];
+        %tmp.328 = add %tmp.326 %tmp.327;
+        symbol [ Graphics %tmp.329 175 91 99 ];
+        %tmp.329 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.330 175 100 119 ];
+        %tmp.330 = getv %tmp.329 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.312 %tmp.313(%tmp.314, %tmp.317, %tmp.319, %tmp.328, %tmp.330);
 [ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 178 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop" ]
-        %foot.14 = local;
-        symbol [ foot %foot.14 178 12 16 ];
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_begin:
-        %tmp.327 = lgetv %fresh.4;
-        symbol [ fresh %tmp.327 178 19 24 ];
-        bf %tmp.327 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_true:
-        %tmp.328 = "map ";
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_begin:
-        symbol [ _ecu %tmp.330 178 38 42 ];
-        %tmp.330 = getv ? :_ecu;
-        symbol [ hasKey %tmp.331 178 43 49 ];
-        %tmp.331 = getv function %tmp.330 :hasKey;
-        %tmp.332 = "map";
-        %tmp.333 = invoke %tmp.330 %tmp.331(%tmp.332);
-        bf %tmp.333 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_true:
-        symbol [ _ecu %tmp.335 178 59 63 ];
-        %tmp.335 = getv ? :_ecu;
-        %tmp.336 = "map";
-        %tmp.337 = agetv %tmp.335 %tmp.336;
-        push %tmp.337;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_else_false:
-        %tmp.338 = "?";
-        push %tmp.338;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_end:
-        %tmp.339 = phi [%tmp.333 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_begin] [%tmp.337 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_true] [%tmp.338 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_else_false] [%tmp.339 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_38_178_73_end];
-        %tmp.340 = add %tmp.328 %tmp.339;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_begin:
-        symbol [ _markers %tmp.342 178 81 89 ];
-        %tmp.342 = getv ? :_markers;
-        %tmp.343 = 0;
-        %tmp.344 = gt %tmp.342 %tmp.343;
-        bf %tmp.344 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_true:
-        %tmp.345 = "  ·  ";
-        symbol [ _markers %tmp.347 178 106 114 ];
-        %tmp.347 = getv ? :_markers;
-        %tmp.348 = add %tmp.345 %tmp.347;
-        %tmp.349 = " marks";
-        %tmp.350 = add %tmp.348 %tmp.349;
-        push %tmp.350;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_else_false:
-        %tmp.351 = "";
-        push %tmp.351;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_end:
-        %tmp.352 = phi [%tmp.344 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_begin] [%tmp.350 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_true] [%tmp.351 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_else_false] [%tmp.352 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_81_178_128_end];
-        %tmp.353 = add %tmp.340 %tmp.352;
-        push %tmp.353;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_else_false:
-        %tmp.354 = "waiting for phone…";
-        push %tmp.354;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_end:
-        %tmp.355 = phi [%tmp.327 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_begin] [%tmp.353 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_true] [%tmp.354 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_else_false] [%tmp.355 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_178_19_179_27_end];
-        lputv %foot.14 %tmp.355;
-        symbol [ foot %foot.14 178 12 16 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 180 8 ]
-        %tmp.356 = lgetv %dc;
-        symbol [ dc %tmp.356 180 8 10 ];
-        symbol [ drawText %tmp.357 180 11 19 ];
-        %tmp.357 = getv function %tmp.356 :drawText;
-        %tmp.358 = lgetv %cx.3;
-        symbol [ cx %tmp.358 180 20 22 ];
-        %tmp.359 = lgetv %h.2;
-        symbol [ h %tmp.359 180 24 25 ];
-        %tmp.360 = 0.86;
-        %tmp.361 = mul %tmp.359 %tmp.360;
-        symbol [ Graphics %tmp.362 180 34 42 ];
-        %tmp.362 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.363 180 43 53 ];
-        %tmp.363 = getv %tmp.362 :FONT_XTINY;
-        %tmp.364 = lgetv %foot.14;
-        symbol [ foot %tmp.364 180 55 59 ];
-        symbol [ Graphics %tmp.365 180 61 69 ];
-        %tmp.365 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.366 180 70 89 ];
-        %tmp.366 = getv %tmp.365 :TEXT_JUSTIFY_CENTER;
-        invoke %tmp.356 %tmp.357(%tmp.358, %tmp.361, %tmp.363, %tmp.364, %tmp.366);
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_181_4_stop:
+        %tmp.331 = lgetv %dc;
+        symbol [ dc %tmp.331 178 8 10 ];
+        symbol [ setColor %tmp.332 178 11 19 ];
+        %tmp.332 = getv function %tmp.331 :setColor;
+        symbol [ Graphics %tmp.333 178 20 28 ];
+        %tmp.333 = getm $.Toybox.Graphics;
+        symbol [ COLOR_LT_GRAY %tmp.334 178 29 42 ];
+        %tmp.334 = getv %tmp.333 :COLOR_LT_GRAY;
+        symbol [ Graphics %tmp.335 178 44 52 ];
+        %tmp.335 = getm $.Toybox.Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.336 178 53 70 ];
+        %tmp.336 = getv %tmp.335 :COLOR_TRANSPARENT;
+        invoke %tmp.331 %tmp.332(%tmp.334, %tmp.336);
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 179 8 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop" ]
+        %foot.15 = local;
+        symbol [ foot %foot.15 179 12 16 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_begin:
+        %tmp.337 = lgetv %fresh.4;
+        symbol [ fresh %tmp.337 179 19 24 ];
+        bf %tmp.337 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_true:
+        %tmp.338 = "map ";
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_begin:
+        symbol [ _ecu %tmp.340 179 38 42 ];
+        %tmp.340 = getv ? :_ecu;
+        symbol [ hasKey %tmp.341 179 43 49 ];
+        %tmp.341 = getv function %tmp.340 :hasKey;
+        %tmp.342 = "map";
+        %tmp.343 = invoke %tmp.340 %tmp.341(%tmp.342);
+        bf %tmp.343 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_true:
+        symbol [ _ecu %tmp.345 179 59 63 ];
+        %tmp.345 = getv ? :_ecu;
+        %tmp.346 = "map";
+        %tmp.347 = agetv %tmp.345 %tmp.346;
+        push %tmp.347;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_else_false:
+        %tmp.348 = "?";
+        push %tmp.348;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_end:
+        %tmp.349 = phi [%tmp.343 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_begin] [%tmp.347 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_true] [%tmp.348 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_else_false] [%tmp.349 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_38_179_73_end];
+        %tmp.350 = add %tmp.338 %tmp.349;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_begin:
+        symbol [ _markers %tmp.352 179 81 89 ];
+        %tmp.352 = getv ? :_markers;
+        %tmp.353 = 0;
+        %tmp.354 = gt %tmp.352 %tmp.353;
+        bf %tmp.354 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_true:
+        %tmp.355 = "  ·  ";
+        symbol [ _markers %tmp.357 179 106 114 ];
+        %tmp.357 = getv ? :_markers;
+        %tmp.358 = add %tmp.355 %tmp.357;
+        %tmp.359 = " marks";
+        %tmp.360 = add %tmp.358 %tmp.359;
+        push %tmp.360;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_else_false:
+        %tmp.361 = "";
+        push %tmp.361;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_end:
+        %tmp.362 = phi [%tmp.354 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_begin] [%tmp.360 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_true] [%tmp.361 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_else_false] [%tmp.362 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_81_179_128_end];
+        %tmp.363 = add %tmp.350 %tmp.362;
+        push %tmp.363;
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_else_false:
+        %tmp.364 = "waiting for phone…";
+        push %tmp.364;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_end:
+        %tmp.365 = phi [%tmp.337 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_begin] [%tmp.363 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_true] [%tmp.364 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_else_false] [%tmp.365 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_179_19_180_27_end];
+        lputv %foot.15 %tmp.365;
+        symbol [ foot %foot.15 179 12 16 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 181 8 ]
+        %tmp.366 = lgetv %dc;
+        symbol [ dc %tmp.366 181 8 10 ];
+        symbol [ drawText %tmp.367 181 11 19 ];
+        %tmp.367 = getv function %tmp.366 :drawText;
+        %tmp.368 = lgetv %cx.3;
+        symbol [ cx %tmp.368 181 20 22 ];
+        %tmp.369 = lgetv %h.2;
+        symbol [ h %tmp.369 181 24 25 ];
+        %tmp.370 = 0.86;
+        %tmp.371 = mul %tmp.369 %tmp.370;
+        symbol [ Graphics %tmp.372 181 34 42 ];
+        %tmp.372 = getm $.Toybox.Graphics;
+        symbol [ FONT_XTINY %tmp.373 181 43 53 ];
+        %tmp.373 = getv %tmp.372 :FONT_XTINY;
+        %tmp.374 = lgetv %foot.15;
+        symbol [ foot %tmp.374 181 55 59 ];
+        symbol [ Graphics %tmp.375 181 61 69 ];
+        %tmp.375 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.376 181 70 89 ];
+        %tmp.376 = getv %tmp.375 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.366 %tmp.367(%tmp.368, %tmp.371, %tmp.373, %tmp.374, %tmp.376);
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_142_47_182_4_stop:
     }
 }
 //! Swallow transmit results; the watch never blocks on the phone.
-[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 185; @symbol_classdef = [QuietListener,185,6,19]; @symbol_extends<0> = [Communications,185,28,42]; @symbol_extends<1> = [ConnectionListener,185,43,61]; ]
+[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 186; @symbol_classdef = [QuietListener,186,6,19]; @symbol_extends<0> = [Communications,186,28,42]; @symbol_extends<1> = [ConnectionListener,186,43,61]; ]
 class QuietListener extends Communications.ConnectionListener {
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 185; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 186; ]
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 185; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 186; ]
     static
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 186; @symbol_functiondef = [initialize,186,20,30]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 187; @symbol_functiondef = [initialize,187,20,30]; ]
     public
     function initialize() as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_186_33_186_68_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 186 35 ]
-        symbol [ ConnectionListener %tmp.2 186 35 53 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_187_33_187_68_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc" 187 35 ]
+        symbol [ ConnectionListener %tmp.2 187 35 53 ];
         %tmp.2 = getv ? :ConnectionListener;
-        symbol [ initialize %tmp.3 186 54 64 ];
+        symbol [ initialize %tmp.3 187 54 64 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_186_33_186_68_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideView_mc_187_33_187_68_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 187; @symbol_functiondef = [onComplete,187,20,30]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 188; @symbol_functiondef = [onComplete,188,20,30]; ]
     public
     function onComplete() as Void {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 188; @symbol_functiondef = [onError,188,20,27]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideView.mc"; @line = 189; @symbol_functiondef = [onError,189,20,27]; ]
     public
     function onError() as Void {
     }

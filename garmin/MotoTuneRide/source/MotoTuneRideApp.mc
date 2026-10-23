@@ -16,8 +16,19 @@ class MotoTuneRideApp extends Application.AppBase {
     }
 
     public function onStart(state as Dictionary?) as Void {
-        // GPS on from the start so the first seconds of a ride are already positioned
-        Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition));
+        // GPS on from the start so the first seconds of a ride are already positioned.
+        // Ask for the most precise constellation set the watch supports (FR265: multi-band L1+L5).
+        var started = false;
+        if (Position has :CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5 && Position has :hasConfigurationSupport) {
+            var cfgs = [Position.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5, Position.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1, Position.CONFIGURATION_GPS];
+            for (var i = 0; i < cfgs.size() && !started; i++) {
+                if (Position.hasConfigurationSupport(cfgs[i])) {
+                    Position.enableLocationEvents({:acquisitionType => Position.LOCATION_CONTINUOUS, :configuration => cfgs[i]}, method(:onPosition));
+                    started = true;
+                }
+            }
+        }
+        if (!started) { Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition)); }
     }
 
     public function onStop(state as Dictionary?) as Void {
