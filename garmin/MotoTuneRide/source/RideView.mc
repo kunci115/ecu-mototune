@@ -22,6 +22,8 @@ class RideView extends WatchUi.View {
     private var _markers as Number = 0;
     private var _hr as Number? = null;
     private var _gpsQuality as Number = 0;
+    private var _toast as String? = null;         // last action / error, shown in the footer for a few seconds
+    private var _toastAt as Number = 0;
     private var _timer as Timer.Timer = new Timer.Timer();
     // FIT developer fields (record message): what the ECU was doing at every second of the ride
     private var _fRpm as Field?;
@@ -87,30 +89,51 @@ class RideView extends WatchUi.View {
     }
 
     public function startRecording() as Void {
-        if (!(Toybox has :ActivityRecording)) { return; }
-        var sport = Activity.SPORT_CYCLING;
-        if (Activity has :SPORT_MOTORCYCLING) { sport = Activity.SPORT_MOTORCYCLING; }
-        _session = ActivityRecording.createSession({:name => "MotoTune Ride", :sport => sport});
-        var s = _session;
-        if (s != null) {
-            _fRpm  = s.createField("rpm",  0, FitContributor.DATA_TYPE_UINT16, {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "rpm"});
-            _fAfr  = s.createField("afr",  1, FitContributor.DATA_TYPE_UINT16, {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "x0.1"});
-            _fTps  = s.createField("tps",  2, FitContributor.DATA_TYPE_UINT8,  {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "%"});
-            _fGear = s.createField("gear", 3, FitContributor.DATA_TYPE_UINT8,  {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => ""});
+        if (!(Toybox has :ActivityRecording)) { toast("no FIT support"); return; }
+        try {
+            var sport = Activity.SPORT_CYCLING;
+            if (Activity has :SPORT_MOTORCYCLING) { sport = Activity.SPORT_MOTORCYCLING; }
+            var s = ActivityRecording.createSession({:name => "MotoTune Ride", :sport => sport});
+            _session = s;
+            // developer fields are optional: if the firmware refuses them, still record the ride
+            try {
+                _fRpm  = s.createField("rpm",  0, FitContributor.DATA_TYPE_UINT16, {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "rpm"});
+                _fAfr  = s.createField("afr",  1, FitContributor.DATA_TYPE_UINT16, {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "x0.1"});
+                _fTps  = s.createField("tps",  2, FitContributor.DATA_TYPE_UINT8,  {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "%"});
+                _fGear = s.createField("gear", 3, FitContributor.DATA_TYPE_UINT8,  {:mesgType => FitContributor.MESG_TYPE_RECORD, :units => "n"});
+            } catch (e) {
+                _fRpm = null; _fAfr = null; _fTps = null; _fGear = null;
+                toast("fields off: " + e.getErrorMessage());
+            }
             s.start();
             buzz(1);
+            if (_toast == null) { toast("recording"); }
+        } catch (e) {
+            _session = null;
+            toast("start failed: " + e.getErrorMessage());
         }
         WatchUi.requestUpdate();
     }
 
     public function stopRecording(save as Boolean) as Void {
         var s = _session;
-        if (s != null) {
+        if (s == null) { toast("nothing to stop"); WatchUi.requestUpdate(); return; }
+        try {
             if (s.isRecording()) { s.stop(); }
-            if (save) { s.save(); } else { s.discard(); }
-            _session = null;
-            WatchUi.requestUpdate();
+            if (save) { s.save(); toast("saved"); } else { s.discard(); toast("discarded"); }
+        } catch (e) {
+            toast("stop failed: " + e.getErrorMessage());
         }
+        _session = null;
+        _fRpm = null; _fAfr = null; _fTps = null; _fGear = null;
+        WatchUi.requestUpdate();
+    }
+
+    public function toastResume() as Void { toast("resumed"); WatchUi.requestUpdate(); }
+
+    private function toast(msg as String) as Void {
+        _toast = msg; _toastAt = Time.now().value();
+        System.println("MotoTune: " + msg);
     }
 
     //! A "feel" marker: lap in the FIT + a timestamped message to the phone ("flat spot here").
@@ -178,6 +201,10 @@ class RideView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
         var foot = fresh ? ("map " + (_ecu.hasKey("map") ? _ecu["map"] : "?") + (_markers > 0 ? "  ·  " + _markers + " marks" : ""))
                          : "waiting for phone…";
+        if (_toast != null && (Time.now().value() - _toastAt) < 6) {
+            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+            foot = _toast as String;
+        }
         dc.drawText(cx, h * 0.86, Graphics.FONT_XTINY, foot, Graphics.TEXT_JUSTIFY_CENTER);
     }
 }

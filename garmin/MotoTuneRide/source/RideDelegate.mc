@@ -47,8 +47,9 @@ class StopMenuDelegate extends WatchUi.Menu2InputDelegate {
     public function initialize(view as RideView) { Menu2InputDelegate.initialize(); _view = view; }
     public function onSelect(item as MenuItem) as Void {
         var id = item.getId();
+        WatchUi.popView(WatchUi.SLIDE_DOWN);          // leave the menu first so the view redraws with the result
         if (id == :save) { _view.stopRecording(true); }
         else if (id == :discard) { _view.stopRecording(false); }
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
+        else { _view.toastResume(); }
     }
 }
