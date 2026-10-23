@@ -115,7 +115,7 @@ class RideView extends WatchUi.View {
 
     public function pause() as Void {
         var s = _session;
-        if (s != null && s.isRecording()) { s.stop(); _paused = true; buzz(1); }
+        if (s != null && s.isRecording()) { s.stop(); _paused = true; _toast = null; buzz(1); }
         WatchUi.requestUpdate();
     }
 
@@ -222,7 +222,9 @@ class RideView extends WatchUi.View {
             y += lh;
         }
         dc.setColor(phone && gps ? Graphics.COLOR_GREEN : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.76, Graphics.FONT_SMALL, "START to ride", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, h * 0.74, Graphics.FONT_SMALL, "START to ride", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, h * 0.84, Graphics.FONT_XTINY, "UP mark · DOWN page · BACK exit", Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     private function drawHeader(dc as Dc, now as Number) as Void {
@@ -232,6 +234,10 @@ class RideView extends WatchUi.View {
         var gps = _gpsQuality >= Position.QUALITY_GOOD ? "GPS" : (_gpsQuality >= Position.QUALITY_USABLE ? "gps" : "GPS…");
         dc.setColor(_paused ? Graphics.COLOR_YELLOW : Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
         dc.drawText(cx, h * 0.05, Graphics.FONT_XTINY, (_paused ? "PAUSED  " : "REC  ") + t + "   " + gps + (_hr != null ? "   " + _hr + " bpm" : ""), Graphics.TEXT_JUSTIFY_CENTER);
+        if (_paused && _toast == null) {
+            dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx, h * 0.85, Graphics.FONT_XTINY, "START resume · UP save · BACK menu", Graphics.TEXT_JUSTIFY_CENTER);
+        }
     }
 
     private function drawDots(dc as Dc) as Void {

@@ -4,849 +4,971 @@ import Toybox.Graphics;
 import Toybox.Lang;
 [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 3; @symbol_importdef<0> = [Toybox,3,7,13]; @symbol_importdef<1> = [WatchUi,3,14,21]; ]
 import Toybox.WatchUi;
-//! Garmin's own activity grammar, so nothing has to be learned:
-//!   START: idle → start · recording → pause + Resume/Save/Discard · paused → that menu again
-//!   BACK:  recording → marker (lap) · idle → leave the app
-//!   UP / DOWN / swipe: pages
-[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 9; @symbol_classdef = [RideDelegate,9,6,18]; @symbol_extends<0> = [WatchUi,9,27,34]; @symbol_extends<1> = [BehaviorDelegate,9,35,51]; ]
+//! Button map chosen by the owner for a gloved hand on a Forerunner 265:
+//!   START (top right):   idle → start · recording → pause · paused → resume
+//!   UP    (top left):    recording → lap / marker · paused → save
+//!   BACK  (bottom right): recording or paused → Resume / Save / Discard menu · idle → leave the app
+//!   DOWN  (bottom left) and swipes: next page
+//!   LIGHT (if the firmware passes it through): marker too
+[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 11; @symbol_classdef = [RideDelegate,11,6,18]; @symbol_extends<0> = [WatchUi,11,27,34]; @symbol_extends<1> = [BehaviorDelegate,11,35,51]; ]
 class RideDelegate extends WatchUi.BehaviorDelegate {
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 9; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 11; ]
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 9; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 11; ]
     static
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 10; @position = 16; @symbol_vardef = [_view,10,16,21]; @symbol_type<0> = [RideView,10,25,33]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 12; @position = 16; @symbol_vardef = [_view,12,16,21]; @symbol_type<0> = [RideView,12,25,33]; ]
     private
     var _view as RideView;
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 12; @symbol_functiondef = [initialize,12,20,30]; @symbol_param<0> = [view,12,31,35]; @symbol_param<0>_type<0> = [RideView,12,39,47]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 14; @symbol_functiondef = [initialize,14,20,30]; @symbol_param<0> = [view,14,31,35]; @symbol_param<0>_type<0> = [RideView,14,39,47]; ]
     public
     function initialize(view as RideView) as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_12_49_12_96_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 12 51 ]
-        symbol [ BehaviorDelegate %tmp.2 12 51 67 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_14_49_14_96_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 14 51 ]
+        symbol [ BehaviorDelegate %tmp.2 14 51 67 ];
         %tmp.2 = getv ? :BehaviorDelegate;
-        symbol [ initialize %tmp.3 12 68 78 ];
+        symbol [ initialize %tmp.3 14 68 78 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 12 82 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 14 82 ]
         %tmp.4 = lgetv %view;
-        symbol [ view %tmp.4 12 90 94 ];
-        symbol [ _view ? 12 82 87 ];
+        symbol [ view %tmp.4 14 90 94 ];
+        symbol [ _view ? 14 82 87 ];
         putv self :_view %tmp.4;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_12_49_12_96_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_14_49_14_96_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 14; @symbol_functiondef = [onSelect,14,20,28]; @symbol_return<0> = [Boolean,14,34,41]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 16; @symbol_functiondef = [onSelect,16,20,28]; @symbol_return<0> = [Boolean,16,34,41]; ]
     public
     function onSelect() as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_14_42_18_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 15 8 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_8_16_117_if_stmt:
-        symbol [ _view %tmp.2 15 13 18 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_16_42_21_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 17 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_8_19_31_if_stmt:
+        symbol [ _view %tmp.2 17 13 18 ];
         %tmp.2 = getv ? :_view;
-        symbol [ hasSession %tmp.3 15 19 29 ];
+        symbol [ hasSession %tmp.3 17 19 29 ];
         %tmp.3 = getv function %tmp.2 :hasSession;
         %tmp.4 = invoke %tmp.2 %tmp.3();
         %tmp.5 = not %tmp.4;
-        bf %tmp.5 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_8_16_117_if_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_8_16_117_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_33_15_59_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 15 35 ]
-        symbol [ _view %tmp.7 15 35 40 ];
+        bf %tmp.5 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_8_19_31_if_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_8_19_31_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_33_17_59_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 17 35 ]
+        symbol [ _view %tmp.7 17 35 40 ];
         %tmp.7 = getv ? :_view;
-        symbol [ startRecording %tmp.8 15 41 55 ];
+        symbol [ startRecording %tmp.8 17 41 55 ];
         %tmp.8 = getv function %tmp.7 :startRecording;
         invoke %tmp.7 %tmp.8();
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_33_15_59_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_8_16_117_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_8_16_117_if_else_false:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_16_13_16_117_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 16 15 ]
-        symbol [ _view %tmp.10 16 15 20 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_33_17_59_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_8_19_31_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_8_19_31_if_false:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 18 13 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_13_19_31_if_stmt:
+        symbol [ _view %tmp.10 18 17 22 ];
         %tmp.10 = getv ? :_view;
-        symbol [ pause %tmp.11 16 21 26 ];
-        %tmp.11 = getv function %tmp.10 :pause;
-        invoke %tmp.10 %tmp.11();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 16 30 ]
-        symbol [ WatchUi %tmp.12 16 30 37 ];
-        %tmp.12 = getm $.Toybox.WatchUi;
-        symbol [ pushView %tmp.13 16 38 46 ];
-        %tmp.13 = getv function %tmp.12 :pushView;
-        symbol [ $ %tmp.17 16 51 52 ];
-        %tmp.17 = getm $;
-        symbol [ PauseMenu %tmp.18 16 53 62 ];
-        %tmp.18 = getv %tmp.17 :PauseMenu;
-        %tmp.14 = newc %tmp.18 ();
-        symbol [ $ %tmp.22 16 70 71 ];
-        %tmp.22 = getm $;
-        symbol [ PauseMenuDelegate %tmp.23 16 72 89 ];
-        %tmp.23 = getv %tmp.22 :PauseMenuDelegate;
-        symbol [ _view %tmp.25 16 90 95 ];
-        %tmp.25 = getv ? :_view;
-        %tmp.19 = newc %tmp.23 (%tmp.25);
-        symbol [ WatchUi %tmp.26 16 98 105 ];
-        %tmp.26 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_UP %tmp.27 16 106 114 ];
-        %tmp.27 = getv %tmp.26 :SLIDE_UP;
-        invoke %tmp.12 %tmp.13(%tmp.14, %tmp.19, %tmp.27);
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_16_13_16_117_stop:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_15_8_16_117_if_end:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 17 8 ]
-        %tmp.28 = true;
-        ret %tmp.28;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_14_42_18_4_stop:
-    }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 20; @symbol_functiondef = [onBack,20,20,26]; @symbol_return<0> = [Boolean,20,32,39]; ]
-    public
-    function onBack() as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_20_40_24_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 21 8 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_8_21_62_if_stmt:
-        symbol [ _view %tmp.2 21 12 17 ];
-        %tmp.2 = getv ? :_view;
-        symbol [ isRecording %tmp.3 21 18 29 ];
-        %tmp.3 = getv function %tmp.2 :isRecording;
-        %tmp.4 = invoke %tmp.2 %tmp.3();
-        bf %tmp.4 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_8_21_62_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_8_21_62_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_33_21_62_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 21 35 ]
-        symbol [ _view %tmp.6 21 35 40 ];
-        %tmp.6 = getv ? :_view;
-        symbol [ mark %tmp.7 21 41 45 ];
-        %tmp.7 = getv function %tmp.6 :mark;
-        invoke %tmp.6 %tmp.7();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 21 49 ]
-        %tmp.8 = true;
-        ret %tmp.8;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_33_21_62_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_8_21_62_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_21_8_21_62_if_end:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 22 8 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_8_22_134_if_stmt:
-        symbol [ _view %tmp.10 22 12 17 ];
-        %tmp.10 = getv ? :_view;
-        symbol [ hasSession %tmp.11 22 18 28 ];
-        %tmp.11 = getv function %tmp.10 :hasSession;
+        symbol [ isRecording %tmp.11 18 23 34 ];
+        %tmp.11 = getv function %tmp.10 :isRecording;
         %tmp.12 = invoke %tmp.10 %tmp.11();
-        bf %tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_8_22_134_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_8_22_134_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_32_22_134_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 22 34 ]
-        symbol [ WatchUi %tmp.13 22 34 41 ];
-        %tmp.13 = getm $.Toybox.WatchUi;
-        symbol [ pushView %tmp.14 22 42 50 ];
-        %tmp.14 = getv function %tmp.13 :pushView;
-        symbol [ $ %tmp.18 22 55 56 ];
-        %tmp.18 = getm $;
-        symbol [ PauseMenu %tmp.19 22 57 66 ];
-        %tmp.19 = getv %tmp.18 :PauseMenu;
-        %tmp.15 = newc %tmp.19 ();
-        symbol [ $ %tmp.23 22 74 75 ];
-        %tmp.23 = getm $;
-        symbol [ PauseMenuDelegate %tmp.24 22 76 93 ];
-        %tmp.24 = getv %tmp.23 :PauseMenuDelegate;
-        symbol [ _view %tmp.26 22 94 99 ];
-        %tmp.26 = getv ? :_view;
-        %tmp.20 = newc %tmp.24 (%tmp.26);
-        symbol [ WatchUi %tmp.27 22 102 109 ];
-        %tmp.27 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_UP %tmp.28 22 110 118 ];
-        %tmp.28 = getv %tmp.27 :SLIDE_UP;
-        invoke %tmp.13 %tmp.14(%tmp.15, %tmp.20, %tmp.28);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 22 121 ]
-        %tmp.29 = true;
-        ret %tmp.29;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_32_22_134_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_8_22_134_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_22_8_22_134_if_end:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 23 8 ]
-        %tmp.30 = false;
-        ret %tmp.30;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_20_40_24_4_stop:
+        bf %tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_13_19_31_if_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_13_19_31_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_38_18_55_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 18 40 ]
+        symbol [ _view %tmp.14 18 40 45 ];
+        %tmp.14 = getv ? :_view;
+        symbol [ pause %tmp.15 18 46 51 ];
+        %tmp.15 = getv function %tmp.14 :pause;
+        invoke %tmp.14 %tmp.15();
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_38_18_55_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_13_19_31_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_13_19_31_if_else_false:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_19_13_19_31_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 19 15 ]
+        symbol [ _view %tmp.17 19 15 20 ];
+        %tmp.17 = getv ? :_view;
+        symbol [ resume %tmp.18 19 21 27 ];
+        %tmp.18 = getv function %tmp.17 :resume;
+        invoke %tmp.17 %tmp.18();
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_19_13_19_31_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_18_13_19_31_if_end:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_17_8_19_31_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 20 8 ]
+        %tmp.19 = true;
+        ret %tmp.19;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_16_42_21_4_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 26; @symbol_functiondef = [onNextPage,26,20,30]; @symbol_return<0> = [Boolean,26,36,43]; ]
-    public
-    function onNextPage() as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_26_44_26_77_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 26 46 ]
-        symbol [ _view %tmp.2 26 46 51 ];
-        %tmp.2 = getv ? :_view;
-        symbol [ nextPage %tmp.3 26 52 60 ];
-        %tmp.3 = getv function %tmp.2 :nextPage;
-        invoke %tmp.2 %tmp.3();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 26 64 ]
-        %tmp.4 = true;
-        ret %tmp.4;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_26_44_26_77_stop:
-    }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 27; @symbol_functiondef = [onPreviousPage,27,20,34]; @symbol_return<0> = [Boolean,27,40,47]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 23; @symbol_functiondef = [onPreviousPage,23,20,34]; @symbol_return<0> = [Boolean,23,40,47]; ]
     public
     function onPreviousPage() as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_27_48_27_81_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 27 50 ]
-        symbol [ _view %tmp.2 27 50 55 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_23_48_27_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 24 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_8_24_62_if_stmt:
+        symbol [ _view %tmp.2 24 12 17 ];
         %tmp.2 = getv ? :_view;
-        symbol [ prevPage %tmp.3 27 56 64 ];
-        %tmp.3 = getv function %tmp.2 :prevPage;
+        symbol [ isRecording %tmp.3 24 18 29 ];
+        %tmp.3 = getv function %tmp.2 :isRecording;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        bf %tmp.4 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_8_24_62_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_8_24_62_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_33_24_62_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 24 35 ]
+        symbol [ _view %tmp.6 24 35 40 ];
+        %tmp.6 = getv ? :_view;
+        symbol [ mark %tmp.7 24 41 45 ];
+        %tmp.7 = getv function %tmp.6 :mark;
+        invoke %tmp.6 %tmp.7();
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 24 49 ]
+        %tmp.8 = true;
+        ret %tmp.8;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_33_24_62_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_8_24_62_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_24_8_24_62_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 25 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_8_25_55_if_stmt:
+        symbol [ _view %tmp.10 25 12 17 ];
+        %tmp.10 = getv ? :_view;
+        symbol [ hasSession %tmp.11 25 18 28 ];
+        %tmp.11 = getv function %tmp.10 :hasSession;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        bf %tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_8_25_55_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_8_25_55_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_32_25_55_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 25 34 ]
+        %tmp.13 = self;
+        symbol [ save %tmp.14 25 34 38 ];
+        %tmp.14 = getv function %tmp.13 :save;
+        invoke %tmp.13 %tmp.14();
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 25 42 ]
+        %tmp.15 = true;
+        ret %tmp.15;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_32_25_55_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_8_25_55_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_25_8_25_55_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 26 8 ]
+        symbol [ _view %tmp.17 26 8 13 ];
+        %tmp.17 = getv ? :_view;
+        symbol [ prevPage %tmp.18 26 14 22 ];
+        %tmp.18 = getv function %tmp.17 :prevPage;
+        invoke %tmp.17 %tmp.18();
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 26 26 ]
+        %tmp.19 = true;
+        ret %tmp.19;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_23_48_27_4_stop:
+    }
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 29; @symbol_functiondef = [onNextPage,29,20,30]; @symbol_return<0> = [Boolean,29,36,43]; ]
+    public
+    function onNextPage() as Boolean {
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_29_44_29_77_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 29 46 ]
+        symbol [ _view %tmp.2 29 46 51 ];
+        %tmp.2 = getv ? :_view;
+        symbol [ nextPage %tmp.3 29 52 60 ];
+        %tmp.3 = getv function %tmp.2 :nextPage;
         invoke %tmp.2 %tmp.3();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 27 68 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 29 64 ]
         %tmp.4 = true;
         ret %tmp.4;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_27_48_27_81_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_29_44_29_77_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 28; @symbol_functiondef = [onSwipe,28,20,27]; @symbol_param<0> = [evt,28,28,31]; @symbol_param<0>_type<0> = [SwipeEvent,28,35,45]; @symbol_return<0> = [Boolean,28,50,57]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 31; @symbol_functiondef = [onBack,31,20,26]; @symbol_return<0> = [Boolean,31,32,39]; ]
+    public
+    function onBack() as Boolean {
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_40_38_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 32 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_8_36_8_if_stmt:
+        symbol [ _view %tmp.2 32 12 17 ];
+        %tmp.2 = getv ? :_view;
+        symbol [ hasSession %tmp.3 32 18 28 ];
+        %tmp.3 = getv function %tmp.2 :hasSession;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        bf %tmp.4 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_8_36_8_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_8_36_8_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_32_36_8_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 33 12 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_12_33_54_if_stmt:
+        symbol [ _view %tmp.6 33 16 21 ];
+        %tmp.6 = getv ? :_view;
+        symbol [ isRecording %tmp.7 33 22 33 ];
+        %tmp.7 = getv function %tmp.6 :isRecording;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        bf %tmp.8 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_12_33_54_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_12_33_54_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_37_33_54_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 33 39 ]
+        symbol [ _view %tmp.10 33 39 44 ];
+        %tmp.10 = getv ? :_view;
+        symbol [ pause %tmp.11 33 45 50 ];
+        %tmp.11 = getv function %tmp.10 :pause;
+        invoke %tmp.10 %tmp.11();
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_37_33_54_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_12_33_54_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_33_12_33_54_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 34 12 ]
+        symbol [ WatchUi %tmp.12 34 12 19 ];
+        %tmp.12 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.13 34 20 28 ];
+        %tmp.13 = getv function %tmp.12 :pushView;
+        symbol [ $ %tmp.17 34 33 34 ];
+        %tmp.17 = getm $;
+        symbol [ PauseMenu %tmp.18 34 35 44 ];
+        %tmp.18 = getv %tmp.17 :PauseMenu;
+        %tmp.14 = newc %tmp.18 ();
+        symbol [ $ %tmp.22 34 52 53 ];
+        %tmp.22 = getm $;
+        symbol [ PauseMenuDelegate %tmp.23 34 54 71 ];
+        %tmp.23 = getv %tmp.22 :PauseMenuDelegate;
+        symbol [ _view %tmp.25 34 72 77 ];
+        %tmp.25 = getv ? :_view;
+        %tmp.19 = newc %tmp.23 (%tmp.25);
+        symbol [ WatchUi %tmp.26 34 80 87 ];
+        %tmp.26 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_UP %tmp.27 34 88 96 ];
+        %tmp.27 = getv %tmp.26 :SLIDE_UP;
+        invoke %tmp.12 %tmp.13(%tmp.14, %tmp.19, %tmp.27);
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 35 12 ]
+        %tmp.28 = true;
+        ret %tmp.28;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_32_36_8_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_8_36_8_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_32_8_36_8_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 37 8 ]
+        %tmp.29 = false;
+        ret %tmp.29;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_40_38_4_stop:
+    }
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 40; @symbol_functiondef = [onKey,40,20,25]; @symbol_param<0> = [evt,40,26,29]; @symbol_param<0>_type<0> = [KeyEvent,40,33,41]; @symbol_return<0> = [Boolean,40,46,53]; ]
+    public
+    function onKey(evt as KeyEvent) as Boolean {
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_40_54_43_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 41 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_8_41_99_if_stmt:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_12_41_67_begin:
+        %tmp.1 = lgetv %evt;
+        symbol [ evt %tmp.1 41 12 15 ];
+        symbol [ getKey %tmp.2 41 16 22 ];
+        %tmp.2 = getv function %tmp.1 :getKey;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        symbol [ WatchUi %tmp.4 41 28 35 ];
+        %tmp.4 = getm $.Toybox.WatchUi;
+        symbol [ KEY_LIGHT %tmp.5 41 36 45 ];
+        %tmp.5 = getv %tmp.4 :KEY_LIGHT;
+        %tmp.6 = eq %tmp.3 %tmp.5;
+        bf %tmp.6 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_8_41_99_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_49_41_67_true:
+        symbol [ _view %tmp.8 41 49 54 ];
+        %tmp.8 = getv ? :_view;
+        symbol [ isRecording %tmp.9 41 55 66 ];
+        %tmp.9 = getv function %tmp.8 :isRecording;
+        %tmp.10 = invoke %tmp.8 %tmp.9();
+        push %tmp.10;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_49_41_67_end:
+        %tmp.11 = phi [%tmp.6 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_12_41_67_begin] [%tmp.10 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_49_41_67_true] [%tmp.11 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_49_41_67_end];
+        bf %tmp.11 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_8_41_99_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_8_41_99_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_70_41_99_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 41 72 ]
+        symbol [ _view %tmp.13 41 72 77 ];
+        %tmp.13 = getv ? :_view;
+        symbol [ mark %tmp.14 41 78 82 ];
+        %tmp.14 = getv function %tmp.13 :mark;
+        invoke %tmp.13 %tmp.14();
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 41 86 ]
+        %tmp.15 = true;
+        ret %tmp.15;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_70_41_99_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_8_41_99_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_41_8_41_99_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 42 8 ]
+        %tmp.16 = false;
+        ret %tmp.16;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_40_54_43_4_stop:
+    }
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 45; @symbol_functiondef = [onSwipe,45,20,27]; @symbol_param<0> = [evt,45,28,31]; @symbol_param<0>_type<0> = [SwipeEvent,45,35,45]; @symbol_return<0> = [Boolean,45,50,57]; ]
     public
     function onSwipe(evt as SwipeEvent) as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_28_58_33_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 29 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_28_58_33_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_28_58_33_4_stop" ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_45_58_50_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 46 8 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_45_58_50_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_45_58_50_4_stop" ]
         %d.1 = local;
-        symbol [ d %d.1 29 12 13 ];
+        symbol [ d %d.1 46 12 13 ];
         %tmp.1 = lgetv %evt;
-        symbol [ evt %tmp.1 29 16 19 ];
-        symbol [ getDirection %tmp.2 29 20 32 ];
+        symbol [ evt %tmp.1 46 16 19 ];
+        symbol [ getDirection %tmp.2 46 20 32 ];
         %tmp.2 = getv function %tmp.1 :getDirection;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %d.1 %tmp.3;
-        symbol [ d %d.1 29 12 13 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 30 8 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_8_30_95_if_stmt:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_12_30_50_begin:
+        symbol [ d %d.1 46 12 13 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 47 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_8_47_95_if_stmt:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_12_47_50_begin:
         %tmp.4 = lgetv %d.1;
-        symbol [ d %tmp.4 30 12 13 ];
-        symbol [ WatchUi %tmp.5 30 17 24 ];
+        symbol [ d %tmp.4 47 12 13 ];
+        symbol [ WatchUi %tmp.5 47 17 24 ];
         %tmp.5 = getm $.Toybox.WatchUi;
-        symbol [ SWIPE_UP %tmp.6 30 25 33 ];
+        symbol [ SWIPE_UP %tmp.6 47 25 33 ];
         %tmp.6 = getv %tmp.5 :SWIPE_UP;
         %tmp.7 = eq %tmp.4 %tmp.6;
-        bt %tmp.7 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_8_30_95_if_true;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_37_30_50_false:
+        bt %tmp.7 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_8_47_95_if_true;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_37_47_50_false:
         %tmp.8 = lgetv %d.1;
-        symbol [ d %tmp.8 30 37 38 ];
-        symbol [ WatchUi %tmp.9 30 42 49 ];
+        symbol [ d %tmp.8 47 37 38 ];
+        symbol [ WatchUi %tmp.9 47 42 49 ];
         %tmp.9 = getm $.Toybox.WatchUi;
-        symbol [ SWIPE_LEFT %tmp.10 30 50 60 ];
+        symbol [ SWIPE_LEFT %tmp.10 47 50 60 ];
         %tmp.10 = getv %tmp.9 :SWIPE_LEFT;
         %tmp.11 = eq %tmp.8 %tmp.10;
         push %tmp.11;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_37_30_50_end:
-        %tmp.12 = phi [%tmp.7 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_12_30_50_begin] [%tmp.11 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_37_30_50_false] [%tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_37_30_50_end];
-        bf %tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_8_30_95_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_8_30_95_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_62_30_95_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 30 64 ]
-        symbol [ _view %tmp.14 30 64 69 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_37_47_50_end:
+        %tmp.12 = phi [%tmp.7 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_12_47_50_begin] [%tmp.11 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_37_47_50_false] [%tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_37_47_50_end];
+        bf %tmp.12 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_8_47_95_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_8_47_95_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_62_47_95_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 47 64 ]
+        symbol [ _view %tmp.14 47 64 69 ];
         %tmp.14 = getv ? :_view;
-        symbol [ nextPage %tmp.15 30 70 78 ];
+        symbol [ nextPage %tmp.15 47 70 78 ];
         %tmp.15 = getv function %tmp.14 :nextPage;
         invoke %tmp.14 %tmp.15();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 30 82 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 47 82 ]
         %tmp.16 = true;
         ret %tmp.16;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_62_30_95_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_8_30_95_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_30_8_30_95_if_end:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 31 8 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_8_31_98_if_stmt:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_12_31_52_begin:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_62_47_95_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_8_47_95_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_8_47_95_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 48 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_8_48_98_if_stmt:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_12_48_52_begin:
         %tmp.17 = lgetv %d.1;
-        symbol [ d %tmp.17 31 12 13 ];
-        symbol [ WatchUi %tmp.18 31 17 24 ];
+        symbol [ d %tmp.17 48 12 13 ];
+        symbol [ WatchUi %tmp.18 48 17 24 ];
         %tmp.18 = getm $.Toybox.WatchUi;
-        symbol [ SWIPE_DOWN %tmp.19 31 25 35 ];
+        symbol [ SWIPE_DOWN %tmp.19 48 25 35 ];
         %tmp.19 = getv %tmp.18 :SWIPE_DOWN;
         %tmp.20 = eq %tmp.17 %tmp.19;
-        bt %tmp.20 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_8_31_98_if_true;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_39_31_52_false:
+        bt %tmp.20 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_8_48_98_if_true;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_39_48_52_false:
         %tmp.21 = lgetv %d.1;
-        symbol [ d %tmp.21 31 39 40 ];
-        symbol [ WatchUi %tmp.22 31 44 51 ];
+        symbol [ d %tmp.21 48 39 40 ];
+        symbol [ WatchUi %tmp.22 48 44 51 ];
         %tmp.22 = getm $.Toybox.WatchUi;
-        symbol [ SWIPE_RIGHT %tmp.23 31 52 63 ];
+        symbol [ SWIPE_RIGHT %tmp.23 48 52 63 ];
         %tmp.23 = getv %tmp.22 :SWIPE_RIGHT;
         %tmp.24 = eq %tmp.21 %tmp.23;
         push %tmp.24;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_39_31_52_end:
-        %tmp.25 = phi [%tmp.20 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_12_31_52_begin] [%tmp.24 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_39_31_52_false] [%tmp.25 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_39_31_52_end];
-        bf %tmp.25 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_8_31_98_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_8_31_98_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_65_31_98_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 31 67 ]
-        symbol [ _view %tmp.27 31 67 72 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_39_48_52_end:
+        %tmp.25 = phi [%tmp.20 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_12_48_52_begin] [%tmp.24 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_39_48_52_false] [%tmp.25 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_39_48_52_end];
+        bf %tmp.25 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_8_48_98_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_8_48_98_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_65_48_98_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 48 67 ]
+        symbol [ _view %tmp.27 48 67 72 ];
         %tmp.27 = getv ? :_view;
-        symbol [ prevPage %tmp.28 31 73 81 ];
+        symbol [ prevPage %tmp.28 48 73 81 ];
         %tmp.28 = getv function %tmp.27 :prevPage;
         invoke %tmp.27 %tmp.28();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 31 85 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 48 85 ]
         %tmp.29 = true;
         ret %tmp.29;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_65_31_98_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_8_31_98_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_31_8_31_98_if_end:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 32 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_65_48_98_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_8_48_98_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_48_8_48_98_if_end:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 49 8 ]
         %tmp.30 = false;
         ret %tmp.30;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_28_58_33_4_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_45_58_50_4_stop:
+    }
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 52; @symbol_functiondef = [save,52,21,25]; ]
+    private
+    function save() as Void {
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_52_36_55_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 53 8 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_52_36_55_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_52_36_55_4_stop" ]
+        %line.1 = local;
+        symbol [ line %line.1 53 12 16 ];
+        symbol [ _view %tmp.2 53 19 24 ];
+        %tmp.2 = getv ? :_view;
+        symbol [ finish %tmp.3 53 25 31 ];
+        %tmp.3 = getv function %tmp.2 :finish;
+        %tmp.4 = true;
+        %tmp.5 = invoke %tmp.2 %tmp.3(%tmp.4);
+        lputv %line.1 %tmp.5;
+        symbol [ line %line.1 53 12 16 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 54 8 ]
+        symbol [ WatchUi %tmp.6 54 8 15 ];
+        %tmp.6 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.7 54 16 24 ];
+        %tmp.7 = getv function %tmp.6 :pushView;
+        symbol [ $ %tmp.11 54 29 30 ];
+        %tmp.11 = getm $;
+        symbol [ SummaryView %tmp.12 54 31 42 ];
+        %tmp.12 = getv %tmp.11 :SummaryView;
+        %tmp.13 = "Saved";
+        %tmp.14 = lgetv %line.1;
+        symbol [ line %tmp.14 54 52 56 ];
+        %tmp.8 = newc %tmp.12 (%tmp.13, %tmp.14);
+        symbol [ $ %tmp.18 54 63 64 ];
+        %tmp.18 = getm $;
+        symbol [ SummaryDelegate %tmp.19 54 65 80 ];
+        %tmp.19 = getv %tmp.18 :SummaryDelegate;
+        %tmp.15 = newc %tmp.19 ();
+        symbol [ WatchUi %tmp.20 54 84 91 ];
+        %tmp.20 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_DOWN %tmp.21 54 92 102 ];
+        %tmp.21 = getv %tmp.20 :SLIDE_DOWN;
+        invoke %tmp.6 %tmp.7(%tmp.8, %tmp.15, %tmp.21);
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_52_36_55_4_stop:
     }
 }
-[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 36; @symbol_classdef = [PauseMenu,36,6,15]; @symbol_extends<0> = [WatchUi,36,24,31]; @symbol_extends<1> = [Menu2,36,32,37]; ]
+[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 58; @symbol_classdef = [PauseMenu,58,6,15]; @symbol_extends<0> = [WatchUi,58,24,31]; @symbol_extends<1> = [Menu2,58,32,37]; ]
 class PauseMenu extends WatchUi.Menu2 {
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 36; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 58; ]
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 36; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 58; ]
     static
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 37; @symbol_functiondef = [initialize,37,20,30]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 59; @symbol_functiondef = [initialize,59,20,30]; ]
     public
     function initialize() as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_37_33_42_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 38 8 ]
-        symbol [ Menu2 %tmp.2 38 8 13 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_59_33_64_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 60 8 ]
+        symbol [ Menu2 %tmp.2 60 8 13 ];
         %tmp.2 = getv ? :Menu2;
-        symbol [ initialize %tmp.3 38 14 24 ];
+        symbol [ initialize %tmp.3 60 14 24 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         %tmp.4 = newd 1;
         %tmp.6 = const :title;
-        symbol [ title %tmp.6 38 27 32 const ];
-        %tmp.7 = "Paused";
+        symbol [ title %tmp.6 60 27 32 const ];
+        %tmp.7 = "Ride";
         %tmp.8 = dup %tmp.4;
         %tmp.9 = aputv %tmp.8 %tmp.6 %tmp.7;
         invoke %tmp.2 %tmp.3(%tmp.9);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 39 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 61 8 ]
         %tmp.10 = self;
-        symbol [ addItem %tmp.11 39 8 15 ];
+        symbol [ addItem %tmp.11 61 8 15 ];
         %tmp.11 = getv function %tmp.10 :addItem;
-        symbol [ WatchUi %tmp.14 39 20 27 ];
+        symbol [ WatchUi %tmp.14 61 20 27 ];
         %tmp.14 = getm $.Toybox.WatchUi;
-        symbol [ MenuItem %tmp.15 39 28 36 ];
+        symbol [ MenuItem %tmp.15 61 28 36 ];
         %tmp.15 = getv function ? %tmp.14 :MenuItem;
         %tmp.16 = "Resume";
         %tmp.17 = null;
         %tmp.19 = const :resume;
-        symbol [ resume %tmp.19 39 54 60 const ];
+        symbol [ resume %tmp.19 61 54 60 const ];
         %tmp.20 = null;
         %tmp.12 = newc %tmp.15 (%tmp.16, %tmp.17, %tmp.19, %tmp.20);
         invoke %tmp.10 %tmp.11(%tmp.12);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 40 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 62 8 ]
         %tmp.21 = self;
-        symbol [ addItem %tmp.22 40 8 15 ];
+        symbol [ addItem %tmp.22 62 8 15 ];
         %tmp.22 = getv function %tmp.21 :addItem;
-        symbol [ WatchUi %tmp.25 40 20 27 ];
+        symbol [ WatchUi %tmp.25 62 20 27 ];
         %tmp.25 = getm $.Toybox.WatchUi;
-        symbol [ MenuItem %tmp.26 40 28 36 ];
+        symbol [ MenuItem %tmp.26 62 28 36 ];
         %tmp.26 = getv function ? %tmp.25 :MenuItem;
         %tmp.27 = "Save ride";
         %tmp.28 = null;
         %tmp.30 = const :save;
-        symbol [ save %tmp.30 40 57 61 const ];
+        symbol [ save %tmp.30 62 57 61 const ];
         %tmp.31 = null;
         %tmp.23 = newc %tmp.26 (%tmp.27, %tmp.28, %tmp.30, %tmp.31);
         invoke %tmp.21 %tmp.22(%tmp.23);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 41 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 63 8 ]
         %tmp.32 = self;
-        symbol [ addItem %tmp.33 41 8 15 ];
+        symbol [ addItem %tmp.33 63 8 15 ];
         %tmp.33 = getv function %tmp.32 :addItem;
-        symbol [ WatchUi %tmp.36 41 20 27 ];
+        symbol [ WatchUi %tmp.36 63 20 27 ];
         %tmp.36 = getm $.Toybox.WatchUi;
-        symbol [ MenuItem %tmp.37 41 28 36 ];
+        symbol [ MenuItem %tmp.37 63 28 36 ];
         %tmp.37 = getv function ? %tmp.36 :MenuItem;
         %tmp.38 = "Discard";
         %tmp.39 = "no file kept";
         %tmp.41 = const :discard;
-        symbol [ discard %tmp.41 41 65 72 const ];
+        symbol [ discard %tmp.41 63 65 72 const ];
         %tmp.42 = null;
         %tmp.34 = newc %tmp.37 (%tmp.38, %tmp.39, %tmp.41, %tmp.42);
         invoke %tmp.32 %tmp.33(%tmp.34);
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_37_33_42_4_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_59_33_64_4_stop:
     }
 }
-[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 45; @symbol_classdef = [PauseMenuDelegate,45,6,23]; @symbol_extends<0> = [WatchUi,45,32,39]; @symbol_extends<1> = [Menu2InputDelegate,45,40,58]; ]
+[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 67; @symbol_classdef = [PauseMenuDelegate,67,6,23]; @symbol_extends<0> = [WatchUi,67,32,39]; @symbol_extends<1> = [Menu2InputDelegate,67,40,58]; ]
 class PauseMenuDelegate extends WatchUi.Menu2InputDelegate {
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 45; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 67; ]
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 45; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 67; ]
     static
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 46; @position = 16; @symbol_vardef = [_view,46,16,21]; @symbol_type<0> = [RideView,46,25,33]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 68; @position = 16; @symbol_vardef = [_view,68,16,21]; @symbol_type<0> = [RideView,68,25,33]; ]
     private
     var _view as RideView;
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 47; @symbol_functiondef = [initialize,47,20,30]; @symbol_param<0> = [view,47,31,35]; @symbol_param<0>_type<0> = [RideView,47,39,47]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 69; @symbol_functiondef = [initialize,69,20,30]; @symbol_param<0> = [view,69,31,35]; @symbol_param<0>_type<0> = [RideView,69,39,47]; ]
     public
     function initialize(view as RideView) as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_49_47_98_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 47 51 ]
-        symbol [ Menu2InputDelegate %tmp.2 47 51 69 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_69_49_69_98_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 69 51 ]
+        symbol [ Menu2InputDelegate %tmp.2 69 51 69 ];
         %tmp.2 = getv ? :Menu2InputDelegate;
-        symbol [ initialize %tmp.3 47 70 80 ];
+        symbol [ initialize %tmp.3 69 70 80 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 47 84 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 69 84 ]
         %tmp.4 = lgetv %view;
-        symbol [ view %tmp.4 47 92 96 ];
-        symbol [ _view ? 47 84 89 ];
+        symbol [ view %tmp.4 69 92 96 ];
+        symbol [ _view ? 69 84 89 ];
         putv self :_view %tmp.4;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_47_49_47_98_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_69_49_69_98_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 49; @symbol_functiondef = [onSelect,49,20,28]; @symbol_param<0> = [item,49,29,33]; @symbol_param<0>_type<0> = [MenuItem,49,37,45]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 71; @symbol_functiondef = [onSelect,71,20,28]; @symbol_param<0> = [item,71,29,33]; @symbol_param<0>_type<0> = [MenuItem,71,37,45]; ]
     public
     function onSelect(item as MenuItem) as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_49_55_61_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 50 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_49_55_61_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_49_55_61_4_stop" ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_71_55_83_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 72 8 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_71_55_83_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_71_55_83_4_stop" ]
         %id.1 = local;
-        symbol [ id %id.1 50 12 14 ];
+        symbol [ id %id.1 72 12 14 ];
         %tmp.1 = lgetv %item;
-        symbol [ item %tmp.1 50 17 21 ];
-        symbol [ getId %tmp.2 50 22 27 ];
+        symbol [ item %tmp.1 72 17 21 ];
+        symbol [ getId %tmp.2 72 22 27 ];
         %tmp.2 = getv function %tmp.1 :getId;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %id.1 %tmp.3;
-        symbol [ id %id.1 50 12 14 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 51 8 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_8_60_8_if_stmt:
+        symbol [ id %id.1 72 12 14 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 73 8 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_8_82_8_if_stmt:
         %tmp.4 = lgetv %id.1;
-        symbol [ id %tmp.4 51 12 14 ];
+        symbol [ id %tmp.4 73 12 14 ];
         %tmp.6 = const :save;
-        symbol [ save %tmp.6 51 19 23 const ];
+        symbol [ save %tmp.6 73 19 23 const ];
         %tmp.7 = eq %tmp.4 %tmp.6;
-        bf %tmp.7 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_8_60_8_if_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_8_60_8_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_25_54_8_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 52 12 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_25_54_8_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_25_54_8_stop" ]
+        bf %tmp.7 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_8_82_8_if_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_8_82_8_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_25_76_8_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 74 12 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_25_76_8_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_25_76_8_stop" ]
         %line.2 = local;
-        symbol [ line %line.2 52 16 20 ];
-        symbol [ _view %tmp.9 52 23 28 ];
+        symbol [ line %line.2 74 16 20 ];
+        symbol [ _view %tmp.9 74 23 28 ];
         %tmp.9 = getv ? :_view;
-        symbol [ finish %tmp.10 52 29 35 ];
+        symbol [ finish %tmp.10 74 29 35 ];
         %tmp.10 = getv function %tmp.9 :finish;
         %tmp.11 = true;
         %tmp.12 = invoke %tmp.9 %tmp.10(%tmp.11);
         lputv %line.2 %tmp.12;
-        symbol [ line %line.2 52 16 20 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 53 12 ]
-        symbol [ WatchUi %tmp.13 53 12 19 ];
+        symbol [ line %line.2 74 16 20 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 75 12 ]
+        symbol [ WatchUi %tmp.13 75 12 19 ];
         %tmp.13 = getm $.Toybox.WatchUi;
-        symbol [ switchToView %tmp.14 53 20 32 ];
+        symbol [ switchToView %tmp.14 75 20 32 ];
         %tmp.14 = getv function %tmp.13 :switchToView;
-        symbol [ $ %tmp.18 53 37 38 ];
+        symbol [ $ %tmp.18 75 37 38 ];
         %tmp.18 = getm $;
-        symbol [ SummaryView %tmp.19 53 39 50 ];
+        symbol [ SummaryView %tmp.19 75 39 50 ];
         %tmp.19 = getv %tmp.18 :SummaryView;
         %tmp.20 = "Saved";
         %tmp.21 = lgetv %line.2;
-        symbol [ line %tmp.21 53 60 64 ];
+        symbol [ line %tmp.21 75 60 64 ];
         %tmp.15 = newc %tmp.19 (%tmp.20, %tmp.21);
-        symbol [ $ %tmp.25 53 71 72 ];
+        symbol [ $ %tmp.25 75 71 72 ];
         %tmp.25 = getm $;
-        symbol [ SummaryDelegate %tmp.26 53 73 88 ];
+        symbol [ SummaryDelegate %tmp.26 75 73 88 ];
         %tmp.26 = getv %tmp.25 :SummaryDelegate;
         %tmp.22 = newc %tmp.26 ();
-        symbol [ WatchUi %tmp.27 53 92 99 ];
+        symbol [ WatchUi %tmp.27 75 92 99 ];
         %tmp.27 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.28 53 100 110 ];
+        symbol [ SLIDE_DOWN %tmp.28 75 100 110 ];
         %tmp.28 = getv %tmp.27 :SLIDE_DOWN;
         invoke %tmp.13 %tmp.14(%tmp.15, %tmp.22, %tmp.28);
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_25_54_8_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_8_60_8_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_8_60_8_if_false:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 54 15 ]
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_15_60_8_if_stmt:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_25_76_8_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_8_82_8_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_8_82_8_if_false:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 76 15 ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_15_82_8_if_stmt:
         %tmp.29 = lgetv %id.1;
-        symbol [ id %tmp.29 54 19 21 ];
+        symbol [ id %tmp.29 76 19 21 ];
         %tmp.31 = const :discard;
-        symbol [ discard %tmp.31 54 26 33 const ];
+        symbol [ discard %tmp.31 76 26 33 const ];
         %tmp.32 = eq %tmp.29 %tmp.31;
-        bf %tmp.32 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_15_60_8_if_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_15_60_8_if_true:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_35_57_8_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 55 12 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_35_57_8_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_35_57_8_stop" ]
+        bf %tmp.32 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_15_82_8_if_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_15_82_8_if_true:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_35_79_8_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 77 12 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_35_79_8_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_35_79_8_stop" ]
         %line.3 = local;
-        symbol [ line %line.3 55 16 20 ];
-        symbol [ _view %tmp.34 55 23 28 ];
+        symbol [ line %line.3 77 16 20 ];
+        symbol [ _view %tmp.34 77 23 28 ];
         %tmp.34 = getv ? :_view;
-        symbol [ finish %tmp.35 55 29 35 ];
+        symbol [ finish %tmp.35 77 29 35 ];
         %tmp.35 = getv function %tmp.34 :finish;
         %tmp.36 = false;
         %tmp.37 = invoke %tmp.34 %tmp.35(%tmp.36);
         lputv %line.3 %tmp.37;
-        symbol [ line %line.3 55 16 20 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 56 12 ]
-        symbol [ WatchUi %tmp.38 56 12 19 ];
+        symbol [ line %line.3 77 16 20 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 78 12 ]
+        symbol [ WatchUi %tmp.38 78 12 19 ];
         %tmp.38 = getm $.Toybox.WatchUi;
-        symbol [ switchToView %tmp.39 56 20 32 ];
+        symbol [ switchToView %tmp.39 78 20 32 ];
         %tmp.39 = getv function %tmp.38 :switchToView;
-        symbol [ $ %tmp.43 56 37 38 ];
+        symbol [ $ %tmp.43 78 37 38 ];
         %tmp.43 = getm $;
-        symbol [ SummaryView %tmp.44 56 39 50 ];
+        symbol [ SummaryView %tmp.44 78 39 50 ];
         %tmp.44 = getv %tmp.43 :SummaryView;
         %tmp.45 = "Discarded";
         %tmp.46 = lgetv %line.3;
-        symbol [ line %tmp.46 56 64 68 ];
+        symbol [ line %tmp.46 78 64 68 ];
         %tmp.40 = newc %tmp.44 (%tmp.45, %tmp.46);
-        symbol [ $ %tmp.50 56 75 76 ];
+        symbol [ $ %tmp.50 78 75 76 ];
         %tmp.50 = getm $;
-        symbol [ SummaryDelegate %tmp.51 56 77 92 ];
+        symbol [ SummaryDelegate %tmp.51 78 77 92 ];
         %tmp.51 = getv %tmp.50 :SummaryDelegate;
         %tmp.47 = newc %tmp.51 ();
-        symbol [ WatchUi %tmp.52 56 96 103 ];
+        symbol [ WatchUi %tmp.52 78 96 103 ];
         %tmp.52 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.53 56 104 114 ];
+        symbol [ SLIDE_DOWN %tmp.53 78 104 114 ];
         %tmp.53 = getv %tmp.52 :SLIDE_DOWN;
         invoke %tmp.38 %tmp.39(%tmp.40, %tmp.47, %tmp.53);
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_35_57_8_stop:
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_15_60_8_if_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_15_60_8_if_else_false:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_57_15_60_8_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 58 12 ]
-        symbol [ WatchUi %tmp.54 58 12 19 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_35_79_8_stop:
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_15_82_8_if_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_15_82_8_if_else_false:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_79_15_82_8_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 80 12 ]
+        symbol [ WatchUi %tmp.54 80 12 19 ];
         %tmp.54 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.55 58 20 27 ];
+        symbol [ popView %tmp.55 80 20 27 ];
         %tmp.55 = getv function %tmp.54 :popView;
-        symbol [ WatchUi %tmp.56 58 28 35 ];
+        symbol [ WatchUi %tmp.56 80 28 35 ];
         %tmp.56 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.57 58 36 46 ];
+        symbol [ SLIDE_DOWN %tmp.57 80 36 46 ];
         %tmp.57 = getv %tmp.56 :SLIDE_DOWN;
         invoke %tmp.54 %tmp.55(%tmp.57);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 59 12 ]
-        symbol [ _view %tmp.59 59 12 17 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 81 12 ]
+        symbol [ _view %tmp.59 81 12 17 ];
         %tmp.59 = getv ? :_view;
-        symbol [ resume %tmp.60 59 18 24 ];
+        symbol [ resume %tmp.60 81 18 24 ];
         %tmp.60 = getv function %tmp.59 :resume;
         invoke %tmp.59 %tmp.60();
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_57_15_60_8_stop:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_54_15_60_8_if_end:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_51_8_60_8_if_end:
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_49_55_61_4_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_79_15_82_8_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_76_15_82_8_if_end:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_8_82_8_if_end:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_71_55_83_4_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 63; @symbol_functiondef = [onBack,63,20,26]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 85; @symbol_functiondef = [onBack,85,20,26]; ]
     public
     function onBack() as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_63_37_66_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 64 8 ]
-        symbol [ WatchUi %tmp.1 64 8 15 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_85_37_87_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 86 8 ]
+        symbol [ WatchUi %tmp.1 86 8 15 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 64 16 23 ];
+        symbol [ popView %tmp.2 86 16 23 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 64 24 31 ];
+        symbol [ WatchUi %tmp.3 86 24 31 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 64 32 42 ];
+        symbol [ SLIDE_DOWN %tmp.4 86 32 42 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 65 8 ]
-        symbol [ _view %tmp.6 65 8 13 ];
-        %tmp.6 = getv ? :_view;
-        symbol [ resume %tmp.7 65 14 20 ];
-        %tmp.7 = getv function %tmp.6 :resume;
-        invoke %tmp.6 %tmp.7();
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_63_37_66_4_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_85_37_87_4_stop:
     }
 }
 //! After save/discard: a short summary; any key or tap returns to the checklist.
-[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 70; @symbol_classdef = [SummaryView,70,6,17]; @symbol_extends<0> = [WatchUi,70,26,33]; @symbol_extends<1> = [View,70,34,38]; ]
+[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 91; @symbol_classdef = [SummaryView,91,6,17]; @symbol_extends<0> = [WatchUi,91,26,33]; @symbol_extends<1> = [View,91,34,38]; ]
 class SummaryView extends WatchUi.View {
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 70; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 91; ]
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 70; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 91; ]
     static
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 71; @position = 16; @symbol_vardef = [_title,71,16,22]; @symbol_type<0> = [String,71,26,32]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 92; @position = 16; @symbol_vardef = [_title,92,16,22]; @symbol_type<0> = [String,92,26,32]; ]
     private
     var _title as String;
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 72; @position = 16; @symbol_vardef = [_line,72,16,21]; @symbol_type<0> = [String,72,25,31]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 93; @position = 16; @symbol_vardef = [_line,93,16,21]; @symbol_type<0> = [String,93,25,31]; ]
     private
     var _line as String;
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 73; @symbol_functiondef = [initialize,73,20,30]; @symbol_param<0> = [title,73,31,36]; @symbol_param<0>_type<0> = [String,73,40,46]; @symbol_param<1> = [line,73,48,52]; @symbol_param<1>_type<0> = [String,73,56,62]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 94; @symbol_functiondef = [initialize,94,20,30]; @symbol_param<0> = [title,94,31,36]; @symbol_param<0>_type<0> = [String,94,40,46]; @symbol_param<1> = [line,94,48,52]; @symbol_param<1>_type<0> = [String,94,56,62]; ]
     public
     function initialize(title as String, line as String) as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_64_73_115_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 73 66 ]
-        symbol [ View %tmp.2 73 66 70 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_94_64_94_115_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 94 66 ]
+        symbol [ View %tmp.2 94 66 70 ];
         %tmp.2 = getv ? :View;
-        symbol [ initialize %tmp.3 73 71 81 ];
+        symbol [ initialize %tmp.3 94 71 81 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 73 85 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 94 85 ]
         %tmp.4 = lgetv %title;
-        symbol [ title %tmp.4 73 94 99 ];
-        symbol [ _title ? 73 85 91 ];
+        symbol [ title %tmp.4 94 94 99 ];
+        symbol [ _title ? 94 85 91 ];
         putv self :_title %tmp.4;
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 73 101 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 94 101 ]
         %tmp.5 = lgetv %line;
-        symbol [ line %tmp.5 73 109 113 ];
-        symbol [ _line ? 73 101 106 ];
+        symbol [ line %tmp.5 94 109 113 ];
+        symbol [ _line ? 94 101 106 ];
         putv self :_line %tmp.5;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_73_64_73_115_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_94_64_94_115_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 74; @symbol_functiondef = [onUpdate,74,20,28]; @symbol_param<0> = [dc,74,29,31]; @symbol_param<0>_type<0> = [Dc,74,35,37]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 95; @symbol_functiondef = [onUpdate,95,20,28]; @symbol_param<0> = [dc,95,29,31]; @symbol_param<0>_type<0> = [Dc,95,35,37]; ]
     public
     function onUpdate(dc as Dc) as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 75 8 ]
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_stop" ]
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 96 8 ]
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_stop" ]
         %w.1 = local;
-        symbol [ w %w.1 75 12 13 ];
+        symbol [ w %w.1 96 12 13 ];
         %tmp.1 = lgetv %dc;
-        symbol [ dc %tmp.1 75 16 18 ];
-        symbol [ getWidth %tmp.2 75 19 27 ];
+        symbol [ dc %tmp.1 96 16 18 ];
+        symbol [ getWidth %tmp.2 96 19 27 ];
         %tmp.2 = getv function %tmp.1 :getWidth;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %w.1 %tmp.3;
-        symbol [ w %w.1 75 12 13 ];
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_stop" ]
+        symbol [ w %w.1 96 12 13 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_stop" ]
         %h.2 = local;
-        symbol [ h %h.2 75 31 32 ];
+        symbol [ h %h.2 96 31 32 ];
         %tmp.4 = lgetv %dc;
-        symbol [ dc %tmp.4 75 35 37 ];
-        symbol [ getHeight %tmp.5 75 38 47 ];
+        symbol [ dc %tmp.4 96 35 37 ];
+        symbol [ getHeight %tmp.5 96 38 47 ];
         %tmp.5 = getv function %tmp.4 :getHeight;
         %tmp.6 = invoke %tmp.4 %tmp.5();
         lputv %h.2 %tmp.6;
-        symbol [ h %h.2 75 31 32 ];
-        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_stop" ]
+        symbol [ h %h.2 96 31 32 ];
+        [ "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_start" "_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_stop" ]
         %cx.3 = local;
-        symbol [ cx %cx.3 75 51 53 ];
+        symbol [ cx %cx.3 96 51 53 ];
         %tmp.7 = lgetv %w.1;
-        symbol [ w %tmp.7 75 56 57 ];
+        symbol [ w %tmp.7 96 56 57 ];
         %tmp.8 = 2;
         %tmp.9 = div %tmp.7 %tmp.8;
         lputv %cx.3 %tmp.9;
-        symbol [ cx %cx.3 75 51 53 ];
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 76 8 ]
+        symbol [ cx %cx.3 96 51 53 ];
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 97 8 ]
         %tmp.10 = lgetv %dc;
-        symbol [ dc %tmp.10 76 8 10 ];
-        symbol [ setColor %tmp.11 76 11 19 ];
+        symbol [ dc %tmp.10 97 8 10 ];
+        symbol [ setColor %tmp.11 97 11 19 ];
         %tmp.11 = getv function %tmp.10 :setColor;
-        symbol [ Graphics %tmp.12 76 20 28 ];
+        symbol [ Graphics %tmp.12 97 20 28 ];
         %tmp.12 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.13 76 29 40 ];
+        symbol [ COLOR_BLACK %tmp.13 97 29 40 ];
         %tmp.13 = getv %tmp.12 :COLOR_BLACK;
-        symbol [ Graphics %tmp.14 76 42 50 ];
+        symbol [ Graphics %tmp.14 97 42 50 ];
         %tmp.14 = getm $.Toybox.Graphics;
-        symbol [ COLOR_BLACK %tmp.15 76 51 62 ];
+        symbol [ COLOR_BLACK %tmp.15 97 51 62 ];
         %tmp.15 = getv %tmp.14 :COLOR_BLACK;
         invoke %tmp.10 %tmp.11(%tmp.13, %tmp.15);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 76 65 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 97 65 ]
         %tmp.16 = lgetv %dc;
-        symbol [ dc %tmp.16 76 65 67 ];
-        symbol [ clear %tmp.17 76 68 73 ];
+        symbol [ dc %tmp.16 97 65 67 ];
+        symbol [ clear %tmp.17 97 68 73 ];
         %tmp.17 = getv function %tmp.16 :clear;
         invoke %tmp.16 %tmp.17();
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 77 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 98 8 ]
         %tmp.18 = lgetv %dc;
-        symbol [ dc %tmp.18 77 8 10 ];
-        symbol [ setColor %tmp.19 77 11 19 ];
+        symbol [ dc %tmp.18 98 8 10 ];
+        symbol [ setColor %tmp.19 98 11 19 ];
         %tmp.19 = getv function %tmp.18 :setColor;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_begin:
-        symbol [ _title %tmp.21 77 20 26 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_begin:
+        symbol [ _title %tmp.21 98 20 26 ];
         %tmp.21 = getv ? :_title;
-        symbol [ equals %tmp.22 77 27 33 ];
+        symbol [ equals %tmp.22 98 27 33 ];
         %tmp.22 = getv function %tmp.21 :equals;
         %tmp.23 = "Saved";
         %tmp.24 = invoke %tmp.21 %tmp.22(%tmp.23);
-        bf %tmp.24 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_else_false;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_true:
-        symbol [ Graphics %tmp.25 77 45 53 ];
+        bf %tmp.24 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_else_false;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_true:
+        symbol [ Graphics %tmp.25 98 45 53 ];
         %tmp.25 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.26 77 54 65 ];
+        symbol [ COLOR_GREEN %tmp.26 98 54 65 ];
         %tmp.26 = getv %tmp.25 :COLOR_GREEN;
         push %tmp.26;
-        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_end;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_else_false:
-        symbol [ Graphics %tmp.27 77 68 76 ];
+        goto @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_end;
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_else_false:
+        symbol [ Graphics %tmp.27 98 68 76 ];
         %tmp.27 = getm $.Toybox.Graphics;
-        symbol [ COLOR_YELLOW %tmp.28 77 77 89 ];
+        symbol [ COLOR_YELLOW %tmp.28 98 77 89 ];
         %tmp.28 = getv %tmp.27 :COLOR_YELLOW;
         push %tmp.28;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_end:
-        %tmp.29 = phi [%tmp.24 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_begin] [%tmp.26 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_true] [%tmp.28 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_else_false] [%tmp.29 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_77_20_77_77_end];
-        symbol [ Graphics %tmp.30 77 91 99 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_end:
+        %tmp.29 = phi [%tmp.24 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_begin] [%tmp.26 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_true] [%tmp.28 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_else_false] [%tmp.29 @_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_98_20_98_77_end];
+        symbol [ Graphics %tmp.30 98 91 99 ];
         %tmp.30 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.31 77 100 117 ];
+        symbol [ COLOR_TRANSPARENT %tmp.31 98 100 117 ];
         %tmp.31 = getv %tmp.30 :COLOR_TRANSPARENT;
         invoke %tmp.18 %tmp.19(%tmp.29, %tmp.31);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 78 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 99 8 ]
         %tmp.32 = lgetv %dc;
-        symbol [ dc %tmp.32 78 8 10 ];
-        symbol [ drawText %tmp.33 78 11 19 ];
+        symbol [ dc %tmp.32 99 8 10 ];
+        symbol [ drawText %tmp.33 99 11 19 ];
         %tmp.33 = getv function %tmp.32 :drawText;
         %tmp.34 = lgetv %cx.3;
-        symbol [ cx %tmp.34 78 20 22 ];
+        symbol [ cx %tmp.34 99 20 22 ];
         %tmp.35 = lgetv %h.2;
-        symbol [ h %tmp.35 78 24 25 ];
+        symbol [ h %tmp.35 99 24 25 ];
         %tmp.36 = 0.22;
         %tmp.37 = mul %tmp.35 %tmp.36;
-        symbol [ Graphics %tmp.38 78 34 42 ];
+        symbol [ Graphics %tmp.38 99 34 42 ];
         %tmp.38 = getm $.Toybox.Graphics;
-        symbol [ FONT_LARGE %tmp.39 78 43 53 ];
+        symbol [ FONT_LARGE %tmp.39 99 43 53 ];
         %tmp.39 = getv %tmp.38 :FONT_LARGE;
-        symbol [ _title %tmp.41 78 55 61 ];
+        symbol [ _title %tmp.41 99 55 61 ];
         %tmp.41 = getv ? :_title;
-        symbol [ Graphics %tmp.42 78 63 71 ];
+        symbol [ Graphics %tmp.42 99 63 71 ];
         %tmp.42 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.43 78 72 91 ];
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.43 99 72 91 ];
         %tmp.43 = getv %tmp.42 :TEXT_JUSTIFY_CENTER;
         invoke %tmp.32 %tmp.33(%tmp.34, %tmp.37, %tmp.39, %tmp.41, %tmp.43);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 79 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 100 8 ]
         %tmp.44 = lgetv %dc;
-        symbol [ dc %tmp.44 79 8 10 ];
-        symbol [ setColor %tmp.45 79 11 19 ];
+        symbol [ dc %tmp.44 100 8 10 ];
+        symbol [ setColor %tmp.45 100 11 19 ];
         %tmp.45 = getv function %tmp.44 :setColor;
-        symbol [ Graphics %tmp.46 79 20 28 ];
+        symbol [ Graphics %tmp.46 100 20 28 ];
         %tmp.46 = getm $.Toybox.Graphics;
-        symbol [ COLOR_WHITE %tmp.47 79 29 40 ];
+        symbol [ COLOR_WHITE %tmp.47 100 29 40 ];
         %tmp.47 = getv %tmp.46 :COLOR_WHITE;
-        symbol [ Graphics %tmp.48 79 42 50 ];
+        symbol [ Graphics %tmp.48 100 42 50 ];
         %tmp.48 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.49 79 51 68 ];
+        symbol [ COLOR_TRANSPARENT %tmp.49 100 51 68 ];
         %tmp.49 = getv %tmp.48 :COLOR_TRANSPARENT;
         invoke %tmp.44 %tmp.45(%tmp.47, %tmp.49);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 80 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 101 8 ]
         %tmp.50 = lgetv %dc;
-        symbol [ dc %tmp.50 80 8 10 ];
-        symbol [ drawText %tmp.51 80 11 19 ];
+        symbol [ dc %tmp.50 101 8 10 ];
+        symbol [ drawText %tmp.51 101 11 19 ];
         %tmp.51 = getv function %tmp.50 :drawText;
         %tmp.52 = lgetv %cx.3;
-        symbol [ cx %tmp.52 80 20 22 ];
+        symbol [ cx %tmp.52 101 20 22 ];
         %tmp.53 = lgetv %h.2;
-        symbol [ h %tmp.53 80 24 25 ];
+        symbol [ h %tmp.53 101 24 25 ];
         %tmp.54 = 0.45;
         %tmp.55 = mul %tmp.53 %tmp.54;
-        symbol [ Graphics %tmp.56 80 34 42 ];
+        symbol [ Graphics %tmp.56 101 34 42 ];
         %tmp.56 = getm $.Toybox.Graphics;
-        symbol [ FONT_SMALL %tmp.57 80 43 53 ];
+        symbol [ FONT_SMALL %tmp.57 101 43 53 ];
         %tmp.57 = getv %tmp.56 :FONT_SMALL;
-        symbol [ _line %tmp.59 80 55 60 ];
+        symbol [ _line %tmp.59 101 55 60 ];
         %tmp.59 = getv ? :_line;
-        symbol [ Graphics %tmp.60 80 62 70 ];
+        symbol [ Graphics %tmp.60 101 62 70 ];
         %tmp.60 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.61 80 71 90 ];
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.61 101 71 90 ];
         %tmp.61 = getv %tmp.60 :TEXT_JUSTIFY_CENTER;
         invoke %tmp.50 %tmp.51(%tmp.52, %tmp.55, %tmp.57, %tmp.59, %tmp.61);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 81 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 102 8 ]
         %tmp.62 = lgetv %dc;
-        symbol [ dc %tmp.62 81 8 10 ];
-        symbol [ setColor %tmp.63 81 11 19 ];
+        symbol [ dc %tmp.62 102 8 10 ];
+        symbol [ setColor %tmp.63 102 11 19 ];
         %tmp.63 = getv function %tmp.62 :setColor;
-        symbol [ Graphics %tmp.64 81 20 28 ];
+        symbol [ Graphics %tmp.64 102 20 28 ];
         %tmp.64 = getm $.Toybox.Graphics;
-        symbol [ COLOR_LT_GRAY %tmp.65 81 29 42 ];
+        symbol [ COLOR_LT_GRAY %tmp.65 102 29 42 ];
         %tmp.65 = getv %tmp.64 :COLOR_LT_GRAY;
-        symbol [ Graphics %tmp.66 81 44 52 ];
+        symbol [ Graphics %tmp.66 102 44 52 ];
         %tmp.66 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.67 81 53 70 ];
+        symbol [ COLOR_TRANSPARENT %tmp.67 102 53 70 ];
         %tmp.67 = getv %tmp.66 :COLOR_TRANSPARENT;
         invoke %tmp.62 %tmp.63(%tmp.65, %tmp.67);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 82 8 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 103 8 ]
         %tmp.68 = lgetv %dc;
-        symbol [ dc %tmp.68 82 8 10 ];
-        symbol [ drawText %tmp.69 82 11 19 ];
+        symbol [ dc %tmp.68 103 8 10 ];
+        symbol [ drawText %tmp.69 103 11 19 ];
         %tmp.69 = getv function %tmp.68 :drawText;
         %tmp.70 = lgetv %cx.3;
-        symbol [ cx %tmp.70 82 20 22 ];
+        symbol [ cx %tmp.70 103 20 22 ];
         %tmp.71 = lgetv %h.2;
-        symbol [ h %tmp.71 82 24 25 ];
+        symbol [ h %tmp.71 103 24 25 ];
         %tmp.72 = 0.80;
         %tmp.73 = mul %tmp.71 %tmp.72;
-        symbol [ Graphics %tmp.74 82 34 42 ];
+        symbol [ Graphics %tmp.74 103 34 42 ];
         %tmp.74 = getm $.Toybox.Graphics;
-        symbol [ FONT_XTINY %tmp.75 82 43 53 ];
+        symbol [ FONT_XTINY %tmp.75 103 43 53 ];
         %tmp.75 = getv %tmp.74 :FONT_XTINY;
         %tmp.76 = "any button to continue";
-        symbol [ Graphics %tmp.77 82 81 89 ];
+        symbol [ Graphics %tmp.77 103 81 89 ];
         %tmp.77 = getm $.Toybox.Graphics;
-        symbol [ TEXT_JUSTIFY_CENTER %tmp.78 82 90 109 ];
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.78 103 90 109 ];
         %tmp.78 = getv %tmp.77 :TEXT_JUSTIFY_CENTER;
         invoke %tmp.68 %tmp.69(%tmp.70, %tmp.73, %tmp.75, %tmp.76, %tmp.78);
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_74_47_83_4_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_95_47_104_4_stop:
     }
 }
-[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 86; @symbol_classdef = [SummaryDelegate,86,6,21]; @symbol_extends<0> = [WatchUi,86,30,37]; @symbol_extends<1> = [BehaviorDelegate,86,38,54]; ]
+[ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 107; @symbol_classdef = [SummaryDelegate,107,6,21]; @symbol_extends<0> = [WatchUi,107,30,37]; @symbol_extends<1> = [BehaviorDelegate,107,38,54]; ]
 class SummaryDelegate extends WatchUi.BehaviorDelegate {
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 86; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 107; ]
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 86; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 107; ]
     static
     <init> {
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 87; @symbol_functiondef = [initialize,87,20,30]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 108; @symbol_functiondef = [initialize,108,20,30]; ]
     public
     function initialize() as Void {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_87_33_87_66_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 87 35 ]
-        symbol [ BehaviorDelegate %tmp.2 87 35 51 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_108_33_108_66_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 108 35 ]
+        symbol [ BehaviorDelegate %tmp.2 108 35 51 ];
         %tmp.2 = getv ? :BehaviorDelegate;
-        symbol [ initialize %tmp.3 87 52 62 ];
+        symbol [ initialize %tmp.3 108 52 62 ];
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_87_33_87_66_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_108_33_108_66_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 88; @symbol_functiondef = [onSelect,88,20,28]; @symbol_return<0> = [Boolean,88,34,41]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 109; @symbol_functiondef = [onSelect,109,20,28]; @symbol_return<0> = [Boolean,109,34,41]; ]
     public
     function onSelect() as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_88_42_88_94_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 88 44 ]
-        symbol [ WatchUi %tmp.1 88 44 51 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_109_42_109_94_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 109 44 ]
+        symbol [ WatchUi %tmp.1 109 44 51 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 88 52 59 ];
+        symbol [ popView %tmp.2 109 52 59 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 88 60 67 ];
+        symbol [ WatchUi %tmp.3 109 60 67 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 88 68 78 ];
+        symbol [ SLIDE_DOWN %tmp.4 109 68 78 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 88 81 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 109 81 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_88_42_88_94_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_109_42_109_94_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 89; @symbol_functiondef = [onBack,89,20,26]; @symbol_return<0> = [Boolean,89,32,39]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 110; @symbol_functiondef = [onBack,110,20,26]; @symbol_return<0> = [Boolean,110,32,39]; ]
     public
     function onBack() as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_89_40_89_92_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 89 42 ]
-        symbol [ WatchUi %tmp.1 89 42 49 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_110_40_110_92_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 110 42 ]
+        symbol [ WatchUi %tmp.1 110 42 49 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 89 50 57 ];
+        symbol [ popView %tmp.2 110 50 57 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 89 58 65 ];
+        symbol [ WatchUi %tmp.3 110 58 65 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 89 66 76 ];
+        symbol [ SLIDE_DOWN %tmp.4 110 66 76 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 89 79 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 110 79 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_89_40_89_92_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_110_40_110_92_stop:
     }
-    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 90; @symbol_functiondef = [onTap,90,20,25]; @symbol_param<0> = [evt,90,26,29]; @symbol_param<0>_type<0> = [ClickEvent,90,33,43]; @symbol_return<0> = [Boolean,90,48,55]; ]
+    [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 111; @symbol_functiondef = [onTap,111,20,25]; @symbol_param<0> = [evt,111,26,29]; @symbol_param<0>_type<0> = [ClickEvent,111,33,43]; @symbol_return<0> = [Boolean,111,48,55]; ]
     public
     function onTap(evt as ClickEvent) as Boolean {
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_90_56_90_108_start:
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 90 58 ]
-        symbol [ WatchUi %tmp.1 90 58 65 ];
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_111_56_111_108_start:
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 111 58 ]
+        symbol [ WatchUi %tmp.1 111 58 65 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 90 66 73 ];
+        symbol [ popView %tmp.2 111 66 73 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 90 74 81 ];
+        symbol [ WatchUi %tmp.3 111 74 81 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.4 90 82 92 ];
+        symbol [ SLIDE_DOWN %tmp.4 111 82 92 ];
         %tmp.4 = getv %tmp.3 :SLIDE_DOWN;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 90 95 ]
+[ "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc" 111 95 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_90_56_90_108_stop:
+_Users_ja_ais_mac_Documents_Projects_aracer_xtune_re_garmin_MotoTuneRide_source_RideDelegate_mc_111_56_111_108_stop:
     }
 }
 [ @file = "/Users/ja-ais-mac/Documents/Projects/aracer-xtune-re/garmin/MotoTuneRide/source/RideDelegate.mc"; @line = 1; ]

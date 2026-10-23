@@ -2,10 +2,12 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
-//! Garmin's own activity grammar, so nothing has to be learned:
-//!   START: idle → start · recording → pause + Resume/Save/Discard · paused → that menu again
-//!   BACK:  recording → marker (lap) · idle → leave the app
-//!   UP / DOWN / swipe: pages
+//! Button map chosen by the owner for a gloved hand on a Forerunner 265:
+//!   START (top right):   idle → start · recording → pause · paused → resume
+//!   UP    (top left):    recording → lap / marker · paused → save
+//!   BACK  (bottom right): recording or paused → Resume / Save / Discard menu · idle → leave the app
+//!   DOWN  (bottom left) and swipes: next page
+//!   LIGHT (if the firmware passes it through): marker too
 class RideDelegate extends WatchUi.BehaviorDelegate {
     private var _view as RideView;
 
@@ -13,29 +15,49 @@ class RideDelegate extends WatchUi.BehaviorDelegate {
 
     public function onSelect() as Boolean {
         if (!_view.hasSession()) { _view.startRecording(); }
-        else { _view.pause(); WatchUi.pushView(new $.PauseMenu(), new $.PauseMenuDelegate(_view), WatchUi.SLIDE_UP); }
+        else if (_view.isRecording()) { _view.pause(); }
+        else { _view.resume(); }
         return true;
     }
 
-    public function onBack() as Boolean {
+    public function onPreviousPage() as Boolean {            // UP
         if (_view.isRecording()) { _view.mark(); return true; }
-        if (_view.hasSession()) { WatchUi.pushView(new $.PauseMenu(), new $.PauseMenuDelegate(_view), WatchUi.SLIDE_UP); return true; }
-        return false;                                // idle: let the system close the app
+        if (_view.hasSession()) { save(); return true; }
+        _view.prevPage(); return true;
     }
 
-    public function onNextPage() as Boolean { _view.nextPage(); return true; }
-    public function onPreviousPage() as Boolean { _view.prevPage(); return true; }
+    public function onNextPage() as Boolean { _view.nextPage(); return true; }   // DOWN
+
+    public function onBack() as Boolean {
+        if (_view.hasSession()) {
+            if (_view.isRecording()) { _view.pause(); }
+            WatchUi.pushView(new $.PauseMenu(), new $.PauseMenuDelegate(_view), WatchUi.SLIDE_UP);
+            return true;
+        }
+        return false;                                         // idle: system closes the app
+    }
+
+    public function onKey(evt as KeyEvent) as Boolean {
+        if (evt.getKey() == WatchUi.KEY_LIGHT && _view.isRecording()) { _view.mark(); return true; }
+        return false;
+    }
+
     public function onSwipe(evt as SwipeEvent) as Boolean {
         var d = evt.getDirection();
         if (d == WatchUi.SWIPE_UP || d == WatchUi.SWIPE_LEFT) { _view.nextPage(); return true; }
         if (d == WatchUi.SWIPE_DOWN || d == WatchUi.SWIPE_RIGHT) { _view.prevPage(); return true; }
         return false;
     }
+
+    private function save() as Void {
+        var line = _view.finish(true);
+        WatchUi.pushView(new $.SummaryView("Saved", line), new $.SummaryDelegate(), WatchUi.SLIDE_DOWN);
+    }
 }
 
 class PauseMenu extends WatchUi.Menu2 {
     public function initialize() {
-        Menu2.initialize({:title => "Paused"});
+        Menu2.initialize({:title => "Ride"});
         addItem(new WatchUi.MenuItem("Resume", null, :resume, null));
         addItem(new WatchUi.MenuItem("Save ride", null, :save, null));
         addItem(new WatchUi.MenuItem("Discard", "no file kept", :discard, null));
@@ -60,9 +82,8 @@ class PauseMenuDelegate extends WatchUi.Menu2InputDelegate {
         }
     }
 
-    public function onBack() as Void {              // BACK on the pause menu = resume, like a native activity
+    public function onBack() as Void {                        // BACK on the menu = stay paused, go back to the pages
         WatchUi.popView(WatchUi.SLIDE_DOWN);
-        _view.resume();
     }
 }
 
