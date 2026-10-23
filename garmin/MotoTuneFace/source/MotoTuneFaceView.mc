@@ -8,69 +8,66 @@ import Toybox.Time;
 import Toybox.Time.Gregorian;
 import Toybox.WatchUi;
 
-//! The MotoTune watch face. Same visual language as the app: AMOLED black, cyan accent, tracked labels.
-//! Time big in the middle, AFR from the MotoTune Ride complication above it, HR · battery · date around.
+//! The MotoTune watch face: AFR on top, time in the middle (date · ♥ · battery under it), RPM | TPS at the
+//! bottom — all three engine values come from the complications MotoTune Ride publishes.
 class MotoTuneFaceView extends WatchUi.WatchFace {
     const ACCENT = 0x25E0D0;
     const GOOD = 0x34D399;
     const BAD = 0xF87171;
+    const RICH = 0x60A5FA;
     const TEXT = 0xEDF1F5;
     const DIM = 0x8A93A0;
     const FAINT = 0x3A424D;
 
-    private var _afrId as Complications.Id? = null;
-    private var _afr as String? = null;          // last published value ("12.8")
-    private var _afrAt as Number = 0;            // when we last received an update
+    private var _ids as Dictionary = {};          // "AFR"/"RPM"/"TPS" → Complications.Id
+    private var _vals as Dictionary = {};         // label → last value (String or Number)
+    private var _at as Number = 0;
     private var _sleeping as Boolean = false;
+    private var _subscribed as Boolean = false;
 
-    public function initialize() {
-        WatchFace.initialize();
-    }
+    public function initialize() { WatchFace.initialize(); }
+    public function onLayout(dc as Dc) as Void { subscribe(); }
+    public function onShow() as Void { if (!_subscribed) { subscribe(); } }
 
-    public function onLayout(dc as Dc) as Void {
-        findAfrComplication();
-    }
-
-    public function onShow() as Void {
-        if (_afrId == null) { findAfrComplication(); }
-    }
-
-    //! Look for the complication MotoTune Ride publishes (short label "AFR") and subscribe to its updates.
-    private function findAfrComplication() as Void {
+    private function subscribe() as Void {
         if (!(Toybox has :Complications)) { return; }
         try {
             var it = Complications.getComplications();
             var c = it.next();
             while (c != null) {
                 var label = c.shortLabel;
-                if (label != null && label.equals("AFR")) {
-                    _afrId = c.complicationId;
-                    if (c.value != null) { _afr = c.value.toString(); _afrAt = Time.now().value(); }
-                    break;
+                if (label != null && (label.equals("AFR") || label.equals("RPM") || label.equals("TPS"))) {
+                    _ids[label] = c.complicationId;
+                    if (c.value != null) { _vals[label] = c.value; _at = Time.now().value(); }
                 }
                 c = it.next();
             }
-            if (_afrId != null) {
+            if (_ids.size() > 0) {
                 Complications.registerComplicationChangeCallback(method(:onComplicationChanged));
-                Complications.subscribeToUpdates(_afrId);
+                var keys = _ids.keys();
+                for (var i = 0; i < keys.size(); i++) { Complications.subscribeToUpdates(_ids[keys[i]] as Complications.Id); }
+                _subscribed = true;
             }
-        } catch (e) {
-            _afr = null;
-        }
+        } catch (e) {}
     }
 
     public function onComplicationChanged(id as Complications.Id) as Void {
-        if (_afrId != null && id.equals(_afrId)) {
-            try {
-                var c = Complications.getComplication(id);
-                if (c.value != null) { _afr = c.value.toString(); _afrAt = Time.now().value(); }
-            } catch (e) {}
-            WatchUi.requestUpdate();
+        var keys = _ids.keys();
+        for (var i = 0; i < keys.size(); i++) {
+            if (id.equals(_ids[keys[i]])) {
+                try {
+                    var c = Complications.getComplication(id);
+                    if (c.value != null) { _vals[keys[i]] = c.value; _at = Time.now().value(); }
+                } catch (e) {}
+            }
         }
+        WatchUi.requestUpdate();
     }
 
     public function onEnterSleep() as Void { _sleeping = true; WatchUi.requestUpdate(); }
     public function onExitSleep() as Void { _sleeping = false; WatchUi.requestUpdate(); }
+
+    private function text(v) as String { return v == null ? "--" : v.toString(); }
 
     public function onUpdate(dc as Dc) as Void {
         var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
@@ -79,52 +76,53 @@ class MotoTuneFaceView extends WatchUi.WatchFace {
         var now = Time.now();
         var g = Gregorian.info(now, Time.FORMAT_MEDIUM);
         var hx = dc.getFontHeight(Graphics.FONT_XTINY);
-
-        // ---- AFR band (top): label, value, freshness
-        var age = _afrAt == 0 ? null : now.value() - _afrAt;
+        var age = _at == 0 ? null : now.value() - _at;
         var fresh = age != null && age < 30;
-        var afrText = _afr == null ? "--.-" : _afr;
-        var afrColor = DIM;
-        if (fresh && _afr != null) {
-            var v = _afr.toFloat();
-            afrColor = (v != null && v >= 13.6) ? BAD : ((v != null && v <= 11.5) ? 0x60A5FA : GOOD);
-        }
-        var yAfrLabel = (h * 0.11).toNumber();
-        dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, yAfrLabel, Graphics.FONT_XTINY, fresh ? "A F R" : (age == null ? "A F R  ·  no data" : "A F R  ·  " + (age < 3600 ? (age / 60).format("%d") + " min ago" : "old")), Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(afrColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, yAfrLabel + hx, Graphics.FONT_NUMBER_MILD, afrText, Graphics.TEXT_JUSTIFY_CENTER);
 
-        // ---- time (middle), always on; dimmer in sleep
+        // ---- top: AFR
+        var afrStr = _vals.hasKey("AFR") ? text(_vals["AFR"]) : "--.-";
+        var afrColor = DIM;
+        if (fresh && _vals.hasKey("AFR")) {
+            var v = afrStr.toFloat();
+            afrColor = (v != null && v >= 13.6) ? BAD : ((v != null && v <= 11.5) ? RICH : GOOD);
+        }
+        var yTop = (h * 0.07).toNumber();
+        dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, yTop, Graphics.FONT_XTINY, fresh ? "A F R" : (age == null ? "A F R  ·  no data" : "A F R  ·  " + (age < 3600 ? (age / 60).format("%d") + " min" : "old")), Graphics.TEXT_JUSTIFY_CENTER);
+        dc.setColor(afrColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, yTop + hx - 4, Graphics.FONT_LARGE, afrStr, Graphics.TEXT_JUSTIFY_CENTER);
+
+        // ---- middle: time, then one line "TUE 23 OCT · ♥ 78 · 86%"
         var settings = System.getDeviceSettings();
         var hour = g.hour;
         if (!settings.is24Hour) { hour = hour % 12; if (hour == 0) { hour = 12; } }
-        var timeText = hour.format("%d") + ":" + g.min.format("%02d");
-        var timeFont = Graphics.FONT_NUMBER_THAI_HOT;
+        var timeFont = Graphics.FONT_NUMBER_HOT;
         var th = dc.getFontHeight(timeFont);
+        var yTime = h / 2 - th / 2 + (h * 0.02).toNumber();
         dc.setColor(_sleeping ? DIM : TEXT, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h / 2 - th / 2 + (h * 0.03).toNumber(), timeFont, timeText, Graphics.TEXT_JUSTIFY_CENTER);
-        if (!_sleeping) {
-            dc.setColor(ACCENT, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, h / 2 + th / 2 - (h * 0.02).toNumber(), Graphics.FONT_XTINY, (g.day_of_week as String).toUpper() + "  " + g.day.format("%d") + "  " + (g.month as String).toUpper(), Graphics.TEXT_JUSTIFY_CENTER);
-        }
-
-        // ---- bottom band: heart rate · battery
-        var hr = Activity.getActivityInfo();
-        var hrText = (hr != null && hr.currentHeartRate != null) ? (hr.currentHeartRate as Number).format("%d") : "--";
+        dc.drawText(cx, yTime, timeFont, hour.format("%d") + ":" + g.min.format("%02d"), Graphics.TEXT_JUSTIFY_CENTER);
+        var info = Activity.getActivityInfo();
+        var hr = (info != null && info.currentHeartRate != null) ? (info.currentHeartRate as Number).format("%d") : "--";
         var batt = System.getSystemStats().battery;
+        dc.setColor(_sleeping ? FAINT : ACCENT, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, yTime + th - (h * 0.02).toNumber(), Graphics.FONT_XTINY,
+                    (g.day_of_week as String).toUpper() + " " + g.day.format("%d") + " " + (g.month as String).toUpper() + "  ·  " + hr + " bpm  ·  " + batt.format("%d") + "%",
+                    Graphics.TEXT_JUSTIFY_CENTER);
+
+        // ---- bottom: RPM | TPS
         var yBot = (h * 0.76).toNumber();
-        dc.setColor(TEXT, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.34, yBot, Graphics.FONT_SMALL, hrText, Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.66, yBot, Graphics.FONT_SMALL, batt.format("%d") + "%", Graphics.TEXT_JUSTIFY_CENTER);
+        var col = fresh ? TEXT : DIM;
+        dc.setColor(col, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(w * 0.33, yBot, Graphics.FONT_SMALL, _vals.hasKey("RPM") ? text(_vals["RPM"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.67, yBot, Graphics.FONT_SMALL, (_vals.hasKey("TPS") ? text(_vals["TPS"]) : "--") + "%", Graphics.TEXT_JUSTIFY_CENTER);
         var sh = dc.getFontHeight(Graphics.FONT_SMALL);
         dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.34, yBot + sh - 4, Graphics.FONT_XTINY, "BPM", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.66, yBot + sh - 4, Graphics.FONT_XTINY, "BATT", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.33, yBot + sh - 6, Graphics.FONT_XTINY, "RPM", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.67, yBot + sh - 6, Graphics.FONT_XTINY, "TPS", Graphics.TEXT_JUSTIFY_CENTER);
         dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
-        dc.drawLine(cx, yBot + 4, cx, yBot + sh + hx - 6);
+        dc.drawLine(cx, yBot + 4, cx, yBot + sh + hx - 10);
 
-        // ---- bezel: thin accent arc as the brand mark, battery as a faint arc at the bottom
+        // ---- bezel: faint track + battery arc in the AFR colour
         dc.setPenWidth(4);
         dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
         dc.drawArc(cx, h / 2, w / 2 - 4, Graphics.ARC_CLOCKWISE, 225, -45);

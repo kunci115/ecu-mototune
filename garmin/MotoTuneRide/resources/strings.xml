@@ -1,6 +1,10 @@
 <strings>
     <string id="AppName">MotoTune Ride</string>
     <string id="AfrShort">AFR</string>
-    <string id="AfrLong">AFR</string>
-    <string id="AfrDefault">--.-</string>
+    <string id="AfrLong">MotoTune AFR</string>
+    <string id="RpmShort">RPM</string>
+    <string id="RpmLong">MotoTune RPM</string>
+    <string id="TpsShort">TPS</string>
+    <string id="TpsLong">MotoTune TPS</string>
+    <string id="Dash">--</string>
 </strings>

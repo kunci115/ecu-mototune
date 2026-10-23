@@ -27,20 +27,21 @@ class RideService extends System.ServiceDelegate {
 //! Shared by the background service and the foreground app: remember the snapshot, update the complication.
 (:background)
 function publishSnapshot(d as Dictionary) as Void {
-    if (d.hasKey("afr")) {
-        var afr = d["afr"] as Number;                        // ×10
-        Storage.setValue("afr", afr);
-        Storage.setValue("rpm", d.hasKey("rpm") ? d["rpm"] as Number : 0);
-        Storage.setValue("at", Time.now().value());
-        if (Complications has :updateComplication) {
-            try {
-                Complications.updateComplication(0, {:value => (afr / 10.0).format("%.1f"), :shortLabel => "AFR"});
-                Storage.setValue("face", "ok " + (afr / 10.0).format("%.1f"));
-            } catch (e) {
-                Storage.setValue("face", "err " + e.getErrorMessage());
-            }
-        } else {
-            Storage.setValue("face", "no complications API");
+    if (!d.hasKey("afr") && !d.hasKey("rpm")) { return; }
+    var afr = d.hasKey("afr") ? d["afr"] as Number : null;       // ×10
+    var rpm = d.hasKey("rpm") ? d["rpm"] as Number : null;
+    var tps = d.hasKey("tps") ? d["tps"] as Number : null;
+    if (afr != null) { Storage.setValue("afr", afr); }
+    if (rpm != null) { Storage.setValue("rpm", rpm); }
+    Storage.setValue("at", Time.now().value());
+    if (Complications has :updateComplication) {
+        try {
+            if (afr != null) { Complications.updateComplication(0, {:value => (afr / 10.0).format("%.1f"), :shortLabel => "AFR"}); }
+            if (rpm != null) { Complications.updateComplication(1, {:value => rpm, :shortLabel => "RPM"}); }
+            if (tps != null) { Complications.updateComplication(2, {:value => tps, :shortLabel => "TPS"}); }
+            Storage.setValue("face", "ok");
+        } catch (e) {
+            Storage.setValue("face", "err " + e.getErrorMessage());
         }
     }
 }

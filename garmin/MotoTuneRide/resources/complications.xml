@@ -1,6 +1,12 @@
 <complications>
-    <!-- Published for the native watch face's data-field picker, like Heart Rate: pick "MotoTune AFR". -->
-    <complication id="0" access="public" icon="@Drawables.ComplicationIcon" shortLabel="@Strings.AfrShort" longLabel="@Strings.AfrLong" value="0" units="" glancePreview="true">
-        <faceIt defaultText="@Strings.AfrDefault"/>
+    <!-- Published for Connect IQ watch faces (MotoTune Face subscribes by short label). -->
+    <complication id="0" access="public" icon="@Drawables.AfrIcon" shortLabel="@Strings.AfrShort" longLabel="@Strings.AfrLong" value="0" units="" glancePreview="true">
+        <faceIt defaultText="@Strings.Dash"/>
+    </complication>
+    <complication id="1" access="public" icon="@Drawables.RpmIcon" shortLabel="@Strings.RpmShort" longLabel="@Strings.RpmLong" value="0" units="" glancePreview="false">
+        <faceIt defaultText="@Strings.Dash"/>
+    </complication>
+    <complication id="2" access="public" icon="@Drawables.TpsIcon" shortLabel="@Strings.TpsShort" longLabel="@Strings.TpsLong" value="0" units="" glancePreview="false">
+        <faceIt defaultText="@Strings.Dash"/>
     </complication>
 </complications>

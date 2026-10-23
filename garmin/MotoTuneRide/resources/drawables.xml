@@ -1,4 +1,6 @@
 <drawables>
     <bitmap id="LauncherIcon" filename="drawables/launcher_icon_60.png"/>
-    <bitmap id="ComplicationIcon" filename="drawables/afr_icon.svg"/>
+    <bitmap id="AfrIcon" filename="drawables/afr_icon.svg"/>
+    <bitmap id="RpmIcon" filename="drawables/rpm_icon.svg"/>
+    <bitmap id="TpsIcon" filename="drawables/tps_icon.svg"/>
 </drawables>

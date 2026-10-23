@@ -128,7 +128,7 @@ final class GarminLink: NSObject, WatchLink, IQDeviceEventDelegate, IQAppMessage
     private var rideOpen: Bool { Date().timeIntervalSince(lastWatchMessageAt) < 30 }
     private func pushSnapshot() {
         guard let app, let session, session.state == .connected, !sendInFlight,
-              Date().timeIntervalSince(lastSend) >= (rideOpen ? 1 : 5) else { return }
+              Date().timeIntervalSince(lastSend) >= 1 else { return }          // 1 Hz always: the owner wants the face live too
         sendInFlight = true; lastSend = Date()
         ConnectIQ.sharedInstance().sendMessage(session.watchSnapshot, to: app, progress: nil) { [weak self] result in
             Task { @MainActor in
