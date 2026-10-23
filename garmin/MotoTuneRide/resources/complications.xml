@@ -1,0 +1,6 @@
+<complications>
+    <!-- Published for the native watch face's data-field picker, like Heart Rate: pick "MotoTune AFR". -->
+    <complication id="0" access="public" icon="@Drawables.LauncherIcon" shortLabel="@Strings.AfrShort" longLabel="@Strings.AfrLong" value="0" units="" glancePreview="true">
+        <faceIt defaultText="@Strings.AfrDefault"/>
+    </complication>
+</complications>

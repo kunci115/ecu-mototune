@@ -403,7 +403,7 @@ class RideView extends WatchUi.View {
         label(dc, cx, _yLabel, "P A U S E D", WARN);                       // top band
         dc.setColor(TEXT, Graphics.COLOR_TRANSPARENT);
         dc.drawText(cx, h / 2 - hm / 2, Graphics.FONT_NUMBER_MILD, (dur / 60).format("%d") + ":" + (dur % 60).format("%02d"), Graphics.TEXT_JUSTIFY_CENTER);
-        label(dc, cx, _yBottom, _markers + " marks · max " + _maxRpm, DIM);   // bottom band
+        label(dc, cx, _yBottom, _markers + " marks", DIM);   // bottom band
         hint(dc, ANG_START, "resume", ACCENT); hint(dc, ANG_UP, "save", GOOD); hint(dc, ANG_BACK, "menu", DIM);
     }
 
