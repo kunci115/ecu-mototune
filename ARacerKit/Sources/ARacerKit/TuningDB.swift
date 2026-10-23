@@ -68,6 +68,12 @@ public final class AccelPull {
     public var mapLabel: String
     public var curveJSON: Data            // [BinAccel]
     public var gear: Int = 0              // 0 = unknown
+    public var meanRPM: Double = 0
+    public var meanVSS: Double = 0
+    public var gradeKnown: Bool = false   // watch fusion results
+    public var grade: Double = 0
+    public var segment: String = ""
+    public var correctedJSON: Data = Data()
     public init(at: Date, duration: Double, rpmStart: Int, rpmEnd: Int, gearRatio: Double, minAFR: Double, maxAFR: Double, mapLabel: String, curveJSON: Data, gear: Int = 0) {
         self.at = at; self.duration = duration; self.rpmStart = rpmStart; self.rpmEnd = rpmEnd; self.gearRatio = gearRatio
         self.minAFR = minAFR; self.maxAFR = maxAFR; self.mapLabel = mapLabel; self.curveJSON = curveJSON; self.gear = gear

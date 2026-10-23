@@ -167,20 +167,27 @@ public final class ECUSession {
         guard let db else { return }
         dyno.onPull = { [weak self] pull in
             guard let self, let ctx = self.db else { return }
-            ctx.insert(AccelPull(at: pull.startedAt, duration: pull.duration, rpmStart: pull.rpmStart, rpmEnd: pull.rpmEnd,
-                                 gearRatio: pull.gearRatio ?? 0, minAFR: pull.minAFR ?? 0, maxAFR: pull.maxAFR ?? 0,
-                                 mapLabel: pull.mapLabel, curveJSON: (try? JSONEncoder().encode(pull.curve)) ?? Data(), gear: pull.gear ?? 0))
-            try? ctx.save()
+            let row = AccelPull(at: pull.startedAt, duration: pull.duration, rpmStart: pull.rpmStart, rpmEnd: pull.rpmEnd,
+                                gearRatio: pull.gearRatio ?? 0, minAFR: pull.minAFR ?? 0, maxAFR: pull.maxAFR ?? 0,
+                                mapLabel: pull.mapLabel, curveJSON: (try? JSONEncoder().encode(pull.curve)) ?? Data(), gear: pull.gear ?? 0)
+            row.meanRPM = pull.meanRPM; row.meanVSS = pull.meanVSS
+            ctx.insert(row); try? ctx.save()
         }
         // restore earlier pulls so per-revision averages survive app restarts
         var fd = FetchDescriptor<AccelPull>(sortBy: [SortDescriptor(\.at, order: .reverse)]); fd.fetchLimit = DynoEngine.maxPulls
         let saved = (try? db.fetch(fd)) ?? []
         dyno.load(saved.map { a in
-            DynoEngine.makePull(startedAt: a.at, duration: a.duration, rpmStart: a.rpmStart, rpmEnd: a.rpmEnd,
-                                gearRatio: a.gearRatio == 0 ? nil : a.gearRatio,
-                                curve: (try? JSONDecoder().decode([DynoEngine.BinAccel].self, from: a.curveJSON)) ?? [],
-                                minAFR: a.minAFR == 0 ? nil : a.minAFR, maxAFR: a.maxAFR == 0 ? nil : a.maxAFR,
-                                sampleCount: 0, mapLabel: a.mapLabel, gear: a.gear == 0 ? nil : a.gear)
+            var p = DynoEngine.makePull(startedAt: a.at, duration: a.duration, rpmStart: a.rpmStart, rpmEnd: a.rpmEnd,
+                                        gearRatio: a.gearRatio == 0 ? nil : a.gearRatio,
+                                        curve: (try? JSONDecoder().decode([DynoEngine.BinAccel].self, from: a.curveJSON)) ?? [],
+                                        minAFR: a.minAFR == 0 ? nil : a.minAFR, maxAFR: a.maxAFR == 0 ? nil : a.maxAFR,
+                                        sampleCount: 0, mapLabel: a.mapLabel, gear: a.gear == 0 ? nil : a.gear,
+                                        meanRPM: a.meanRPM, meanVSS: a.meanVSS)
+            if a.gradeKnown {
+                p.grade = a.grade; p.segment = a.segment.isEmpty ? nil : a.segment
+                p.corrected = try? JSONDecoder().decode([DynoEngine.BinAccel].self, from: a.correctedJSON)
+            }
+            return p
         })
         var d = FetchDescriptor<MapRevision>(sortBy: [SortDescriptor(\.at, order: .reverse)]); d.fetchLimit = 1
         if let last = (try? db.fetch(d))?.first, last.source != "backup" { dyno.mapLabel = last.label }
@@ -253,6 +260,36 @@ public final class ECUSession {
         }
         writeLog.append("✓ done — ECU now on \(label). Next pulls are tagged \(label).")
         return label
+    }
+
+    /// Fuse a watch FIT file (barometric grade, GPS) into every stored pull it overlaps. Returns a one-line summary.
+    @discardableResult
+    public func importFIT(_ url: URL, offset: TimeInterval = 0) -> String {
+        let scoped = url.startAccessingSecurityScopedResource(); defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+        let fit: [FITReader.Sample]
+        do { fit = try FITReader.records(url: url) } catch { return "Could not read FIT: \(error)" }
+        guard let f0 = fit.first, let f1 = fit.last else { return "FIT file has no records" }
+        let ctx = RideFusion.annotate(pulls: dyno.pulls, fit: fit, offset: offset)
+        var matched = 0, ratios: [Double] = []
+        for (pull, c) in zip(dyno.pulls, ctx) where c.samples >= 2 && c.grade != nil {
+            matched += 1
+            dyno.enrich(pull.id, grade: c.grade, segment: c.segment, corrected: c.corrected)
+            if let g = c.gpsSpeedMean, let v = c.vssMean, v > 5 { ratios.append(g / v) }
+            if let db {
+                let at = pull.startedAt
+                var d = FetchDescriptor<AccelPull>(predicate: #Predicate { $0.at == at }); d.fetchLimit = 1
+                if let row = (try? db.fetch(d))?.first {
+                    row.gradeKnown = true; row.grade = c.grade ?? 0; row.segment = c.segment ?? ""
+                    row.correctedJSON = (try? JSONEncoder().encode(c.corrected)) ?? Data()
+                }
+            }
+        }
+        try? db?.save()
+        let span = "\(Int(f1.time.timeIntervalSince(f0.time)) / 60) min, \(fit.count) samples"
+        guard matched > 0 else { return "FIT covers \(span) but overlaps none of \(dyno.pulls.count) pulls — same ride? try an offset" }
+        var speed = ""
+        if ratios.count >= 2 { let m = ratios.sorted()[ratios.count / 2]; speed = String(format: " · GPS/VSS %.2f%@", m, abs(m - 1) < 0.08 ? " ✓ raw/256" : " ✗ rescale") }
+        return "\(matched) of \(dyno.pulls.count) pulls got grade + segment from \(span)\(speed)"
     }
 
     public func revertDraft() {

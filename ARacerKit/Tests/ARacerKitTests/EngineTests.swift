@@ -195,5 +195,13 @@ import Foundation
         // 2 % uphill: g·sinθ ≈ 0.196 m/s² × 400 rpm per m/s ≈ +78 rpm/s added back
         #expect(abs(ctx[0].corrected[0].accel - 1078) < 2)
         #expect(ctx[0].segment != nil)
+        // stored-pull path (means only, no raw samples) gives the same correction
+        var stored = pull; stored.meanRPM = 4000; stored.meanVSS = 36
+        let ctx2 = RideFusion.annotate(pulls: [stored], fit: fitSamples)
+        #expect(abs(ctx2[0].corrected[0].accel - 1078) < 2 && ctx2[0].grade == 2.0)
+        // enrich → comparisons use the corrected curve
+        let d = DynoEngine(); d.load([stored])
+        d.enrich(stored.id, grade: 2, segment: "x", corrected: ctx2[0].corrected)
+        #expect(abs((d.averagedCurve(label: "base").first?.mean ?? 0) - 1078) < 2)
     }
 }

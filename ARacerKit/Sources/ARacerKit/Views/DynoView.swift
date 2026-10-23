@@ -6,6 +6,8 @@ import SwiftData
 public struct DynoView: View {
     let session: ECUSession
     @Environment(\.modelContext) private var context
+    @State private var importing = false
+    @State private var importResult: String?
     public init(session: ECUSession) { self.session = session }
     private var d: DynoEngine { session.dyno }
 
@@ -15,6 +17,7 @@ public struct DynoView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.Space.lg) {
                     status
+                    watchCard
                     if let latest = d.pulls.first {
                         Text("Latest pull · torque proxy (rpm/s per RPM)").eyebrow()
                         AccelChart(curve: latest.curve).frame(height: 160).card(padding: Theme.Space.md)
@@ -41,6 +44,24 @@ public struct DynoView: View {
             Button("Clear") { d.clear() }.buttonStyle(.bordered).tint(Theme.Palette.textDim).disabled(d.pulls.isEmpty)
         }
         .card(padding: Theme.Space.md)
+    }
+
+    /// Watch fusion: a Garmin FIT file gives every overlapping pull its road grade and a slope-corrected curve.
+    private var watchCard: some View {
+        VStack(alignment: .leading, spacing: Theme.Space.sm) {
+            HStack {
+                Text("Watch · Garmin FIT").eyebrow()
+                Spacer()
+                Button("Import FIT", systemImage: "applewatch.radiowaves.left.and.right") { importing = true }
+                    .buttonStyle(.bordered).tint(Theme.Palette.accent).disabled(d.pulls.isEmpty)
+            }
+            Text(importResult ?? "Record the ride on the watch too (Every Second + Multi-Band). Import the activity's FIT to add road grade, segment and a slope-corrected curve to each pull.")
+                .font(.caption).foregroundStyle(importResult == nil ? Theme.Palette.textDim : Theme.Palette.text)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).card(padding: Theme.Space.md)
+        .fileImporter(isPresented: $importing, allowedContentTypes: [.data, .item]) { result in
+            if case .success(let url) = result { importResult = session.importFIT(url) }
+        }
     }
 
     private func comparison(_ a: DynoEngine.Pull, _ b: DynoEngine.Pull) -> some View {
@@ -74,7 +95,7 @@ public struct DynoView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("\(p.rpmStart) → \(p.rpmEnd) rpm · \(p.duration, format: .number.precision(.fractionLength(1)))s")
                             .font(.system(size: 13, weight: .semibold, design: .monospaced)).foregroundStyle(Theme.Palette.text)
-                        Text("map \(p.mapLabel)" + (p.gear.map { " · gear \($0)" } ?? "") + (p.gearRatio.map { String(format: " · ratio %.3f", $0) } ?? ""))
+                        Text("map \(p.mapLabel)" + (p.gear.map { " · gear \($0)" } ?? "") + (p.grade.map { String(format: " · grade %+.1f%%", $0) } ?? "") + (p.segment.map { _ in " · seg" } ?? "") + (p.gearRatio.map { String(format: " · ratio %.3f", $0) } ?? ""))
                             .font(.system(size: 11)).foregroundStyle(Theme.Palette.textDim)
                     }
                     Spacer()

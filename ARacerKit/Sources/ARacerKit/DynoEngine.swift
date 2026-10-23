@@ -19,6 +19,14 @@ public final class DynoEngine {
         public let sampleCount: Int
         public let mapLabel: String            // which fuel-map revision was active
         public var gear: Int? = nil            // gear position (id130 candidate) — pulls compare within one gear
+        public var meanRPM: Double = 0         // for slope correction without keeping raw samples
+        public var meanVSS: Double = 0         // km/h (raw/256)
+        // filled by RideFusion from a watch FIT file
+        public var grade: Double? = nil        // % road grade during the pull
+        public var segment: String? = nil      // same start + heading bucket
+        public var corrected: [BinAccel]? = nil   // curve with g·sinθ added back
+        /// The curve to compare: slope-corrected when the watch data is there.
+        public var effectiveCurve: [BinAccel] { corrected ?? curve }
     }
 
     public private(set) var pulls: [Pull] = [] { didSet { refreshDerived() } }   // newest first, bounded
@@ -32,10 +40,16 @@ public final class DynoEngine {
     public var mapLabel = "base"               // set by the editor when a map is written
     @ObservationIgnored public var onPull: ((Pull) -> Void)?   // persistence hook (ECUSession → SwiftData)
     @ObservationIgnored public var onPullSamples: ((Pull, [Sample]) -> Void)?   // raw samples of a finished pull (fusion / replay)
+    /// Attach watch-derived context to a stored pull (triggers the derived refresh).
+    public func enrich(_ id: UUID, grade: Double?, segment: String?, corrected: [BinAccel]?) {
+        guard let i = pulls.firstIndex(where: { $0.id == id }) else { return }
+        pulls[i].grade = grade; pulls[i].segment = segment; pulls[i].corrected = corrected
+    }
     /// Restore pulls saved in earlier app runs so revision averages survive restarts.
     public func load(_ saved: [Pull]) { pulls = Array(saved.sorted { $0.startedAt > $1.startedAt }.prefix(Self.maxPulls)) }
-    public static func makePull(startedAt: Date, duration: Double, rpmStart: Int, rpmEnd: Int, gearRatio: Double?, curve: [BinAccel], minAFR: Double?, maxAFR: Double?, sampleCount: Int, mapLabel: String, gear: Int? = nil) -> Pull {
-        Pull(id: UUID(), startedAt: startedAt, duration: duration, rpmStart: rpmStart, rpmEnd: rpmEnd, gearRatio: gearRatio, curve: curve, minAFR: minAFR, maxAFR: maxAFR, sampleCount: sampleCount, mapLabel: mapLabel, gear: gear)
+    public static func makePull(startedAt: Date, duration: Double, rpmStart: Int, rpmEnd: Int, gearRatio: Double?, curve: [BinAccel], minAFR: Double?, maxAFR: Double?, sampleCount: Int, mapLabel: String, gear: Int? = nil, meanRPM: Double = 0, meanVSS: Double = 0) -> Pull {
+        var p = Pull(id: UUID(), startedAt: startedAt, duration: duration, rpmStart: rpmStart, rpmEnd: rpmEnd, gearRatio: gearRatio, curve: curve, minAFR: minAFR, maxAFR: maxAFR, sampleCount: sampleCount, mapLabel: mapLabel, gear: gear)
+        p.meanRPM = meanRPM; p.meanVSS = meanVSS; return p
     }
 
     // Detection thresholds
@@ -92,9 +106,11 @@ public final class DynoEngine {
         // gear = the mode of the samples' gear readings (nil when the variable isn't streamed)
         let gears = cur.compactMap(\.gear).filter { $0 > 0 }
         let gear = gears.isEmpty ? nil : Dictionary(gears.map { ($0, 1) }, uniquingKeysWith: +).max { $0.value < $1.value }!.key
-        let pull = Pull(id: UUID(), startedAt: Date(timeIntervalSince1970: f.t), duration: l.t - f.t,
+        var pull = Pull(id: UUID(), startedAt: Date(timeIntervalSince1970: f.t), duration: l.t - f.t,
                         rpmStart: f.rpm, rpmEnd: l.rpm, gearRatio: ratio, curve: curve,
                         minAFR: afrs.min(), maxAFR: afrs.max(), sampleCount: cur.count, mapLabel: mapLabel, gear: gear)
+        pull.meanRPM = cur.map { Double($0.rpm) }.reduce(0, +) / Double(cur.count)
+        pull.meanVSS = cur.map { Double($0.vss) / 256 }.reduce(0, +) / Double(cur.count)
         pulls.insert(pull, at: 0)
         if pulls.count > Self.maxPulls { pulls.removeLast() }
         onPull?(pull)
@@ -114,7 +130,7 @@ public final class DynoEngine {
     public func averagedCurve(label: String, gear: Int? = nil) -> [(rpm: Int, mean: Double, std: Double, n: Int)] {
         let group = pulls.filter { $0.mapLabel == label && (gear == nil || $0.gear == gear) }
         var acc: [Int: [Double]] = [:]
-        for p in group { for b in p.curve { acc[b.rpm, default: []].append(b.accel) } }
+        for p in group { for b in p.effectiveCurve { acc[b.rpm, default: []].append(b.accel) } }
         return acc.keys.sorted().map { k in
             let xs = acc[k]!; let m = xs.reduce(0, +) / Double(xs.count)
             let v = xs.count > 1 ? xs.map { ($0 - m) * ($0 - m) }.reduce(0, +) / Double(xs.count - 1) : 0

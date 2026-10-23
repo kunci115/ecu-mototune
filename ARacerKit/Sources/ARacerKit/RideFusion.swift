@@ -19,9 +19,20 @@ public enum RideFusion {
 
     /// `offset` = seconds to add to FIT times to align with the phone clock (both are GPS/NTP-synced; usually 0).
     public static func annotate(pulls: [DynoEngine.Pull], rawSamples: [[DynoEngine.Sample]], fit: [FITReader.Sample], offset: TimeInterval = 0) -> [PullContext] {
+        let means = rawSamples.map { raw -> (Double, Double) in
+            raw.isEmpty ? (0, 0) : (raw.map { Double($0.rpm) }.reduce(0, +) / Double(raw.count), raw.map { Double($0.vss) / 256 }.reduce(0, +) / Double(raw.count))
+        }
+        return annotate(pulls: pulls, means: means, fit: fit, offset: offset)
+    }
+    /// Stored pulls carry their own means — no raw samples needed.
+    public static func annotate(pulls: [DynoEngine.Pull], fit: [FITReader.Sample], offset: TimeInterval = 0) -> [PullContext] {
+        annotate(pulls: pulls, means: pulls.map { ($0.meanRPM, $0.meanVSS) }, fit: fit, offset: offset)
+    }
+
+    static func annotate(pulls: [DynoEngine.Pull], means: [(rpm: Double, vss: Double)], fit: [FITReader.Sample], offset: TimeInterval) -> [PullContext] {
         guard !fit.isEmpty else { return [] }
         let times = fit.map { $0.time.timeIntervalSince1970 + offset }
-        return zip(pulls, rawSamples).map { pull, raw in
+        return zip(pulls, means).map { pull, m in
             let t0 = pull.startedAt.timeIntervalSince1970, t1 = t0 + pull.duration
             // FIT samples inside the pull, plus one on each side so a short pull still has two points
             var lo = times.firstIndex { $0 >= t0 } ?? times.count, hi = times.lastIndex { $0 <= t1 } ?? -1
@@ -37,12 +48,12 @@ public enum RideFusion {
             }
             let sp = win.compactMap(\.speed)
             let gps = sp.isEmpty ? nil : sp.reduce(0, +) / Double(sp.count) * 3.6
-            let vss = raw.isEmpty ? nil : raw.map { Double($0.vss) / 256 }.reduce(0, +) / Double(raw.count)
+            let vss: Double? = m.vss > 0 ? m.vss : nil
             // slope correction in rpm/s: a_true = a_meas + g·sinθ · (rpm per m/s in this gear)
             var corrected = pull.curve
-            if let grade, let gps, gps > 5, !raw.isEmpty {
+            if let grade, let gps, gps > 5, m.rpm > 0 {
                 let theta = atan(grade / 100)
-                let rpmPerMps = raw.map { Double($0.rpm) }.reduce(0, +) / Double(raw.count) / (gps / 3.6)
+                let rpmPerMps = m.rpm / (gps / 3.6)
                 corrected = pull.curve.map { DynoEngine.BinAccel(rpm: $0.rpm, accel: $0.accel + g * sin(theta) * rpmPerMps, n: $0.n) }
             }
             var segment: String?
