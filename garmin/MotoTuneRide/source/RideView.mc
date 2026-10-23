@@ -194,33 +194,35 @@ class RideView extends WatchUi.View {
     private function live() as Graphics.ColorType { return ecuFresh() ? Graphics.COLOR_WHITE : Graphics.COLOR_DK_GRAY; }
 
     //! Before the ride: is everything that feeds the screen actually there?
+    //! Rows sit in the widest band of the round screen; values are short so they never reach the labels.
     private function drawChecklist(dc as Dc) as Void {
         var w = dc.getWidth(), h = dc.getHeight(), cx = w / 2;
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.10, Graphics.FONT_SMALL, "MotoTune Ride", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, h * 0.12, Graphics.FONT_SMALL, "MotoTune Ride", Graphics.TEXT_JUSTIFY_CENTER);
         var phone = phoneConnected();
         var ecu = ecuFresh() && _ecu.hasKey("ecu") && (_ecu["ecu"] as Number) == 1;
         var gps = _gpsQuality >= Position.QUALITY_USABLE;
         var labels = ["Phone", "ECU", "GPS", "HR"];
-        var values = [phone ? "ok" : "not connected",
-                      ecu ? "live" : (phone ? "not connected" : "—"),
-                      _gpsQuality >= Position.QUALITY_GOOD ? "ok" : (gps ? "weak" : "searching…"),
-                      _hr != null ? _hr + " bpm" : "—"];
+        var values = [phone ? "OK" : "no",
+                      ecu ? "live" : "no",
+                      _gpsQuality >= Position.QUALITY_GOOD ? "OK" : (gps ? "weak" : "search"),
+                      _hr != null ? _hr.format("%d") : "--"];
         var oks = [phone, ecu, gps, _hr != null];
-        var y = h * 0.24;
-        var lh = dc.getFontHeight(Graphics.FONT_SMALL);
+        var font = Graphics.FONT_SMALL;
+        var lh = dc.getFontHeight(font) + 4;
+        var y = h * 0.50 - lh * 2;                       // four rows centred on the middle of the screen
         for (var i = 0; i < 4; i++) {
             var ok = oks[i] as Boolean;
-            dc.setColor(ok ? Graphics.COLOR_GREEN : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(w * 0.18, y + lh / 2, 6);
+            dc.setColor(ok ? Graphics.COLOR_GREEN : Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+            dc.fillCircle(w * 0.24, y + lh / 2, 6);
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(w * 0.25, y, Graphics.FONT_SMALL, labels[i] as String, Graphics.TEXT_JUSTIFY_LEFT);
+            dc.drawText(w * 0.31, y, font, labels[i] as String, Graphics.TEXT_JUSTIFY_LEFT);
             dc.setColor(ok ? Graphics.COLOR_GREEN : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(w * 0.82, y, Graphics.FONT_SMALL, values[i] as String, Graphics.TEXT_JUSTIFY_RIGHT);
-            y += lh + 6;
+            dc.drawText(w * 0.78, y, font, values[i] as String, Graphics.TEXT_JUSTIFY_RIGHT);
+            y += lh;
         }
         dc.setColor(phone && gps ? Graphics.COLOR_GREEN : Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, h * 0.74, Graphics.FONT_MEDIUM, "START to ride", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, h * 0.76, Graphics.FONT_SMALL, "START to ride", Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     private function drawHeader(dc as Dc, now as Number) as Void {
