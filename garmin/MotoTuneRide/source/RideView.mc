@@ -46,6 +46,8 @@ class RideView extends WatchUi.View {
     private var _hr as Number? = null;
     private var _gpsQuality as Number = 0;
     private var _speedMps as Float? = null;
+    private var _lastPosAt as Number = 0;          // seconds; 0 = no position event yet
+    private var _gpsFallback as Boolean = false;
     private var _startedAt as Number = 0;
     private var _maxRpm as Number = 0;
     private var _toast as String? = null;
@@ -71,7 +73,7 @@ class RideView extends WatchUi.View {
     }
     public function onHide() as Void { _timer.stop(); Sensor.enableSensorEvents(null); }
     public function onSensor(info as Sensor.Info) as Void { _hr = info.heartRate; }
-    public function onPosition(info as Position.Info) as Void { _gpsQuality = info.accuracy; _speedMps = info.speed; }
+    public function onPosition(info as Position.Info) as Void { _gpsQuality = info.accuracy; _speedMps = info.speed; _lastPosAt = Time.now().value(); }
 
     // ---- phone data -----------------------------------------------------------------------
     public function onEcu(d as Dictionary) as Void {
@@ -91,6 +93,12 @@ class RideView extends WatchUi.View {
 
     public function tick() as Void {
         _ticks += 1;
+        // no position event at all after 15 s → the multi-band request may have been ignored; fall back to the plain call
+        if (_ticks == 15 && _lastPosAt == 0 && !_gpsFallback) {
+            _gpsFallback = true;
+            Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition));
+            toast("gps: plain mode");
+        }
         if (_ticks % 10 == 0 && phoneConnected()) {
             Communications.transmit({"hr" => (_hr == null ? 0 : _hr), "rec" => isRecording() ? 1 : 0}, null, new $.QuietListener());
         }
@@ -283,9 +291,10 @@ class RideView extends WatchUi.View {
         var ecu = ecuLive();
         var gps = _gpsQuality >= Position.QUALITY_USABLE;
         var labels = ["PHONE", "ECU", "GPS", "HEART"];
+        var age = _lastPosAt == 0 ? "no events" : "q" + _gpsQuality + " · " + (Time.now().value() - _lastPosAt) + "s";
         var values = [phone ? "ready" : "—",
                       ecu ? "live" : "—",
-                      _gpsQuality >= Position.QUALITY_GOOD ? "locked" : (gps ? "weak" : "searching"),
+                      _gpsQuality >= Position.QUALITY_GOOD ? "locked" : (gps ? "weak" : "searching · " + age),
                       _hr != null ? _hr.format("%d") + " bpm" : "—"];
         var oks = [phone, ecu, gps, _hr != null];
         var rowH = 34;
