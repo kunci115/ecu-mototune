@@ -68,9 +68,16 @@ class RideView extends WatchUi.View {
     }
 
     //! Periodic watch → phone: heart rate (for the drowsiness score) and recording state.
+    //! Only when a phone is actually connected — otherwise the radio (and the simulator's ADB prompt) stays quiet.
     public function tick() as Void {
+        if (!phoneConnected()) { return; }
         var msg = {"hr" => (_hr == null ? 0 : _hr), "rec" => isRecording() ? 1 : 0};
         Communications.transmit(msg, null, new $.QuietListener());
+    }
+
+    private function phoneConnected() as Boolean {
+        var ds = System.getDeviceSettings();
+        return ds != null && ds.phoneConnected;
     }
 
     // ---- recording ------------------------------------------------------------------------
@@ -111,8 +118,10 @@ class RideView extends WatchUi.View {
         _markers += 1;
         var s = _session;
         if (s != null && s.isRecording()) { s.addLap(); }
-        var msg = {"mark" => Time.now().value(), "hr" => (_hr == null ? 0 : _hr), "n" => _markers};
-        Communications.transmit(msg, null, new $.QuietListener());
+        if (phoneConnected()) {
+            var msg = {"mark" => Time.now().value(), "hr" => (_hr == null ? 0 : _hr), "n" => _markers};
+            Communications.transmit(msg, null, new $.QuietListener());
+        }
         buzz(1);
         WatchUi.requestUpdate();
     }
