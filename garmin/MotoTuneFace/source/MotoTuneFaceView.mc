@@ -76,51 +76,52 @@ class MotoTuneFaceView extends WatchUi.WatchFace {
         var now = Time.now();
         var g = Gregorian.info(now, Time.FORMAT_MEDIUM);
         var hx = dc.getFontHeight(Graphics.FONT_XTINY);
+        var hm = dc.getFontHeight(Graphics.FONT_NUMBER_MILD);
+        var hs = dc.getFontHeight(Graphics.FONT_SMALL);
         var age = _at == 0 ? null : now.value() - _at;
         var fresh = age != null && age < 30;
+        var live = fresh ? TEXT : DIM;
 
-        // ---- top: AFR
+        // ---- top band: RPM | TPS, big
+        var yTop = (h * 0.06).toNumber();
+        dc.setColor(live, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(w * 0.30, yTop, Graphics.FONT_NUMBER_MILD, _vals.hasKey("RPM") ? text(_vals["RPM"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.70, yTop, Graphics.FONT_NUMBER_MILD, _vals.hasKey("TPS") ? text(_vals["TPS"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
+        var yTopLabel = yTop + hm - 8;
+        dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(w * 0.30, yTopLabel, Graphics.FONT_XTINY, "RPM", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(w * 0.70, yTopLabel, Graphics.FONT_XTINY, "TPS %", Graphics.TEXT_JUSTIFY_CENTER);
+        dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
+        dc.drawLine(cx, yTop + 10, cx, yTopLabel + hx - 6);
+
+        // ---- middle: AFR, the biggest thing on the face
         var afrStr = _vals.hasKey("AFR") ? text(_vals["AFR"]) : "--.-";
         var afrColor = DIM;
         if (fresh && _vals.hasKey("AFR")) {
             var v = afrStr.toFloat();
             afrColor = (v != null && v >= 13.6) ? BAD : ((v != null && v <= 11.5) ? RICH : GOOD);
         }
-        var yTop = (h * 0.07).toNumber();
+        var yAfrLabel = yTopLabel + hx;
         dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, yTop, Graphics.FONT_XTINY, fresh ? "A F R" : (age == null ? "A F R  ·  no data" : "A F R  ·  " + (age < 3600 ? (age / 60).format("%d") + " min" : "old")), Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, yAfrLabel, Graphics.FONT_XTINY, fresh ? "A F R" : (age == null ? "A F R  ·  no data" : "A F R  ·  " + (age < 3600 ? (age / 60).format("%d") + " min" : "old")), Graphics.TEXT_JUSTIFY_CENTER);
+        var afrFont = Graphics.FONT_NUMBER_MEDIUM;
+        var ha = dc.getFontHeight(afrFont);
+        var yAfr = yAfrLabel + hx - 6;
         dc.setColor(afrColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, yTop + hx - 4, Graphics.FONT_LARGE, afrStr, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, yAfr, afrFont, afrStr, Graphics.TEXT_JUSTIFY_CENTER);
 
-        // ---- middle: time, then one line "TUE 23 OCT · ♥ 78 · 86%"
+        // ---- bottom: small time · date, then bpm · battery
         var settings = System.getDeviceSettings();
         var hour = g.hour;
         if (!settings.is24Hour) { hour = hour % 12; if (hour == 0) { hour = 12; } }
-        var timeFont = Graphics.FONT_NUMBER_HOT;
-        var th = dc.getFontHeight(timeFont);
-        var yTime = h / 2 - th / 2 + (h * 0.02).toNumber();
+        var yTime = yAfr + ha - 10;
         dc.setColor(_sleeping ? DIM : TEXT, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, yTime, timeFont, hour.format("%d") + ":" + g.min.format("%02d"), Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, yTime, Graphics.FONT_SMALL, hour.format("%d") + ":" + g.min.format("%02d") + "   " + (g.day_of_week as String).toUpper() + " " + g.day.format("%d") + " " + (g.month as String).toUpper(), Graphics.TEXT_JUSTIFY_CENTER);
         var info = Activity.getActivityInfo();
         var hr = (info != null && info.currentHeartRate != null) ? (info.currentHeartRate as Number).format("%d") : "--";
         var batt = System.getSystemStats().battery;
         dc.setColor(_sleeping ? FAINT : ACCENT, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, yTime + th - (h * 0.02).toNumber(), Graphics.FONT_XTINY,
-                    (g.day_of_week as String).toUpper() + " " + g.day.format("%d") + " " + (g.month as String).toUpper() + "  ·  " + hr + " bpm  ·  " + batt.format("%d") + "%",
-                    Graphics.TEXT_JUSTIFY_CENTER);
-
-        // ---- bottom: RPM | TPS
-        var yBot = (h * 0.76).toNumber();
-        var col = fresh ? TEXT : DIM;
-        dc.setColor(col, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.33, yBot, Graphics.FONT_SMALL, _vals.hasKey("RPM") ? text(_vals["RPM"]) : "--", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.67, yBot, Graphics.FONT_SMALL, (_vals.hasKey("TPS") ? text(_vals["TPS"]) : "--") + "%", Graphics.TEXT_JUSTIFY_CENTER);
-        var sh = dc.getFontHeight(Graphics.FONT_SMALL);
-        dc.setColor(DIM, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(w * 0.33, yBot + sh - 6, Graphics.FONT_XTINY, "RPM", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.drawText(w * 0.67, yBot + sh - 6, Graphics.FONT_XTINY, "TPS", Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(FAINT, Graphics.COLOR_TRANSPARENT);
-        dc.drawLine(cx, yBot + 4, cx, yBot + sh + hx - 10);
+        dc.drawText(cx, yTime + hs - 8, Graphics.FONT_XTINY, hr + " bpm   ·   " + batt.format("%d") + "%", Graphics.TEXT_JUSTIFY_CENTER);
 
         // ---- bezel: faint track + battery arc in the AFR colour
         dc.setPenWidth(4);
