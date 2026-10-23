@@ -45,8 +45,13 @@ public final class ECUSession {
     /// The 1 Hz snapshot the watch shows. Small ints only (BLE), AFR ×10.
     public var watchSnapshot: [String: Any] {
         let t = tuner
-        var d: [String: Any] = ["pulls": dyno.pulls.count, "map": dyno.mapLabel, "lean": 0]
+        var d: [String: Any] = ["pulls": dyno.pulls.filter { $0.mapLabel == dyno.mapLabel }.count, "map": dyno.mapLabel, "lean": 0,
+                                "ecu": state == .connected ? 1 : 0]
         if let r = t.liveRPM { d["rpm"] = r }
+        if let s = latest, let si = slots.firstIndex(where: { $0.index == 0x4033 }), s.values.indices.contains(si) { d["spd"] = Int(s.values[si]) / 256 }
+        if let s = latest, let bi = slots.firstIndex(where: { $0.index == 0x4017 }), s.values.indices.contains(bi) { d["bpw"] = Int(s.values[bi]) }
+        let cmp = dyno.latestComparison
+        if !cmp.isEmpty { d["cmp"] = Int((cmp.map(\.pct).reduce(0, +) / Double(cmp.count) * 10).rounded()); d["nsig"] = cmp.filter(\.significant).count }
         if let a = t.liveAFR { d["afr"] = Int((a * 10).rounded()) }
         if let g = t.liveTarget { d["tgt"] = Int((g * 10).rounded()) }
         if let p = t.liveTPS { d["tps"] = p }

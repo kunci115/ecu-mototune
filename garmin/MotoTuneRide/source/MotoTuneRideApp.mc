@@ -32,7 +32,7 @@ class MotoTuneRideApp extends Application.AppBase {
     }
 
     public function onStop(state as Dictionary?) as Void {
-        if (_view != null) { _view.stopRecording(true); }
+        if (_view != null && _view.hasSession()) { _view.finish(true); }   // leaving the app mid-ride still saves the FIT
         Position.enableLocationEvents(Position.LOCATION_DISABLE, null);
     }
 
