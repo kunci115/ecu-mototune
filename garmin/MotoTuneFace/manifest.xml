@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <!-- MotoTune watch face: time, date, battery, heart rate — and the AFR the phone last reported,
+         read from the complication that MotoTune Ride publishes. Pick it once; AFR is then always on the wrist. -->
+    <iq:application entry="MotoTuneFaceApp" id="c6936ed9b011466bbb961c2d4b9188e5" launcherIcon="@Drawables.LauncherIcon"
+                    minApiLevel="4.2.0" name="@Strings.AppName" type="watchface">
+        <iq:products>
+            <iq:product id="fr265"/>
+            <iq:product id="fr265s"/>
+            <iq:product id="fenix7xpronowifi"/>
+        </iq:products>
+        <iq:permissions>
+            <iq:uses-permission id="ComplicationSubscriber"/>
+        </iq:permissions>
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+        <iq:barrels/>
+    </iq:application>
+</iq:manifest>
